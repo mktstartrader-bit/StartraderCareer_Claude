@@ -71,7 +71,7 @@ export default function About() {
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <CollageHero marquee bg="bg-white" images={[woman, force, mission, vision]}>
+      <CollageHero marquee bg="bg-[rgba(218,227,237,0.2)]" images={[woman, force, mission, vision]}>
         <Reveal>
           <h1 className="text-[clamp(34px,4.6vw,48px)] font-medium leading-[1.12] tracking-[-1px] text-ink">
             <span className="font-semibold text-black">STARTRADER:</span>

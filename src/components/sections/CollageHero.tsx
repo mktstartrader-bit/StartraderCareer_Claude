@@ -7,12 +7,14 @@ type Props = {
   children: ReactNode; // the left-hand text block
   images: string[];
   bg?: string; // section background utility
-  /** when true, the right side is a continuously auto-scrolling photo marquee */
+  /** when true, the right side is a continuously auto-scrolling, tilted photo marquee */
   marquee?: boolean;
 };
 
+// soft fade only at the extreme top/bottom edges so the columns still read
+// "from the top of the frame" while the cut line stays smooth
 const EDGE_MASK =
-  "linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%)";
+  "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)";
 
 function MarqueeColumn({
   images,
@@ -46,7 +48,7 @@ function MarqueeColumn({
 /**
  * Shared hero for STARLIFE / ABOUT / STARSOCIAL: left text block, right photo
  * collage. Default = a tilted parallax grid; `marquee` = continuously scrolling
- * columns with softly-masked top/bottom edges (used on About).
+ * columns tilted 17.748° that bleed from the top of the frame (used on About).
  */
 export default function CollageHero({ children, images, bg = "bg-[rgba(218,227,237,0.25)]", marquee = false }: Props) {
   const reduce = useReducedMotion();
@@ -59,19 +61,24 @@ export default function CollageHero({ children, images, bg = "bg-[rgba(218,227,2
 
   return (
     <section className={`relative overflow-hidden ${bg} pt-[70px]`}>
+      {/* tilted auto-scroll marquee — bleeds from the very top of the frame, on the right */}
+      {marquee && (
+        <div
+          className="pointer-events-none absolute right-0 top-0 hidden h-full w-[58%] overflow-hidden lg:block"
+          style={{ maskImage: EDGE_MASK, WebkitMaskImage: EDGE_MASK }}
+        >
+          <div className="absolute right-[-8%] top-1/2 flex h-[170%] w-[720px] -translate-y-1/2 rotate-[17.748deg] gap-4">
+            <MarqueeColumn images={colA} dir="up" duration={32} reduce={reduce} />
+            <MarqueeColumn images={colB} dir="down" duration={38} reduce={reduce} />
+            <MarqueeColumn images={colC} dir="up" duration={28} reduce={reduce} />
+          </div>
+        </div>
+      )}
+
       <div className="shell relative grid grid-cols-1 items-center gap-10 py-16 lg:min-h-[630px] lg:grid-cols-[1fr_0.9fr]">
         <div className="relative z-10">{children}</div>
 
-        {marquee ? (
-          <div
-            className="hidden h-[540px] justify-end gap-4 lg:flex"
-            style={{ maskImage: EDGE_MASK, WebkitMaskImage: EDGE_MASK }}
-          >
-            <MarqueeColumn images={colA} dir="up" duration={30} reduce={reduce} />
-            <MarqueeColumn images={colB} dir="down" duration={36} reduce={reduce} />
-            <MarqueeColumn images={colC} dir="up" duration={26} reduce={reduce} />
-          </div>
-        ) : (
+        {!marquee && (
           <div className="relative hidden h-[520px] lg:block">
             <Parallax className="absolute -right-[12%] -top-10 h-[680px] w-[760px]" distance={40}>
               <div className="origin-center rotate-[18deg]">
