@@ -6,10 +6,10 @@ import CtaBand from "@/components/sections/CtaBand";
 import CollageHero from "@/components/sections/CollageHero";
 
 import woman from "@/assets/life/woman.jpg";
-import mission from "@/assets/about/mission.jpg";
-import vision from "@/assets/about/vision.jpg";
+import mission from "@/assets/about/mission.webp";
+import vision from "@/assets/about/vision.webp";
 import valuesBg from "@/assets/about/values-bg.jpg";
-import force from "@/assets/about/force.jpg";
+import force from "@/assets/about/force.webp";
 import awardsImg from "@/assets/about/awards.jpg";
 import awAffli from "@/assets/about/awards/affli.svg";
 import awFrx from "@/assets/about/awards/frx.svg";
