@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Life from "./pages/Life";
 import Social from "./pages/Social";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ export default function App() {
             <Route path="/starlife" element={<Life />} />
             <Route path="/starsocial" element={<Social />} />
             <Route path="/starblog" element={<Blog />} />
+            <Route path="/starblog/:slug" element={<BlogPost />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </motion.main>
