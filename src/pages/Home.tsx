@@ -158,16 +158,18 @@ export default function Home() {
       </section>
 
       {/* ───────── CEO MESSAGE ───────── */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden pb-16 lg:pb-0">
         <img src={ceoTexture} alt="" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-white/30" />
-        <div className="shell relative grid grid-cols-1 items-center gap-10 py-16 lg:min-h-[650px] lg:grid-cols-[450px_1fr] lg:gap-16 lg:py-20">
-          <Reveal className="relative self-end lg:self-stretch">
-            <Parallax className="mx-auto h-[clamp(380px,42vw,535px)] w-full max-w-[450px] overflow-hidden" distance={28}>
-              <img src={ceoImg} alt="Mr. Peter Karsten, CEO of STARTRADER" className="h-full w-full scale-105 object-cover object-top" />
-            </Parallax>
+        <div className="shell relative grid grid-cols-1 gap-10 pt-16 lg:min-h-[620px] lg:grid-cols-[450px_1fr] lg:items-end lg:gap-16 lg:pt-24">
+          {/* Peter — anchored to the bottom of the section */}
+          <Reveal className="relative lg:self-end">
+            <div className="mx-auto h-[clamp(360px,44vw,560px)] w-full max-w-[450px] overflow-hidden">
+              <img src={ceoImg} alt="Mr. Peter Karsten, CEO of STARTRADER" className="block h-full w-full object-cover object-top" />
+            </div>
           </Reveal>
-          <Reveal delay={0.1} className="lg:py-10">
+          {/* Message — vertically centered in the section */}
+          <Reveal delay={0.1} className="lg:self-center lg:pb-12">
             <h2 className="text-[22px] font-medium text-ink">Our CEO’s message to the people</h2>
             <p className="mt-2 text-body text-brand-blue">Mr. Peter Karsten, CEO of STARTRADER</p>
             <p className="mt-5 max-w-[644px] text-body text-ink">

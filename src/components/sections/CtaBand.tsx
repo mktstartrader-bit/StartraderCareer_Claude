@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
 import { EASE_OUT } from "@/lib/motion";
-import footerStar from "@/assets/brand/footer-star.svg";
+import footerBg from "@/assets/brand/footer-bg.svg";
 
 type Props = {
   title: ReactNode;
@@ -16,8 +16,8 @@ type Props = {
 
 /**
  * The recurring closing CTA band. Light card (rgba 218,227,237/.35) or dark
- * navy gradient, with an optional people cutout, a faint rotating star and a
- * small square accent — exactly as the Figma frames.
+ * navy gradient, with an optional people cutout over the faint STARTRADER
+ * footerBackground watermark — exactly as the Figma frames.
  */
 export default function CtaBand({ title, buttonLabel, buttonTo, image, imageAlt, variant = "light" }: Props) {
   const dark = variant === "dark";
@@ -52,12 +52,13 @@ export default function CtaBand({ title, buttonLabel, buttonTo, image, imageAlt,
               {image && (
                 <div className="relative h-[300px] sm:h-[360px] lg:h-[420px]">
                   <motion.img
-                    src={footerStar} alt="" aria-hidden
-                    className={`absolute right-6 top-1/2 w-[280px] -translate-y-1/2 ${dark ? "opacity-[0.10] invert" : "opacity-[0.06]"}`}
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+                    src={footerBg} alt="" aria-hidden
+                    className={`pointer-events-none absolute right-2 top-1/2 h-[118%] w-auto -translate-y-1/2 sm:right-6 ${dark ? "invert" : ""}`}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: EASE_OUT }}
                   />
-                  <span className={`absolute right-24 top-8 h-12 w-12 rounded-md ${dark ? "bg-white/10" : "bg-brand-blue/10"}`} />
                   <motion.img
                     src={image} alt={imageAlt ?? ""}
                     className="absolute bottom-0 right-6 h-full w-auto max-w-none object-contain object-bottom sm:right-10"
