@@ -5,6 +5,7 @@ import Accordion from "@/components/ui/Accordion";
 import CtaBand from "@/components/sections/CtaBand";
 import IconFeatures from "@/components/sections/IconFeatures";
 import CollageHero from "@/components/sections/CollageHero";
+import VideoTile from "@/components/ui/VideoTile";
 
 import woman from "@/assets/life/woman.jpg";
 import culture from "@/assets/life/culture.jpg";
@@ -17,15 +18,16 @@ import icIdea from "@/assets/life/ic-idea.svg";
 import heroImg from "@/assets/home/hero.jpg";
 import teamImg from "@/assets/home/team.jpg";
 
+// real STARLIFE clips (public/starlife/*.mp4), mapped to the two mosaic rows
 const GALLERY = [
-  { src: heroImg, label: "Modern work" },
-  { src: woman, label: "Celebration" },
-  { src: teamImg, label: "High five" },
+  { src: "/starlife/life.mp4", label: "Life at STARTRADER" },
+  { src: "/starlife/national-day.mp4", label: "National Day" },
+  { src: "/starlife/year-end-party.mp4", label: "Year-End Party" },
 ];
 const GALLERY2 = [
-  { src: culture, label: "Indoors" },
-  { src: teamImg, label: "Discussion" },
-  { src: heroImg, label: "Together" },
+  { src: "/starlife/football-match.mp4", label: "Football Match" },
+  { src: "/starlife/volunteering.mp4", label: "Volunteering" },
+  { src: "/starlife/celebrations.mp4", label: "Celebrations" },
 ];
 
 const FEATURES = [
@@ -91,19 +93,15 @@ export default function Life() {
         <div className="mt-12 space-y-[15px]">
           <Stagger className="grid grid-cols-1 gap-[15px] px-[15px] sm:grid-cols-3 lg:grid-cols-[592fr_226fr_592fr]">
             {GALLERY.map((g, i) => (
-              <StaggerItem key={i} className="group relative h-[220px] overflow-hidden rounded-[12px] sm:h-[300px]">
-                <img src={g.src} alt={g.label} className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/85 via-brand-deep/30 to-transparent" />
-                <span className="absolute bottom-4 left-4 text-[13px] font-medium uppercase tracking-wide text-white/85">{g.label}</span>
+              <StaggerItem key={i} className="h-[220px] sm:h-[300px]">
+                <VideoTile src={g.src} label={g.label} className="h-full w-full" />
               </StaggerItem>
             ))}
           </Stagger>
           <Stagger className="grid grid-cols-1 gap-[15px] px-[15px] sm:grid-cols-3 lg:grid-cols-[406fr_545fr_460fr]" delay={0.08}>
             {GALLERY2.map((g, i) => (
-              <StaggerItem key={i} className="group relative h-[220px] overflow-hidden rounded-[12px] sm:h-[300px]">
-                <img src={g.src} alt={g.label} className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/85 via-brand-deep/30 to-transparent" />
-                <span className="absolute bottom-4 left-4 text-[13px] font-medium uppercase tracking-wide text-white/85">{g.label}</span>
+              <StaggerItem key={i} className="h-[220px] sm:h-[300px]">
+                <VideoTile src={g.src} label={g.label} className="h-full w-full" />
               </StaggerItem>
             ))}
           </Stagger>
