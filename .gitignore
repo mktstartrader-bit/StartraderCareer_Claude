@@ -8,7 +8,8 @@ dist-ssr/
 
 # Figma working files (screenshots, raw downloaded assets) — not part of the app
 _figma/
-Assets/
+# Root-level source assets folder only (anchored so it never matches src/assets/)
+/Assets/
 
 # logs
 npm-debug.log*
