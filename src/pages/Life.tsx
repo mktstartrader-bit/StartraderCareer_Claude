@@ -45,7 +45,7 @@ export default function Life() {
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <CollageHero images={[woman, teamImg, heroImg]} bg="bg-[#f6f8fc]">
+      <CollageHero marquee bg="bg-[rgba(218,227,237,0.2)]" images={[woman, teamImg, heroImg, culture]}>
         <Reveal>
           <h1 className="text-[clamp(38px,5vw,50px)] font-medium leading-[1.05] text-ink">STARLIFE</h1>
         </Reveal>

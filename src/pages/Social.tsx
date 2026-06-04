@@ -24,7 +24,7 @@ export default function Social() {
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <CollageHero images={[woman, csr1, csr3]}>
+      <CollageHero marquee bg="bg-[rgba(218,227,237,0.2)]" images={[woman, csr1, csr2, csr3]}>
         <Reveal>
           <h1 className="text-[clamp(38px,5vw,50px)] font-medium leading-[1.05] text-ink">STARSOCIAL</h1>
         </Reveal>

@@ -79,7 +79,7 @@ export default function Blog() {
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <CollageHero images={[woman, b1, b3]}>
+      <CollageHero marquee bg="bg-[rgba(218,227,237,0.2)]" images={[woman, b1, b3, b5]}>
         <Reveal>
           <h1 className="text-[clamp(38px,5vw,50px)] font-medium leading-[1.05] text-ink">STARBLOG</h1>
         </Reveal>
