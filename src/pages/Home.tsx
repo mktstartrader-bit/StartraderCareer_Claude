@@ -1,15 +1,22 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
 import Parallax from "@/components/motion/Parallax";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Eyebrow from "@/components/ui/Eyebrow";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 import CtaBand from "@/components/sections/CtaBand";
+import { EASE_OUT } from "@/lib/motion";
 
 import heroImg from "@/assets/home/hero.jpg";
-import ceoBg from "@/assets/home/ceo-bg.jpg";
+import videoThumb from "@/assets/home/video-thumb.jpg";
+import ceoTexture from "@/assets/home/ceo-texture.jpg";
 import ceoImg from "@/assets/home/ceo.png";
 import teamImg from "@/assets/home/team.jpg";
 import ctaPeople from "@/assets/home/cta-people.png";
+
+const BANNER_VIDEO = "/banner-video.mp4";
 
 const STORY_CARDS = [
   { title: "STARSCOUT", to: "/starscout", desc: "Explore open positions and take the next step in your career with STARTRADER." },
@@ -30,60 +37,86 @@ function StoryCard({ title, desc, to }: { title: string; desc: string; to: strin
   return (
     <Link
       to={to}
-      className="group flex h-full flex-col rounded-card bg-white p-[30px] shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift"
+      className="group relative isolate flex h-full flex-col overflow-hidden rounded-card bg-white p-[30px] shadow-card transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-20px_rgba(0,71,187,0.5)]"
     >
-      <h3 className="text-[22px] font-semibold uppercase text-ink transition-colors group-hover:text-brand-blue">
-        {title}
-      </h3>
-      <span className="mt-4 h-px w-full bg-line" />
-      <p className="mt-4 text-body text-ink/70">{desc}</p>
+      {/* brand gradient fills the card on hover */}
+      <span className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-blue to-brand-navy opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
+
+      <div className="flex items-center justify-between">
+        <h3 className="text-[22px] font-semibold uppercase text-ink transition-colors duration-300 group-hover:text-white">
+          {title}
+        </h3>
+        <span className="translate-x-2 text-white opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </span>
+      </div>
+
+      {/* animated divider: base hairline + brand-cyan fill that sweeps in */}
+      <span className="relative mt-4 block h-px w-full overflow-hidden bg-line/80 transition-colors duration-300 group-hover:bg-white/25">
+        <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-brand-cyan transition-transform duration-500 ease-out group-hover:scale-x-100" />
+      </span>
+
+      <p className="mt-4 text-body text-ink/70 transition-colors duration-300 group-hover:text-white/85">{desc}</p>
     </Link>
   );
 }
 
 export default function Home() {
+  const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroTextY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <section className="relative flex h-[clamp(600px,56vw,800px)] items-center overflow-hidden">
-        <Parallax className="absolute inset-0" distance={50}>
+      <section ref={heroRef} className="relative flex h-[clamp(600px,56vw,800px)] items-center overflow-hidden">
+        <Parallax className="absolute inset-0" distance={60}>
           <img src={heroImg} alt="" className="h-full w-full scale-110 object-cover" />
         </Parallax>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent" />
-        <div className="shell relative">
-          <Reveal>
-            <h1 className="hero-title max-w-[651px] text-white">
-              Carve your path to success with STARTRADER
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <Link
-              to="/starscout"
-              className="mt-7 inline-flex items-center justify-center rounded-btn bg-brand-blue px-5 py-[10px] text-[16px] font-medium text-white transition-all duration-300 ease-out hover:brightness-110 hover:shadow-[0_14px_30px_-10px_rgba(0,71,187,0.6)]"
-            >
-              Explore, Evolve, Extend
-            </Link>
-          </Reveal>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
+
+        <motion.div className="shell relative" style={reduce ? undefined : { y: heroTextY, opacity: heroTextOpacity }}>
+          <Stagger className="max-w-[651px]" stagger={0.14}>
+            <StaggerItem>
+              <h1 className="hero-title text-white">Carve your path to success with STARTRADER</h1>
+            </StaggerItem>
+            <StaggerItem>
+              <Link
+                to="/starscout"
+                className="mt-7 inline-flex items-center justify-center rounded-btn bg-brand-blue px-5 py-[10px] text-[16px] font-medium text-white transition-all duration-300 ease-out hover:brightness-110 hover:shadow-[0_14px_30px_-10px_rgba(0,71,187,0.6)]"
+              >
+                Explore, Evolve, Extend
+              </Link>
+            </StaggerItem>
+          </Stagger>
+        </motion.div>
+
+        {/* scroll cue */}
+        {!reduce && (
+          <motion.div
+            className="absolute bottom-7 left-1/2 -translate-x-1/2 text-white/70"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
+          >
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </motion.div>
+        )}
       </section>
 
-      {/* ───────── HERO MEDIA / VIDEO ───────── */}
+      {/* ───────── BANNER VIDEO ───────── */}
       <section className="relative h-[clamp(320px,44vw,638px)] w-full overflow-hidden bg-brand-deep">
-        <Parallax className="absolute inset-0" distance={40}>
-          <img src={heroImg} alt="" className="h-full w-full scale-110 object-cover opacity-30" />
-        </Parallax>
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-deep/80 to-brand-navy/90" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Reveal>
-            <button
-              type="button"
-              aria-label="Play video"
-              className="group flex h-20 w-20 items-center justify-center rounded-full bg-white/90 shadow-lift backdrop-blur transition-transform duration-300 ease-out hover:scale-105"
-            >
-              <span className="ml-1 block h-0 w-0 border-y-[12px] border-l-[20px] border-y-transparent border-l-brand-blue transition-colors group-hover:border-l-brand-navy" />
-            </button>
-          </Reveal>
-        </div>
+        <motion.div
+          className="h-full w-full"
+          initial={{ opacity: 0, scale: reduce ? 1 : 1.04 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: EASE_OUT }}
+        >
+          <VideoPlayer src={BANNER_VIDEO} poster={videoThumb} />
+        </motion.div>
       </section>
 
       {/* ───────── STARSTORY ───────── */}
@@ -126,15 +159,15 @@ export default function Home() {
 
       {/* ───────── CEO MESSAGE ───────── */}
       <section className="relative overflow-hidden">
-        <img src={ceoBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-white/40" />
-        <div className="shell relative grid grid-cols-1 items-end gap-10 pt-16 lg:grid-cols-[450px_1fr] lg:gap-16">
-          <Reveal className="relative">
-            <div className="mx-auto h-[clamp(380px,42vw,535px)] w-full max-w-[450px] overflow-hidden">
-              <img src={ceoImg} alt="Mr. Peter Karsten, CEO of STARTRADER" className="h-full w-full object-cover object-top" />
-            </div>
+        <img src={ceoTexture} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-white/30" />
+        <div className="shell relative grid grid-cols-1 items-center gap-10 py-16 lg:min-h-[650px] lg:grid-cols-[450px_1fr] lg:gap-16 lg:py-20">
+          <Reveal className="relative self-end lg:self-stretch">
+            <Parallax className="mx-auto h-[clamp(380px,42vw,535px)] w-full max-w-[450px] overflow-hidden" distance={28}>
+              <img src={ceoImg} alt="Mr. Peter Karsten, CEO of STARTRADER" className="h-full w-full scale-105 object-cover object-top" />
+            </Parallax>
           </Reveal>
-          <Reveal className="pb-20 lg:pb-28" delay={0.1}>
+          <Reveal delay={0.1} className="lg:py-10">
             <h2 className="text-[22px] font-medium text-ink">Our CEO’s message to the people</h2>
             <p className="mt-2 text-body text-brand-blue">Mr. Peter Karsten, CEO of STARTRADER</p>
             <p className="mt-5 max-w-[644px] text-body text-ink">
