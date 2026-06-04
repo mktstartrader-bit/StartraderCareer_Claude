@@ -9,9 +9,24 @@ import woman from "@/assets/life/woman.jpg";
 import csr1 from "@/assets/social/csr1.jpg";
 import csr2 from "@/assets/social/csr2.jpg";
 import csr3 from "@/assets/social/csr3.jpg";
-import init from "@/assets/social/init.jpg";
+import swiper06 from "@/assets/social/swiper06.webp";
+import swiper07 from "@/assets/social/swiper07.webp";
+import ndTeam from "@/assets/social/nd-team-photo.webp";
+import ndDress from "@/assets/social/nd-emirati-dress.webp";
+import ndSweetsFlags from "@/assets/social/nd-sweets-flags.webp";
+import ndOfficeSweets from "@/assets/social/nd-office-sweets.webp";
+import socialMark from "@/assets/social/mark.webp";
 import ctaPeople from "@/assets/life/cta-people.png";
 import teamImg from "@/assets/home/team.jpg";
+
+const CSR_SLIDES = [
+  { src: swiper06, label: "STARTRADER CSR initiative" },
+  { src: ndTeam, label: "STARTRADER Dubai team group photo on UAE National Day" },
+  { src: swiper07, label: "STARTRADER CSR initiative" },
+  { src: ndDress, label: "STARTRADER colleagues in Emirati dress at UAE National Day celebration" },
+  { src: ndSweetsFlags, label: "Arabic sweets with STARTRADER and UAE flags for National Day" },
+  { src: ndOfficeSweets, label: "UAE National Day sweets with STARTRADER and UAE flags in the office" },
+];
 
 const INITIATIVES = [
   { q: "Education & child welfare", a: "Our work calls everyone to put on their binoculars of creativity and innovation to easily discover opportunities budding along the way. With STARTRADER, your abilities are challenged to improve and shine." },
@@ -55,7 +70,7 @@ export default function Social() {
             </div>
           </div>
           <Reveal className="mt-12">
-            <Carousel slides={[{ src: csr1 }, { src: csr2 }, { src: csr3 }]} />
+            <Carousel slides={CSR_SLIDES} />
           </Reveal>
         </div>
       </section>
@@ -124,7 +139,7 @@ export default function Social() {
           <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
             <Reveal>
               <div className="h-[360px] w-full overflow-hidden rounded-[14px] sm:h-[400px]">
-                <img src={init} alt="STARTRADER initiatives" className="h-full w-full object-cover" />
+                <img src={socialMark} alt="STARTRADER initiatives" className="h-full w-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>

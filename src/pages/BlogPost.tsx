@@ -139,7 +139,7 @@ export default function BlogPost() {
       </header>
 
       {/* cover */}
-      <div className="shell -mt-2">
+      <div className="shell mt-10">
         <Reveal className="overflow-hidden rounded-[18px] shadow-card">
           <img src={post.cover} alt={post.title} className="h-[280px] w-full object-cover sm:h-[420px]" />
         </Reveal>
