@@ -11,7 +11,15 @@ import vision from "@/assets/about/vision.jpg";
 import valuesBg from "@/assets/about/values-bg.jpg";
 import force from "@/assets/about/force.jpg";
 import awardsImg from "@/assets/about/awards.jpg";
-import laurel from "@/assets/about/ic-laurel.svg";
+import awAffli from "@/assets/about/awards/affli.svg";
+import awFrx from "@/assets/about/awards/frx.svg";
+import awWiki from "@/assets/about/awards/wiki.svg";
+import awSmrt from "@/assets/about/awards/smrt.svg";
+import awExp from "@/assets/about/awards/exp.svg";
+import awCrp from "@/assets/about/awards/crp.svg";
+import awWlt from "@/assets/about/awards/wlt.svg";
+import awArg from "@/assets/about/awards/arg.svg";
+import awCpy from "@/assets/about/awards/cpy.svg";
 import flagAu from "@/assets/about/flag-au.png";
 import flagAe from "@/assets/about/flag-ae.png";
 import flagSc from "@/assets/about/flag-sc.png";
@@ -30,17 +38,7 @@ const VALUES = [
   "We remain resilient through changing market conditions.",
 ];
 
-const AWARDS = [
-  { name: "Affiliate Brand of the Year", event: "Dubai Affiliate Summit 2025" },
-  { name: "Most Reputable Forex Broker", event: "Forex Expo Dubai 2025" },
-  { name: "Best Forex Trade Execution", event: "Wiki Finance Expo Cyprus 2025" },
-  { name: "Global Forex Trading App of the Year", event: "Smart Vision Summit – Bahrain 2025" },
-  { name: "Best Trading Conditions", event: "Money Expo Chile 2025" },
-  { name: "Most Innovative Broker", event: "Cripto Latin Fest 2025 – Colombia" },
-  { name: "Best Broker in Trading Technology", event: "Wealth Expo Peru 2025" },
-  { name: "Best Regulated Trading Platform", event: "Wealth Expo Argentina 2025" },
-  { name: "Best Copy Trading Broker 2025", event: "Forex Traders Summit 2025" },
-];
+const AWARD_BADGES = [awAffli, awFrx, awWiki, awSmrt, awExp, awCrp, awWlt, awArg, awCpy];
 
 const COUNTRIES = [
   { flag: flagAu, name: "Australia", text: "STARTRADER Prime Global Pty Ltd is an Australian financial services licensee regulated by the ASIC, with ACN 156005668 and License No. 421210." },
@@ -73,7 +71,7 @@ export default function About() {
   return (
     <div className="bg-white">
       {/* ───────── HERO ───────── */}
-      <CollageHero images={[woman, mission, vision, force]}>
+      <CollageHero marquee bg="bg-white" images={[woman, force, mission, vision]}>
         <Reveal>
           <h1 className="text-[clamp(34px,4.6vw,48px)] font-medium leading-[1.12] tracking-[-1px] text-ink">
             <span className="font-semibold text-black">STARTRADER:</span>
@@ -144,7 +142,7 @@ export default function About() {
       <section className="bg-white pb-[80px]">
         <div className="shell">
           <Reveal>
-            <div className="grid grid-cols-1 items-center gap-10 overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-8 sm:p-12 lg:grid-cols-[1fr_372px] lg:gap-14">
+            <div className="grid grid-cols-1 items-center gap-6 overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-8 sm:p-12 lg:grid-cols-[1fr_372px] lg:gap-6">
               <div>
                 <Eyebrow label="OUR COMPANY" tone="light" />
                 <h2 className="mt-6 max-w-[449px] text-[clamp(26px,3.2vw,36px)] font-medium leading-[1.15] tracking-[-1px] text-ink">
@@ -192,16 +190,15 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-8">
-                <Stagger className="grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-                  {AWARDS.map((a) => (
-                    <StaggerItem key={a.name} className="flex items-start justify-center gap-2 text-center">
-                      <img src={laurel} alt="" className="h-[52px] w-auto shrink-0" />
-                      <div className="py-1">
-                        <p className="text-[13px] font-semibold leading-[1.25] text-ink">{a.name}</p>
-                        <p className="mt-1 text-[10px] text-[#50555b]">{a.event}</p>
-                      </div>
-                      <img src={laurel} alt="" className="h-[52px] w-auto shrink-0 -scale-x-100" />
+              <div className="rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-8 lg:h-[383px]">
+                <Stagger className="grid h-full grid-cols-1 items-center gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+                  {AWARD_BADGES.map((b, i) => (
+                    <StaggerItem key={i} className="flex items-center justify-center">
+                      <img
+                        src={b}
+                        alt="STARTRADER award"
+                        className="h-auto w-full max-w-[220px] transition-transform duration-300 ease-out hover:scale-105"
+                      />
                     </StaggerItem>
                   ))}
                 </Stagger>
@@ -224,11 +221,17 @@ export default function About() {
 
           <Stagger className="mx-auto mt-12 flex max-w-[1200px] flex-wrap justify-center gap-6">
             {COUNTRIES.map((c, i) => (
-              <StaggerItem key={i} className="w-full rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-6 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+              <StaggerItem
+                key={i}
+                className="group relative isolate w-full overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] p-6 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-22px_rgba(0,71,187,0.5)] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              >
+                <span className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-blue to-brand-navy opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
                 <img src={c.flag} alt="" className="h-10 w-10 rounded-md object-cover" />
-                <h3 className="mt-4 text-[16px] font-medium text-ink">{c.name}</h3>
-                <span className="mt-3 block h-px w-full bg-line" />
-                <p className="mt-3 text-[13px] leading-[20px] text-[#50555b]">{c.text}</p>
+                <h3 className="mt-4 text-[16px] font-medium text-ink transition-colors duration-300 group-hover:text-white">{c.name}</h3>
+                <span className="relative mt-3 block h-px w-full overflow-hidden bg-line transition-colors duration-300 group-hover:bg-white/25">
+                  <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-brand-cyan transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                </span>
+                <p className="mt-3 text-[13px] leading-[20px] text-[#50555b] transition-colors duration-300 group-hover:text-white/85">{c.text}</p>
               </StaggerItem>
             ))}
           </Stagger>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
@@ -17,16 +17,20 @@ import icEnvelope from "@/assets/scout/ic-envelope.svg";
 import people from "@/assets/scout/people.jpg";
 import ctaPeople from "@/assets/life/cta-people.png";
 
-const FILTERS = ["All", "Departments", "Locations", "Job Types"];
-
 type Job = { title: string; type: string; location: string; dept: string; about: string };
 const JOBS: Job[] = [
-  { title: "Customer Support Expert", type: "Full-Time", location: "Malaysia", dept: "Marketing", about: "Be the voice of STARTRADER — guide clients with clarity and care, resolve queries fast, and turn every interaction into a great experience." },
-  { title: "Business Development Executive", type: "Full-Time", location: "Malaysia", dept: "Marketing", about: "Open new markets and grow lasting partnerships. You'll identify opportunities, build relationships, and help expand our global footprint." },
+  { title: "Customer Support Expert", type: "Full-Time", location: "Malaysia", dept: "Customer Support", about: "Be the voice of STARTRADER — guide clients with clarity and care, resolve queries fast, and turn every interaction into a great experience." },
+  { title: "Business Development Executive", type: "Full-Time", location: "Malaysia", dept: "Business Development", about: "Open new markets and grow lasting partnerships. You'll identify opportunities, build relationships, and help expand our global footprint." },
   { title: "Marketing Executive", type: "Full-Time", location: "Malaysia", dept: "Marketing", about: "Craft campaigns that move people. Own content, channels, and analytics to grow brand reach and engagement across regions." },
-  { title: "Multimedia Designer", type: "Full-Time", location: "Malaysia", dept: "Marketing", about: "Bring our brand to life across video, motion, and graphics — designing assets that are as sharp as they are on-brand." },
-  { title: "Customer Support", type: "Full-Time", location: "Malaysia", dept: "Marketing", about: "Support our clients day to day with empathy and precision, ensuring every question finds a fast, helpful answer." },
+  { title: "Multimedia Designer", type: "Full-Time", location: "Malaysia", dept: "Design", about: "Bring our brand to life across video, motion, and graphics — designing assets that are as sharp as they are on-brand." },
+  { title: "Customer Support", type: "Full-Time", location: "Malaysia", dept: "Customer Support", about: "Support our clients day to day with empathy and precision, ensuring every question finds a fast, helpful answer." },
 ];
+
+const FILTERS = [
+  { key: "dept", label: "Departments", options: ["Marketing", "Customer Support", "Business Development", "Design"] },
+  { key: "location", label: "Locations", options: ["Malaysia"] },
+  { key: "type", label: "Job Types", options: ["Full-Time"] },
+] as const;
 
 const LOOK_FOR = [
   { q: "They bring more than a resume.", a: "We're not only interested in your years of experience — we want to feel the energy behind your words, the stories that shaped who you are today." },
@@ -41,19 +45,68 @@ const STEPS = [
   { icon: icEnvelope, title: "04. Offer", desc: "Successful candidates receive an offer and are welcomed into a world of opportunity and growth." },
 ];
 
+type FilterKey = "dept" | "location" | "type";
+type FilterState = Record<FilterKey, string | null>;
+
 function Tag({ children }: { children: string }) {
   return (
-    <span className="rounded-[5px] bg-[rgba(218,227,237,0.5)] px-2.5 py-1 text-[12px] font-medium text-ink/70">
-      {children}
-    </span>
+    <span className="rounded-[5px] bg-[rgba(218,227,237,0.5)] px-2.5 py-1 text-[12px] font-medium text-ink/70">{children}</span>
   );
 }
 
 function Chevron({ open }: { open: boolean }) {
   return (
-    <motion.svg width="14" height="14" viewBox="0 0 24 24" fill="none" animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3, ease: EASE_OUT }}>
-      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <motion.svg width="13" height="13" viewBox="0 0 24 24" fill="none" animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3, ease: EASE_OUT }}>
+      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
     </motion.svg>
+  );
+}
+
+function FilterDropdown({
+  label, options, value, open, onToggle, onChange,
+}: {
+  label: string; options: readonly string[]; value: string | null;
+  open: boolean; onToggle: () => void; onChange: (v: string | null) => void;
+}) {
+  const active = value !== null;
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={onToggle}
+        className={[
+          "flex items-center gap-2 rounded-full border px-5 py-2 text-[14px] transition-colors duration-200",
+          active ? "border-brand-blue bg-brand-blue text-white" : "border-line bg-white text-ink hover:border-brand-blue",
+        ].join(" ")}
+      >
+        {value ?? label}
+        <Chevron open={open} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: EASE_OUT }}
+            className="absolute left-1/2 z-30 mt-2 min-w-[200px] -translate-x-1/2 overflow-hidden rounded-2xl border border-line bg-white p-1.5 text-left shadow-lift"
+          >
+            <li>
+              <button type="button" onClick={() => onChange(null)} className={`block w-full rounded-xl px-4 py-2 text-left text-[14px] transition-colors hover:bg-line/50 ${value === null ? "font-medium text-brand-blue" : "text-ink"}`}>
+                All {label}
+              </button>
+            </li>
+            {options.map((o) => (
+              <li key={o}>
+                <button type="button" onClick={() => onChange(o)} className={`block w-full rounded-xl px-4 py-2 text-left text-[14px] transition-colors hover:bg-line/50 ${value === o ? "font-medium text-brand-blue" : "text-ink"}`}>
+                  {o}
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -108,13 +161,7 @@ function Pagination() {
     <div className="mt-10 flex items-center justify-center gap-[5px]">
       <button className={`${btn} text-ink/60 hover:text-brand-blue`} onClick={() => setPage((p) => Math.max(1, p - 1))} aria-label="Previous">‹</button>
       {pages.map((p) => (
-        <button
-          key={p}
-          onClick={() => setPage(p)}
-          className={`${btn} ${p === page ? "bg-brand-blue text-white" : "text-ink hover:bg-line/60"}`}
-        >
-          {p}
-        </button>
+        <button key={p} onClick={() => setPage(p)} className={`${btn} ${p === page ? "bg-brand-blue text-white" : "text-ink hover:bg-line/60"}`}>{p}</button>
       ))}
       <button className={`${btn} text-ink/60 hover:text-brand-blue`} onClick={() => setPage((p) => Math.min(5, p + 1))} aria-label="Next">›</button>
     </div>
@@ -122,6 +169,34 @@ function Pagination() {
 }
 
 export default function Scout() {
+  const [query, setQuery] = useState("");
+  const [filters, setFilters] = useState<FilterState>({ dept: null, location: null, type: null });
+  const [openMenu, setOpenMenu] = useState<FilterKey | null>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  // close any open dropdown when clicking outside the filter bar
+  useEffect(() => {
+    const onDown = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) setOpenMenu(null);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, []);
+
+  const anyFilter = query || filters.dept || filters.location || filters.type;
+  const jobs = JOBS.filter(
+    (j) =>
+      (!filters.dept || j.dept === filters.dept) &&
+      (!filters.location || j.location === filters.location) &&
+      (!filters.type || j.type === filters.type) &&
+      (!query || j.title.toLowerCase().includes(query.toLowerCase()) || j.dept.toLowerCase().includes(query.toLowerCase()))
+  );
+
+  const setFilter = (key: FilterKey, v: string | null) => {
+    setFilters((f) => ({ ...f, [key]: v }));
+    setOpenMenu(null);
+  };
+
   return (
     <div className="bg-white">
       {/* ───────── HERO + SEARCH ───────── */}
@@ -143,6 +218,8 @@ export default function Scout() {
               </svg>
               <input
                 type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for a role, team or location"
                 className="h-full w-full bg-transparent text-[15px] text-ink outline-none placeholder:text-ink/40"
               />
@@ -152,32 +229,37 @@ export default function Scout() {
             </button>
           </Reveal>
 
-          {/* filters */}
-          <Reveal delay={0.14} className="mx-auto mt-5 flex max-w-[780px] flex-wrap items-center gap-3">
-            {FILTERS.map((f, i) => (
+          {/* filters — centered, with working dropdowns */}
+          <Reveal delay={0.14}>
+            <div ref={filterRef} className="mx-auto mt-5 flex max-w-[820px] flex-wrap items-center justify-center gap-3">
               <button
-                key={f}
+                type="button"
+                onClick={() => { setFilters({ dept: null, location: null, type: null }); setQuery(""); setOpenMenu(null); }}
                 className={[
-                  "flex items-center gap-2 rounded-full px-5 py-2 text-[14px] transition-colors",
-                  i === 0
-                    ? "bg-brand-blue text-white"
-                    : "border border-line bg-white text-ink hover:border-brand-blue",
+                  "rounded-full px-5 py-2 text-[14px] transition-colors duration-200",
+                  anyFilter ? "border border-line bg-white text-ink hover:border-brand-blue" : "bg-brand-blue text-white",
                 ].join(" ")}
               >
-                {f}
-                {i > 0 && (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
+                All
               </button>
-            ))}
+              {FILTERS.map((f) => (
+                <FilterDropdown
+                  key={f.key}
+                  label={f.label}
+                  options={f.options}
+                  value={filters[f.key as FilterKey]}
+                  open={openMenu === f.key}
+                  onToggle={() => setOpenMenu((m) => (m === f.key ? null : (f.key as FilterKey)))}
+                  onChange={(v) => setFilter(f.key as FilterKey, v)}
+                />
+              ))}
+            </div>
           </Reveal>
 
           {/* listings + talent card */}
           <div className="mt-12 grid grid-cols-1 gap-6 pb-[90px] lg:grid-cols-[325px_1fr]">
             <Reveal>
-              <div className="rounded-[10px] bg-gradient-to-b from-brand-blue to-brand-navy p-7 text-white lg:sticky lg:top-24">
+              <div className="rounded-[10px] bg-gradient-to-b from-brand-blue to-brand-navy p-8 text-center text-white lg:sticky lg:top-24">
                 <h3 className="text-[18px] font-semibold">Our talent pool</h3>
                 <p className="mt-4 text-[14px] leading-[22px] text-white/80">
                   Your dream job isn’t listed? No worries! Share your CV and stay in our talent orbit for future missions.
@@ -189,13 +271,19 @@ export default function Scout() {
             </Reveal>
 
             <div>
-              <Stagger className="flex flex-col gap-4">
-                {JOBS.map((j) => (
-                  <StaggerItem key={j.title}>
-                    <JobRow job={j} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
+              {jobs.length > 0 ? (
+                <Stagger key={`${filters.dept}-${filters.location}-${filters.type}-${query}`} className="flex flex-col gap-4">
+                  {jobs.map((j) => (
+                    <StaggerItem key={j.title}>
+                      <JobRow job={j} />
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+              ) : (
+                <div className="rounded-[20px] border border-line bg-white p-12 text-center text-body text-[#50555b]">
+                  No roles match your filters right now — try clearing them or check back soon.
+                </div>
+              )}
               <Pagination />
             </div>
           </div>
