@@ -24,14 +24,20 @@ export default function IconFeatures({ eyebrow, heading, subtitle, items }: Prop
   return (
     <section className="bg-navy-grad py-[90px] text-white">
       <div className="shell">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-14">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <Reveal className="shrink-0">
             <Eyebrow label={eyebrow} tone="dark" />
           </Reveal>
-          <Reveal>
-            <h2 className="text-[clamp(28px,3.6vw,40px)] font-medium tracking-[-1px] text-white">{heading}</h2>
-            {subtitle && <p className="mt-2 font-alt text-[14px] leading-[30px] text-line">{subtitle}</p>}
-          </Reveal>
+          <div className="lg:w-[62%]">
+            <Reveal>
+              <h2 className="text-[clamp(28px,3.6vw,40px)] font-medium tracking-[-1px] text-white lg:whitespace-nowrap">{heading}</h2>
+            </Reveal>
+            {subtitle && (
+              <Reveal delay={0.08}>
+                <p className="mt-2 font-alt text-[14px] leading-[30px] text-line">{subtitle}</p>
+              </Reveal>
+            )}
+          </div>
         </div>
 
         <Stagger className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">

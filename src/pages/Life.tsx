@@ -114,15 +114,17 @@ export default function Life() {
           JOIN US
         </span>
         <div className="shell relative">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-16">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <Reveal className="shrink-0">
               <Eyebrow label="OUR CULTURE" tone="light" />
             </Reveal>
-            <Reveal>
-              <h2 className="max-w-[470px] text-[clamp(28px,3.6vw,40px)] font-medium leading-[1.1] tracking-[-1px] text-ink">
-                A culture of ambition and opportunity
-              </h2>
-            </Reveal>
+            <div className="lg:w-[62%]">
+              <Reveal>
+                <h2 className="text-[clamp(28px,3.6vw,40px)] font-medium leading-[1.1] tracking-[-1px] text-ink">
+                  A culture of ambition and opportunity
+                </h2>
+              </Reveal>
+            </div>
           </div>
 
           <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
