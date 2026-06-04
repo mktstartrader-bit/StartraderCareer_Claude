@@ -1,7 +1,7 @@
 import Reveal from "@/components/motion/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Accordion from "@/components/ui/Accordion";
-import Carousel from "@/components/ui/Carousel";
+import ImageMarquee from "@/components/ui/ImageMarquee";
 import CtaBand from "@/components/sections/CtaBand";
 import CollageHero from "@/components/sections/CollageHero";
 
@@ -70,9 +70,9 @@ export default function Social() {
             </div>
           </div>
         </div>
-        {/* full-bleed (container-fluid) carousel */}
-        <Reveal className="mt-12 px-[15px]">
-          <Carousel slides={CSR_SLIDES} fluid />
+        {/* full-bleed auto-scrolling strip (pauses on hover) */}
+        <Reveal className="mt-12">
+          <ImageMarquee slides={CSR_SLIDES} />
         </Reveal>
       </section>
 
