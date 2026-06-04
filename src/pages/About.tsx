@@ -93,7 +93,7 @@ export default function About() {
       <section className="bg-white py-[70px]">
         <Stagger className="shell grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Mission */}
-          <StaggerItem className="flex flex-col overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)]">
+          <StaggerItem className="group flex flex-col overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-brand-blue/40 hover:shadow-lift">
             <div className="p-7">
               <h3 className="text-[18px] font-semibold text-brand-blue">Our Mission</h3>
               <p className="mt-3 text-body text-[#50555b]">
@@ -102,13 +102,15 @@ export default function About() {
               </p>
             </div>
             <div className="mt-auto px-7 pb-7">
-              <img src={mission} alt="" className="h-[180px] w-full rounded-[12px] object-cover" />
+              <div className="overflow-hidden rounded-[12px]">
+                <img src={mission} alt="" className="h-[180px] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+              </div>
             </div>
           </StaggerItem>
 
           {/* Values (blue gradient) */}
-          <StaggerItem className="relative overflow-hidden rounded-card bg-gradient-to-b from-brand-blue to-brand-navy p-7 text-white">
-            <img src={valuesBg} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.18]" />
+          <StaggerItem className="group relative overflow-hidden rounded-card bg-gradient-to-b from-brand-blue to-brand-navy p-7 text-white transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-22px_rgba(0,71,187,0.65)]">
+            <img src={valuesBg} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.18] transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-[0.3]" />
             <div className="relative">
               <h3 className="text-[18px] font-semibold">Our Values</h3>
               <ul className="mt-5 space-y-4">
@@ -123,7 +125,7 @@ export default function About() {
           </StaggerItem>
 
           {/* Vision */}
-          <StaggerItem className="flex flex-col overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)]">
+          <StaggerItem className="group flex flex-col overflow-hidden rounded-card border border-line/40 bg-[rgba(218,227,237,0.35)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-brand-blue/40 hover:shadow-lift">
             <div className="p-7">
               <h3 className="text-[18px] font-semibold text-brand-blue">Our Vision</h3>
               <p className="mt-3 text-body text-[#50555b]">
@@ -132,7 +134,9 @@ export default function About() {
               </p>
             </div>
             <div className="mt-auto px-7 pb-7">
-              <img src={vision} alt="" className="h-[180px] w-full rounded-[12px] object-cover" />
+              <div className="overflow-hidden rounded-[12px]">
+                <img src={vision} alt="" className="h-[180px] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+              </div>
             </div>
           </StaggerItem>
         </Stagger>

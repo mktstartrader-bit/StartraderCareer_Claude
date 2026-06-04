@@ -252,6 +252,180 @@ export const POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "one-team-across-time-zones",
+    title: "One team, across time zones",
+    category: "People & culture",
+    excerpt:
+      "A global broker never really sleeps. How a single team stays connected from Dubai to Kuala Lumpur to Sydney.",
+    cover: b2,
+    author: "Mia Chen",
+    authorRole: "People & Culture",
+    date: "2025-06-19",
+    readMins: 4,
+    lead: "Distance is just a logistics problem. Belonging is a culture problem — and that’s the one we actually work on.",
+    sections: [
+      {
+        id: "follow-the-sun",
+        heading: "Follow the sun",
+        body: [
+          "When one desk clocks off, another picks up the thread. The handover isn’t just tasks — it’s context, tone, and the small notes that keep clients feeling like they’re talking to one company.",
+        ],
+      },
+      {
+        id: "rituals-that-travel",
+        heading: "Rituals that travel",
+        body: [
+          "Shared standups, recorded town halls, and the occasional 2am celebration emoji keep us in sync. Culture survives time zones when it’s built to be asynchronous.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "on-the-global-stage",
+    title: "On the global stage: what our partnerships say about us",
+    category: "Achievements",
+    excerpt:
+      "From the NBA to the Porsche Carrera Cup, our partnerships aren’t just logos — they’re a statement of ambition.",
+    cover: b4,
+    author: "Sofia Reyes",
+    authorRole: "Brand & Communications",
+    date: "2025-05-22",
+    readMins: 4,
+    lead: "You can tell a lot about a company by the company it keeps. Ours chooses arenas where performance is measured in milliseconds and millimetres.",
+    sections: [
+      {
+        id: "why-sport",
+        heading: "Why sport",
+        body: [
+          "Elite sport and elite trading share a spine: preparation, discipline, and the nerve to execute under pressure. Standing beside those teams keeps us honest about our own standards.",
+        ],
+      },
+      {
+        id: "more-than-a-logo",
+        heading: "More than a logo",
+        body: [
+          "A partnership only matters if it changes how you show up. Ours push us to sharpen the product, the brand, and the experience traders feel every day.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "spreads-from-zero-explained",
+    title: "Spreads from zero, explained",
+    category: "Market insights",
+    excerpt:
+      "“Spreads from 0.0” sounds great on a banner. Here’s what it actually means for the cost of your trade.",
+    cover: b3,
+    author: "Daniel Wu",
+    authorRole: "Dealing Desk",
+    date: "2025-04-15",
+    readMins: 5,
+    lead: "The spread is the quiet tax on every position. Understanding it is one of the fastest ways to get better at the math of trading.",
+    sections: [
+      {
+        id: "what-a-spread-is",
+        heading: "What a spread really is",
+        body: [
+          "It’s the gap between the buy and sell price — the market’s built-in cost of doing business. Tighter spreads mean more of a move belongs to you, not to friction.",
+        ],
+      },
+      {
+        id: "reading-the-fine-print",
+        heading: "Reading the fine print",
+        body: [
+          "“From 0.0” describes the best case, not the average. The honest question is what spreads look like when volatility hits — and that’s where execution quality shows.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "behind-thirty-awards-discipline",
+    title: "The discipline behind a winning year",
+    category: "Achievements",
+    excerpt:
+      "Awards cluster around teams that do the boring things well. A look at the habits that quietly stack up wins.",
+    cover: b6,
+    author: "Sofia Reyes",
+    authorRole: "Brand & Communications",
+    date: "2025-03-11",
+    readMins: 4,
+    lead: "Nobody wins an award for the thing they did last week. They win it for the habits they kept for a year.",
+    sections: [
+      {
+        id: "small-things-often",
+        heading: "Small things, done often",
+        body: [
+          "Faster fixes, clearer docs, tighter testing — none of it is glamorous, and all of it compounds into the kind of reliability juries notice.",
+        ],
+      },
+      {
+        id: "shared-credit",
+        heading: "Shared credit",
+        body: [
+          "We name the teams, not just the trophy. Recognition that’s shared widely is recognition that actually changes behaviour.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "a-day-in-customer-support",
+    title: "A day in customer support",
+    category: "People & culture",
+    excerpt:
+      "The team that turns hard moments into loyal clients. What a shift on the support desk actually looks like.",
+    cover: b5,
+    author: "Aamir Khan",
+    authorRole: "Customer Support",
+    date: "2025-02-08",
+    readMins: 5,
+    lead: "When a client reaches out, they’re rarely calm and rarely early. Support is where the brand promise meets reality.",
+    sections: [
+      {
+        id: "first-response",
+        heading: "The first response",
+        body: [
+          "Speed matters, but tone matters more. The goal in the first reply isn’t to solve everything — it’s to make sure the person feels heard.",
+        ],
+      },
+      {
+        id: "turning-it-around",
+        heading: "Turning it around",
+        body: [
+          "A well-handled problem builds more loyalty than a flawless experience ever could. Our best stories start with something that went wrong.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "leverage-without-the-jargon",
+    title: "Leverage, without the jargon",
+    category: "Market insights",
+    excerpt:
+      "Up to 1:1000 sounds powerful — and it is, in both directions. A plain-English guide to using leverage wisely.",
+    cover: b1,
+    author: "Lena Ortiz",
+    authorRole: "Head of Dealing",
+    date: "2025-01-20",
+    readMins: 6,
+    lead: "Leverage doesn’t make you right more often. It just makes being right — or wrong — count for more.",
+    sections: [
+      {
+        id: "what-it-does",
+        heading: "What it actually does",
+        body: [
+          "Leverage lets a small amount of capital control a larger position. It amplifies outcomes — which is exactly why it deserves respect, not enthusiasm.",
+        ],
+      },
+      {
+        id: "using-it-wisely",
+        heading: "Using it wisely",
+        body: [
+          "The pros size positions by risk, then let leverage follow. Beginners do it backwards. The order is the whole lesson.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getPost(slug: string | undefined): BlogPost | undefined {

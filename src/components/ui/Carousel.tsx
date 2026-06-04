@@ -8,11 +8,12 @@ type Slide = { src: string; label?: string };
  * Centered-slide carousel: the active image is prominent, neighbours peek at
  * the edges. Two round nav buttons (light = prev, blue = next), matching Figma.
  */
-export default function Carousel({ slides }: { slides: Slide[] }) {
+export default function Carousel({ slides, fluid = false }: { slides: Slide[]; fluid?: boolean }) {
   const [index, setIndex] = useState(0);
   const reduce = useReducedMotion();
   const n = slides.length;
   const go = (d: number) => setIndex((i) => (i + d + n) % n);
+  const heightClass = fluid ? "h-[320px] sm:h-[460px] lg:h-[540px]" : "h-[280px] sm:h-[350px]";
 
   return (
     <div className="select-none">
@@ -27,7 +28,7 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
             return (
               <div
                 key={i}
-                className="relative h-[280px] w-[59%] shrink-0 overflow-hidden rounded-[16px] sm:h-[350px]"
+                className={`relative ${heightClass} w-[59%] shrink-0 overflow-hidden rounded-[16px]`}
                 style={{ opacity: active ? 1 : 0.5, transform: `scale(${active ? 1 : 0.94})`, transition: "opacity .5s, transform .5s" }}
               >
                 <img src={s.src} alt={s.label ?? ""} className="h-full w-full object-cover" />

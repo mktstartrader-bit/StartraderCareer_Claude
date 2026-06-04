@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -19,6 +19,7 @@ import v2 from "@/assets/blog/v2.jpg";
 import ctaPeople from "@/assets/life/cta-people.png";
 
 const TABS = ["All", "People & culture", "Achievements", "Market insights"];
+const PAGE_SIZE = 6;
 
 function PlayTriangle({ className }: { className?: string }) {
   return (
@@ -37,7 +38,21 @@ function YoutubeMark({ className }: { className?: string }) {
 
 export default function Blog() {
   const [tab, setTab] = useState("All");
+  const [page, setPage] = useState(1);
+  const gridTop = useRef<HTMLDivElement>(null);
+
   const filtered = tab === "All" ? POSTS : POSTS.filter((p) => p.category.toLowerCase() === tab.toLowerCase());
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const selectTab = (t: string) => {
+    setTab(t);
+    setPage(1);
+  };
+  const goToPage = (p: number) => {
+    setPage(Math.min(totalPages, Math.max(1, p)));
+    gridTop.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="bg-white">
@@ -78,7 +93,7 @@ export default function Blog() {
               {TABS.map((t) => (
                 <button
                   key={t}
-                  onClick={() => setTab(t)}
+                  onClick={() => selectTab(t)}
                   className="relative rounded-full px-5 py-2 text-[14px] transition-colors duration-300"
                 >
                   {tab === t && (
@@ -90,11 +105,12 @@ export default function Blog() {
             </div>
           </Reveal>
 
+          <div ref={gridTop} className="scroll-mt-24" />
           <motion.div layout className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
-              {filtered.map((p, i) => (
+              {paged.map((p, i) => (
                 <motion.div
-                  key={`${tab}-${p.slug}`}
+                  key={`${tab}-${page}-${p.slug}`}
                   layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -106,6 +122,40 @@ export default function Blog() {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          {/* pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex items-center justify-center gap-[5px]">
+              <button
+                onClick={() => goToPage(page - 1)}
+                disabled={page === 1}
+                aria-label="Previous page"
+                className="flex h-9 w-9 items-center justify-center rounded-[8px] text-[15px] text-ink/60 transition-colors hover:text-brand-blue disabled:opacity-40 disabled:hover:text-ink/60"
+              >
+                ‹
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => goToPage(p)}
+                  aria-current={p === page}
+                  className={`flex h-9 w-9 items-center justify-center rounded-[8px] text-[14px] transition-colors ${
+                    p === page ? "bg-brand-blue font-medium text-white" : "text-ink hover:bg-[rgba(218,227,237,0.6)]"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+              <button
+                onClick={() => goToPage(page + 1)}
+                disabled={page === totalPages}
+                aria-label="Next page"
+                className="flex h-9 w-9 items-center justify-center rounded-[8px] text-[15px] text-ink/60 transition-colors hover:text-brand-blue disabled:opacity-40 disabled:hover:text-ink/60"
+              >
+                ›
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

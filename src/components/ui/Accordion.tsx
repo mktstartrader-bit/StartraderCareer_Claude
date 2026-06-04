@@ -21,7 +21,14 @@ export default function Accordion({ items, defaultOpen = 0, tone = "light" }: Pr
       {items.map((it, i) => {
         const isOpen = open === i;
         return (
-          <div key={it.q} className={`border-t ${dark ? "border-white/15" : "border-line"} first:border-t-0`}>
+          <div
+            key={it.q}
+            onMouseEnter={() => setOpen(i)}
+            className={[
+              "group rounded-[10px] border-t px-3 transition-colors duration-300 first:border-t-0",
+              dark ? "border-white/15 hover:bg-white/[0.06]" : "border-line hover:bg-[rgba(218,227,237,0.45)]",
+            ].join(" ")}
+          >
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}

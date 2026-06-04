@@ -114,7 +114,7 @@ function JobRow({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-[20px] border-b-4 border-line bg-white shadow-card transition-shadow duration-300 hover:shadow-lift">
+    <div className="rounded-[20px] border-b-4 border-line bg-white shadow-card transition-all duration-300 hover:border-brand-blue hover:shadow-lift">
       <div className="flex flex-col gap-4 p-7 sm:flex-row sm:items-center sm:justify-between">
         <button type="button" onClick={() => setOpen((v) => !v)} className="flex flex-1 items-start gap-3 text-left">
           <img src={star} alt="" className="mt-1 h-[18px] w-[15px] shrink-0" />

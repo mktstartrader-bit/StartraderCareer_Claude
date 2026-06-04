@@ -55,7 +55,7 @@ export default function Social() {
       </CollageHero>
 
       {/* ───────── CSR CAROUSEL ───────── */}
-      <section className="bg-white py-[80px]">
+      <section className="overflow-hidden bg-white py-[80px]">
         <div className="shell">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <Reveal className="shrink-0">
@@ -69,10 +69,11 @@ export default function Social() {
               </Reveal>
             </div>
           </div>
-          <Reveal className="mt-12">
-            <Carousel slides={CSR_SLIDES} />
-          </Reveal>
         </div>
+        {/* full-bleed (container-fluid) carousel */}
+        <Reveal className="mt-12 px-[15px]">
+          <Carousel slides={CSR_SLIDES} fluid />
+        </Reveal>
       </section>
 
       {/* ───────── WE GROW IN BUSINESS AND IN SPIRIT ───────── */}
