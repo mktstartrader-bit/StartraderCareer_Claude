@@ -9,7 +9,7 @@ import VideoPlayer from "@/components/ui/VideoPlayer";
 import CtaBand from "@/components/sections/CtaBand";
 import { EASE_OUT } from "@/lib/motion";
 
-import heroImg from "@/assets/home/hero.jpg";
+import heroImg from "@/assets/home/hero-banner.jpg";
 import videoThumb from "@/assets/home/video-thumb.jpg";
 import ceoTexture from "@/assets/home/ceo-texture.jpg";
 import ceoImg from "@/assets/home/ceo.png";
