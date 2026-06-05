@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
-import CtaBand from "@/components/sections/CtaBand";
+import ImpactCta from "@/components/sections/ImpactCta";
 import CollageHero from "@/components/sections/CollageHero";
 import Seo from "@/components/Seo";
 import PostCard from "@/components/blog/PostCard";
@@ -220,7 +220,7 @@ export default function Blog() {
       </section>
 
       {/* ───────── CTA BAND ───────── */}
-      <CtaBand
+      <ImpactCta
         title="It’s more than a blog, it’s our story, in real time."
         buttonLabel="Join Us"
         buttonTo="/starscout"

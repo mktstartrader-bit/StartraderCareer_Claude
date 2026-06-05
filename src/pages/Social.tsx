@@ -152,7 +152,6 @@ export default function Social() {
 
       {/* ───────── CTA BAND ───────── */}
       <ImpactCta
-        tone="light"
         title="Join STARTRADER and be part of a team driving progress in global trading."
         buttonLabel="Experience STARTRADER"
         buttonTo="/starscout"

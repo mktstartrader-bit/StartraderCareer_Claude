@@ -5,7 +5,7 @@ import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Accordion from "@/components/ui/Accordion";
-import CtaBand from "@/components/sections/CtaBand";
+import ImpactCta from "@/components/sections/ImpactCta";
 import IconFeatures from "@/components/sections/IconFeatures";
 import { EASE_OUT } from "@/lib/motion";
 
@@ -327,7 +327,7 @@ export default function Scout() {
       <IconFeatures eyebrow="OUR PROCESS" heading="Your journey to STARTRADER" items={STEPS} />
 
       {/* ───────── CTA BAND ───────── */}
-      <CtaBand
+      <ImpactCta
         title="Join STARTRADER and be part of a team driving progress in global trading."
         buttonLabel="Get A Glimpse"
         buttonTo="/starlife"
