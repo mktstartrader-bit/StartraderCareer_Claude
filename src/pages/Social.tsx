@@ -7,7 +7,6 @@ import Accordion from "@/components/ui/Accordion";
 import ImageMarquee from "@/components/ui/ImageMarquee";
 import ImpactCta from "@/components/sections/ImpactCta";
 
-import csr1 from "@/assets/social/csr1.jpg";
 import csr2 from "@/assets/social/csr2.jpg";
 import swiper06 from "@/assets/social/swiper06.webp";
 import swiper07 from "@/assets/social/swiper07.webp";
@@ -101,13 +100,13 @@ function Hero() {
           {/* overlapping secondary, white-matted */}
           <Reveal y={30} delay={0.18} className="absolute bottom-0 right-0 h-[48%] w-[58%]">
             <Frame
-              src={csr1}
+              src={ndTeam}
               parallax={48}
               rounded="rounded-[22px]"
               ringClass={false}
               className="h-full w-full bg-white p-[6px] shadow-lift"
               imgClassName="rounded-[18px]"
-              alt="STARTRADER community initiatives"
+              alt="The STARTRADER team"
             />
           </Reveal>
         </div>
@@ -220,7 +219,7 @@ export default function Social() {
 
       {/* ───────── CTA BAND ───────── */}
       <ImpactCta
-        title="Join STARTRADER and be part of a team driving progress in global trading."
+        title="Responsibility drives us, innovation defines us."
         buttonLabel="Experience STARTRADER"
         buttonTo="/starscout"
         image={ctaPeople}
