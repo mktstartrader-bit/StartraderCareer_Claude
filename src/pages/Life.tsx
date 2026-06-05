@@ -48,7 +48,7 @@ const CULTURE_ITEMS = [
 function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-white pt-[104px] pb-[72px] lg:pt-[150px] lg:pb-[120px]">
+    <section className="relative overflow-hidden bg-[rgba(218,227,237,0.2)] pt-[104px] pb-[72px] lg:pt-[150px] lg:pb-[120px]">
       {/* brand glows + faint wash */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -right-[8%] -top-[12%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(0,71,187,0.16),transparent_68%)] blur-2xl" />

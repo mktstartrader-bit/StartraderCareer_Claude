@@ -200,7 +200,7 @@ export default function Scout() {
   return (
     <div className="bg-white">
       {/* ───────── HERO + SEARCH ───────── */}
-      <section className="bg-gradient-to-b from-[rgba(218,227,237,0.6)] via-[rgba(218,227,237,0.3)] to-white pt-[110px]">
+      <section className="bg-[rgba(218,227,237,0.2)] pt-[110px]">
         <div className="shell">
           <Reveal className="text-center">
             <h1 className="text-[clamp(34px,4.6vw,50px)] font-medium tracking-[-1px] text-ink">Our job openings</h1>
