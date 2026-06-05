@@ -2,7 +2,7 @@ import Reveal from "@/components/motion/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Accordion from "@/components/ui/Accordion";
 import ImageMarquee from "@/components/ui/ImageMarquee";
-import CtaBand from "@/components/sections/CtaBand";
+import ImpactCta from "@/components/sections/ImpactCta";
 import CollageHero from "@/components/sections/CollageHero";
 
 import woman from "@/assets/life/woman.jpg";
@@ -151,8 +151,9 @@ export default function Social() {
       </section>
 
       {/* ───────── CTA BAND ───────── */}
-      <CtaBand
-        title="Responsibility drives us, innovation defines us."
+      <ImpactCta
+        tone="light"
+        title="Join STARTRADER and be part of a team driving progress in global trading."
         buttonLabel="Experience STARTRADER"
         buttonTo="/starscout"
         image={ctaPeople}

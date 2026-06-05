@@ -9,9 +9,11 @@ type Props = {
   /** index open by default */
   defaultOpen?: number;
   tone?: "light" | "dark";
+  /** show an editorial 01 / 02 index before each row */
+  numbered?: boolean;
 };
 
-export default function Accordion({ items, defaultOpen = 0, tone = "light" }: Props) {
+export default function Accordion({ items, defaultOpen = 0, tone = "light", numbered = false }: Props) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const reduce = useReducedMotion();
   const dark = tone === "dark";
@@ -35,14 +37,26 @@ export default function Accordion({ items, defaultOpen = 0, tone = "light" }: Pr
               className="flex w-full items-center justify-between gap-6 py-5 text-left"
               aria-expanded={isOpen}
             >
-              <span
-                className={[
-                  "text-[16px] transition-all duration-300",
-                  dark ? "text-white" : "text-ink",
-                  isOpen ? "font-medium opacity-100" : "font-normal opacity-50",
-                ].join(" ")}
-              >
-                {it.q}
+              <span className="flex items-baseline gap-4">
+                {numbered && (
+                  <span
+                    className={[
+                      "font-alt text-[13px] font-medium tabular-nums tracking-[0.18em] transition-colors duration-300",
+                      isOpen ? "text-brand-blue" : dark ? "text-white/40" : "text-ink/35",
+                    ].join(" ")}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                )}
+                <span
+                  className={[
+                    "text-[16px] transition-all duration-300",
+                    dark ? "text-white" : "text-ink",
+                    isOpen ? "font-medium opacity-100" : "font-normal opacity-50",
+                  ].join(" ")}
+                >
+                  {it.q}
+                </span>
               </span>
               <span
                 className={[
