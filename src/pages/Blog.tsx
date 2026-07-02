@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
+import RevealMask from "@/components/motion/RevealMask";
 import Eyebrow from "@/components/ui/Eyebrow";
+import Frame from "@/components/ui/Frame";
 import ImpactCta from "@/components/sections/ImpactCta";
-import CollageHero from "@/components/sections/CollageHero";
 import Seo from "@/components/Seo";
 import PostCard from "@/components/blog/PostCard";
 import StarcastPlayer from "@/components/blog/StarcastPlayer";
@@ -12,8 +13,6 @@ import { EASE_OUT } from "@/lib/motion";
 
 import woman from "@/assets/life/woman.jpg";
 import b1 from "@/assets/blog/b1.jpg";
-import b3 from "@/assets/blog/b3.jpg";
-import b5 from "@/assets/blog/b5.jpg";
 import v1 from "@/assets/blog/v1.jpg";
 import v2 from "@/assets/blog/v2.jpg";
 import ctaPeople from "@/assets/life/cta-people.png";
@@ -33,6 +32,61 @@ function YoutubeMark({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
       <path d="M21.58 7.19a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 002.42 7.2 26 26 0 002 12a26 26 0 00.42 4.81 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 001.76-1.77A26 26 0 0022 12a26 26 0 00-.42-4.81zM10 15V9l5.2 3-5.2 3z" />
     </svg>
+  );
+}
+
+/* ───────────────────────── HERO (editorial layered — matches StarSocial) ───────────────────────── */
+function BlogHero() {
+  const reduce = useReducedMotion();
+  return (
+    <section className="bg-white pt-[104px] pb-[72px] lg:pt-[140px] lg:pb-[110px]">
+      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* text */}
+        <div>
+          <RevealMask className="pb-[0.1em]" delay={0.05}>
+            <h1 className="text-[clamp(44px,5.6vw,68px)] font-medium leading-[0.98] tracking-[-1.5px] text-ink">
+              STARBLOG
+            </h1>
+          </RevealMask>
+
+          <Reveal delay={0.18}>
+            <p className="mt-7 max-w-[460px] text-[18px] font-medium leading-[1.5] text-brand-blue">
+              The space where STARTRADER speaks for itself.
+            </p>
+          </Reveal>
+          <Reveal delay={0.26}>
+            <p className="mt-4 max-w-[500px] text-body leading-[1.75] text-[#50555b]">
+              Ideas. Insights. Moments that matter — all from the people who live them.
+            </p>
+          </Reveal>
+
+          {/* scroll cue (ornamental) */}
+          <Reveal delay={0.36} className="mt-10 hidden items-center gap-3 lg:flex">
+            <span className="relative flex h-9 w-5 justify-center rounded-full border border-line">
+              <motion.span
+                className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-blue"
+                animate={reduce ? undefined : { y: [0, 9, 0], opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </span>
+            <span className="font-alt text-[11px] uppercase tracking-[0.28em] text-ink/45">Scroll</span>
+          </Reveal>
+        </div>
+
+        {/* single image */}
+        <Reveal y={24}>
+          <Frame
+            src={woman}
+            eager
+            parallax={24}
+            rounded="rounded-[28px]"
+            ringClass="ring-1 ring-line/60"
+            className="h-[340px] w-full shadow-lift sm:h-[440px] lg:h-[560px]"
+            alt="STARTRADER stories and the people behind them"
+          />
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -64,17 +118,7 @@ export default function Blog() {
       />
 
       {/* ───────── HERO ───────── */}
-      <CollageHero marquee bg="bg-[rgba(218,227,237,0.2)]" images={[woman, b1, b3, b5]}>
-        <Reveal>
-          <h1 className="text-[clamp(38px,5vw,50px)] font-medium leading-[1.05] text-ink">STARBLOG</h1>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-4 max-w-[481px] text-body text-[#50555b]">
-            The space where STARTRADER speaks for Itself. Ideas. Insights. Moments that matter, all
-            from the people who live them.
-          </p>
-        </Reveal>
-      </CollageHero>
+      <BlogHero />
 
       {/* ───────── OUR BLOG ARTICLES ───────── */}
       <section className="bg-[rgba(218,227,237,0.4)] py-[80px]">

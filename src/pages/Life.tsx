@@ -19,7 +19,6 @@ import icService from "@/assets/life/ic-service.svg";
 import icAchievement from "@/assets/life/ic-achievement.svg";
 import icIdea from "@/assets/life/ic-idea.svg";
 
-import teamImg from "@/assets/home/team.jpg";
 
 /* ── real STARLIFE clips (public/starlife/*.mp4), arranged into one bento ── */
 const TILES = [
@@ -48,16 +47,10 @@ const CULTURE_ITEMS = [
 function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-[rgba(218,227,237,0.2)] pt-[104px] pb-[72px] lg:pt-[150px] lg:pb-[120px]">
-      {/* brand glows + faint wash */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-[8%] -top-[12%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(0,71,187,0.16),transparent_68%)] blur-2xl" />
-        <div className="absolute -bottom-[24%] -left-[10%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(22,233,215,0.12),transparent_70%)] blur-2xl" />
-      </div>
-
-      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+    <section className="bg-white pt-[104px] pb-[72px] lg:pt-[140px] lg:pb-[110px]">
+      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* ── text ── */}
-        <div className="relative z-10">
+        <div>
           <RevealMask className="pb-[0.1em]" delay={0.05}>
             <h1 className="text-[clamp(44px,5.6vw,68px)] font-medium leading-[0.98] tracking-[-1.5px] text-ink">
               STARLIFE
@@ -90,37 +83,18 @@ function Hero() {
           </Reveal>
         </div>
 
-        {/* ── layered image composition ── */}
-        <div className="relative mx-auto h-[420px] w-full max-w-[540px] sm:h-[500px] lg:h-[600px] lg:max-w-none">
-          {/* depth: rotated outline behind */}
-          <div className="absolute right-[5%] top-[7%] hidden h-[80%] w-[62%] rotate-[6deg] rounded-[30px] ring-1 ring-brand-blue/15 lg:block" />
-
-          {/* main portrait */}
-          <Reveal y={24} className="absolute right-0 top-0 h-[84%] w-[64%]">
-            <Frame
-              src={woman}
-              eager
-              parallax={26}
-              rounded="rounded-[30px]"
-              ringClass="ring-1 ring-white/40"
-              className="h-full w-full shadow-glow"
-              alt="Life at STARTRADER"
-            />
-          </Reveal>
-
-          {/* overlapping secondary, white-matted to pop */}
-          <Reveal y={30} delay={0.18} className="absolute bottom-0 left-0 h-[48%] w-[58%]">
-            <Frame
-              src={teamImg}
-              parallax={48}
-              rounded="rounded-[22px]"
-              ringClass={false}
-              className="h-full w-full bg-white p-[6px] shadow-lift"
-              imgClassName="rounded-[18px]"
-              alt="The STARTRADER team"
-            />
-          </Reveal>
-        </div>
+        {/* ── single image ── */}
+        <Reveal y={24}>
+          <Frame
+            src={woman}
+            eager
+            parallax={24}
+            rounded="rounded-[28px]"
+            ringClass="ring-1 ring-line/60"
+            className="h-[340px] w-full shadow-lift sm:h-[440px] lg:h-[560px]"
+            alt="Life at STARTRADER"
+          />
+        </Reveal>
       </div>
     </section>
   );

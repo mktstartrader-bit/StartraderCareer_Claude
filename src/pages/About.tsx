@@ -10,7 +10,6 @@ import Counter from "@/components/ui/Counter";
 import ImpactCta from "@/components/sections/ImpactCta";
 import { EASE_OUT } from "@/lib/motion";
 
-import woman from "@/assets/life/woman.jpg";
 import mission from "@/assets/about/mission.webp";
 import vision from "@/assets/about/vision.webp";
 import valuesBg from "@/assets/about/values-bg.jpg";
@@ -29,6 +28,7 @@ import flagAu from "@/assets/about/flag-au.png";
 import flagAe from "@/assets/about/flag-ae.png";
 import flagSc from "@/assets/about/flag-sc.png";
 import flagMu from "@/assets/about/flag-mu.png";
+import flagZa from "@/assets/about/flag-za.png";
 import p1 from "@/assets/about/p1.png";
 import p2 from "@/assets/about/p2.png";
 import p3 from "@/assets/about/p3.png";
@@ -47,10 +47,10 @@ const AWARD_BADGES = [awAffli, awFrx, awWiki, awSmrt, awExp, awCrp, awWlt, awArg
 
 const COUNTRIES = [
   { flag: flagAu, name: "Australia", text: "STARTRADER Prime Global Pty Ltd is an Australian financial services licensee regulated by the ASIC, with ACN 156005668 and License No. 421210." },
-  { flag: flagAe, name: "United Arab Emirates", text: "STARTRADER Global Financial Consultation & Financial Analysis LLC is regulated by the CMA under License No. 20200000241." },
+  { flag: flagAe, name: "United Arab Emirates", text: "STARTRADER Global Financial Consultation & Financial Analysis LLC is regulated by the CMA under License No. 20200000241 (Category 5 - Introduction and Promotion)." },
   { flag: flagSc, name: "Seychelles", text: "STARTRADER Limited is a Securities Dealer regulated by the FSA of Seychelles, with License No. SD049 and Registration No. 8427362-1." },
-  { flag: flagMu, name: "Mauritius", text: "STARTRADER Global Financial Consultation & Financial Analysis LLC is regulated by the SCA under License No. 20200000241." },
-  { flag: flagSc, name: "Seychelles", text: "STARTRADER Limited is a Securities Dealer regulated by the FSA of Seychelles, with License No. SD049 and Registration No. 8427362-1." },
+  { flag: flagMu, name: "Mauritius", text: "STARTRADER Global Financial Consultation & Financial Analysis LLC is regulated by the CMA under License No. 20200000241." },
+  { flag: flagZa, name: "South Africa", text: "STARTRADER International Pty Ltd is regulated by South Africa’s Financial Sector Conduct Authority (FSCA) under FSP No. 52464 and Registration No. 2022/435897/07." },
 ];
 
 const PRODUCTS = [
@@ -74,15 +74,10 @@ function Tick() {
 function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-[rgba(218,227,237,0.2)] pt-[104px] pb-[72px] lg:pt-[150px] lg:pb-[120px]">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-[8%] -top-[12%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(0,71,187,0.16),transparent_68%)] blur-2xl" />
-        <div className="absolute -bottom-[24%] -left-[10%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(22,233,215,0.12),transparent_70%)] blur-2xl" />
-      </div>
-
-      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
+    <section className="bg-white pt-[104px] pb-[72px] lg:pt-[140px] lg:pb-[110px]">
+      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* text */}
-        <div className="relative z-10">
+        <div>
           <RevealMask className="pb-[0.12em]" delay={0.05}>
             <h1 className="text-[clamp(34px,4.6vw,52px)] font-medium leading-[1.1] tracking-[-1.2px] text-ink">
               <span className="font-semibold text-black">STARTRADER:</span>
@@ -112,36 +107,18 @@ function Hero() {
           </Reveal>
         </div>
 
-        {/* layered image composition */}
-        <div className="relative mx-auto h-[420px] w-full max-w-[540px] sm:h-[500px] lg:h-[600px] lg:max-w-none">
-          <div className="absolute left-[5%] top-[7%] hidden h-[80%] w-[62%] -rotate-[6deg] rounded-[30px] ring-1 ring-brand-blue/15 lg:block" />
-
-          {/* main */}
-          <Reveal y={24} className="absolute left-0 top-0 h-[84%] w-[64%]">
-            <Frame
-              src={force}
-              eager
-              parallax={26}
-              rounded="rounded-[30px]"
-              ringClass="ring-1 ring-white/40"
-              className="h-full w-full shadow-glow"
-              alt="The people of STARTRADER"
-            />
-          </Reveal>
-
-          {/* overlapping secondary, white-matted */}
-          <Reveal y={30} delay={0.18} className="absolute bottom-0 right-0 h-[48%] w-[58%]">
-            <Frame
-              src={woman}
-              parallax={48}
-              rounded="rounded-[22px]"
-              ringClass={false}
-              className="h-full w-full bg-white p-[6px] shadow-lift"
-              imgClassName="rounded-[18px]"
-              alt="Building success together"
-            />
-          </Reveal>
-        </div>
+        {/* single image */}
+        <Reveal y={24}>
+          <Frame
+            src={force}
+            eager
+            parallax={24}
+            rounded="rounded-[28px]"
+            ringClass="ring-1 ring-line/60"
+            className="h-[340px] w-full shadow-lift sm:h-[440px] lg:h-[560px]"
+            alt="The people of STARTRADER"
+          />
+        </Reveal>
       </div>
     </section>
   );

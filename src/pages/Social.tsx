@@ -2,12 +2,11 @@ import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/motion/Reveal";
 import RevealMask from "@/components/motion/RevealMask";
 import Eyebrow from "@/components/ui/Eyebrow";
-import Frame from "@/components/ui/Frame";
 import Accordion from "@/components/ui/Accordion";
 import ImageMarquee from "@/components/ui/ImageMarquee";
 import ImpactCta from "@/components/sections/ImpactCta";
 
-import csr2 from "@/assets/social/csr2.jpg";
+import csrHero from "@/assets/social/csr-hero.jpg";
 import swiper06 from "@/assets/social/swiper06.webp";
 import swiper07 from "@/assets/social/swiper07.webp";
 import ndTeam from "@/assets/social/nd-team-photo.webp";
@@ -38,75 +37,57 @@ const INITIATIVES = [
 function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-[rgba(218,227,237,0.2)] pt-[104px] pb-[72px] lg:pt-[150px] lg:pb-[120px]">
-      {/* brand glows + faint wash */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-[8%] -top-[12%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(0,71,187,0.16),transparent_68%)] blur-2xl" />
-        <div className="absolute -bottom-[24%] -left-[10%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(22,233,215,0.12),transparent_70%)] blur-2xl" />
+    <section className="relative overflow-hidden bg-white pb-[64px] lg:pb-0">
+      {/* full-bleed image — full figure, flush right, masked so it dissolves into white on the left (no hard seam at any width) */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden aspect-square overflow-hidden lg:block">
+        <img
+          src={csrHero}
+          alt="STARTRADER giving back to the community"
+          className="h-full w-full scale-[1.08] object-cover object-center [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_20%,#000_40%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_20%,#000_40%)]"
+        />
       </div>
 
-      <div className="shell grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
-        {/* text */}
-        <div className="relative z-10">
-          <RevealMask className="pb-[0.1em]" delay={0.05}>
-            <h1 className="text-[clamp(44px,5.6vw,68px)] font-medium leading-[0.98] tracking-[-1.5px] text-ink">
-              STARSOCIAL
-            </h1>
-          </RevealMask>
+      <div className="shell relative">
+        <div className="grid grid-cols-1 items-center gap-10 lg:min-h-[760px] lg:grid-cols-2">
+          {/* text */}
+          <div className="pt-[104px] lg:py-[120px]">
+            <RevealMask className="pb-[0.1em]" delay={0.05}>
+              <h1 className="text-[clamp(44px,5.6vw,68px)] font-medium leading-[0.98] tracking-[-1.5px] text-ink">
+                STARSOCIAL
+              </h1>
+            </RevealMask>
 
-          <Reveal delay={0.18}>
-            <p className="mt-7 max-w-[460px] text-[18px] font-medium leading-[1.5] text-brand-blue">
-              Our values go beyond numbers and growth.
-            </p>
-          </Reveal>
-          <Reveal delay={0.26}>
-            <p className="mt-4 max-w-[500px] text-body leading-[1.75] text-[#50555b]">
-              We believe in making a real impact, not just in markets, but in communities. That’s why
-              we give back at every step, aiming to create meaningful change where it matters most.
-            </p>
-          </Reveal>
+            <Reveal delay={0.18}>
+              <p className="mt-7 max-w-[460px] text-[18px] font-medium leading-[1.5] text-brand-blue">
+                Our values go beyond numbers and growth.
+              </p>
+            </Reveal>
+            <Reveal delay={0.26}>
+              <p className="mt-4 max-w-[500px] text-body leading-[1.75] text-[#50555b]">
+                We believe in making a real impact, not just in markets, but in communities. That’s why
+                we give back at every step, aiming to create meaningful change where it matters most.
+              </p>
+            </Reveal>
 
-          {/* scroll cue (ornamental) */}
-          <Reveal delay={0.36} className="mt-10 hidden items-center gap-3 lg:flex">
-            <span className="relative flex h-9 w-5 justify-center rounded-full border border-line">
-              <motion.span
-                className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-blue"
-                animate={reduce ? undefined : { y: [0, 9, 0], opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </span>
-            <span className="font-alt text-[11px] uppercase tracking-[0.28em] text-ink/45">Scroll</span>
-          </Reveal>
-        </div>
+            {/* scroll cue (ornamental) */}
+            <Reveal delay={0.36} className="mt-10 hidden items-center gap-3 lg:flex">
+              <span className="relative flex h-9 w-5 justify-center rounded-full border border-line">
+                <motion.span
+                  className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-blue"
+                  animate={reduce ? undefined : { y: [0, 9, 0], opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </span>
+              <span className="font-alt text-[11px] uppercase tracking-[0.28em] text-ink/45">Scroll</span>
+            </Reveal>
+          </div>
 
-        {/* layered image composition */}
-        <div className="relative mx-auto h-[420px] w-full max-w-[540px] sm:h-[500px] lg:h-[600px] lg:max-w-none">
-          {/* depth: rotated outline behind */}
-          <div className="absolute left-[5%] top-[7%] hidden h-[80%] w-[62%] -rotate-[6deg] rounded-[30px] ring-1 ring-brand-blue/15 lg:block" />
-
-          {/* main */}
-          <Reveal y={24} className="absolute left-0 top-0 h-[84%] w-[64%]">
-            <Frame
-              src={csr2}
-              eager
-              parallax={26}
-              rounded="rounded-[30px]"
-              ringClass="ring-1 ring-white/40"
-              className="h-full w-full shadow-glow"
+          {/* image (mobile only) — full figure, natural aspect */}
+          <Reveal className="lg:hidden">
+            <img
+              src={csrHero}
               alt="STARTRADER giving back to the community"
-            />
-          </Reveal>
-
-          {/* overlapping secondary, white-matted */}
-          <Reveal y={30} delay={0.18} className="absolute bottom-0 right-0 h-[48%] w-[58%]">
-            <Frame
-              src={ndTeam}
-              parallax={48}
-              rounded="rounded-[22px]"
-              ringClass={false}
-              className="h-full w-full bg-white p-[6px] shadow-lift"
-              imgClassName="rounded-[18px]"
-              alt="The STARTRADER team"
+              className="w-full rounded-[20px]"
             />
           </Reveal>
         </div>
