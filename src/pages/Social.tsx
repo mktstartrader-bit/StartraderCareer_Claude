@@ -43,8 +43,10 @@ function Hero() {
         <img
           src={csrHero}
           alt="STARTRADER giving back to the community"
-          className="h-full w-full scale-[1.08] object-cover object-center [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_20%,#000_40%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_20%,#000_40%)]"
+          className="h-full w-full scale-[1.08] object-cover object-center"
         />
+        {/* fade the left edge into white — overlay stays fixed over the box, independent of the zoom */}
+        <div className="absolute inset-0 [background:linear-gradient(to_right,#ffffff_0%,rgba(255,255,255,0.6)_18%,rgba(255,255,255,0)_44%)]" />
       </div>
 
       <div className="shell relative">
