@@ -23,7 +23,7 @@
   --blue: #0047bb;
   --navy: #001489;
   --deep: #0d0d4b;
-  --cyan: #16e9d7;
+  --accent: #4f93ff;
   --ink: #1c1f2a;
   --line: #dae3ed;
   --muted: #50555b;
@@ -44,7 +44,7 @@
   --sh-card: 0 18px 50px -20px rgba(0, 20, 137, 0.18);
   --sh-lift: 0 28px 60px -24px rgba(0, 20, 137, 0.32);
   --sh-glow: 0 30px 80px -28px rgba(0, 71, 187, 0.45);
-  --sh-glow-cyan: 0 26px 70px -24px rgba(22, 233, 215, 0.32);
+  --sh-glow-accent: 0 26px 70px -24px rgba(79, 147, 255, 0.32);
   --sh-blue-btn: 0 14px 30px -10px rgba(0, 71, 187, 0.6);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -55,8 +55,8 @@
   --glass-blur: blur(22px) saturate(165%);
   --glass-shadow: 0 20px 50px -26px rgba(0, 20, 137, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  --navy-grad: linear-gradient(to bottom, #000 0%, #001489 100%);
-  --navy-radial: radial-gradient(120% 120% at 50% 0%, #0d0d4b 0%, #001489 45%, #000 100%);
+  --navy-grad: linear-gradient(to bottom, #001034 0%, #001489 100%);
+  --navy-radial: radial-gradient(120% 120% at 50% 0%, #141a5c 0%, #001a8f 50%, #000d3d 100%);
   --grid-faint: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 
@@ -241,15 +241,15 @@ h4 {
 }
 
 .blob-blue {
-  background: radial-gradient(circle, rgba(0, 71, 187, 0.16), transparent 68%);
+  background: radial-gradient(circle, rgba(0, 71, 187, 0.1), transparent 68%);
 }
 
 .blob-blue-strong {
-  background: radial-gradient(circle, rgba(0, 71, 187, 0.4), transparent 70%);
+  background: radial-gradient(circle, rgba(0, 71, 187, 0.22), transparent 70%);
 }
 
-.blob-cyan-strong {
-  background: radial-gradient(circle, rgba(22, 233, 215, 0.16), transparent 70%);
+.blob-accent {
+  background: radial-gradient(circle, rgba(79, 147, 255, 0.1), transparent 70%);
 }
 
 /* ── 4. Typography helpers ─────────────────────────────────────────────── */
@@ -603,7 +603,7 @@ h4 {
   position: absolute;
   inset: 0;
   transform-origin: left;
-  background: linear-gradient(to right, var(--blue), var(--cyan));
+  background: linear-gradient(to right, var(--blue), var(--accent));
 }
 
 .js .sweep::after {
@@ -1199,12 +1199,12 @@ h4 {
 
 .glass-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(22, 233, 215, 0.4);
-  box-shadow: var(--sh-glow-cyan);
+  border-color: rgba(79, 147, 255, 0.4);
+  box-shadow: var(--sh-glow-accent);
 }
 
 .glass-card:hover::before {
-  background: rgba(22, 233, 215, 0.15);
+  background: rgba(79, 147, 255, 0.15);
 }
 
 .glass-card h3 {
@@ -1216,7 +1216,7 @@ h4 {
 }
 
 .glass-card:hover h3 {
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .glass-card p {
@@ -1719,7 +1719,7 @@ h4 {
   transition: color 0.3s ease;
 }
 
-/* hairline whose cyan fill sweeps in on hover */
+/* hairline whose accent fill sweeps in on hover */
 .hover-rule {
   position: relative;
   display: block;
@@ -1737,7 +1737,7 @@ h4 {
   inset: 0;
   transform: scaleX(0);
   transform-origin: left;
-  background: var(--cyan);
+  background: var(--accent);
   transition: transform 0.5s var(--ease);
 }
 
@@ -2292,7 +2292,7 @@ h4 {
   font-size: clamp(28px, 4vw, 46px);
   font-weight: 600;
   line-height: 1;
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .awards-count p {
@@ -2911,7 +2911,7 @@ h4 {
 
 .glass-card:hover .icon-tile {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px -10px rgba(22, 233, 215, 0.6);
+  box-shadow: 0 18px 40px -10px rgba(79, 147, 255, 0.6);
 }
 
 .glass-card:hover .icon-tile img {
@@ -2943,11 +2943,11 @@ h4 {
 }
 
 .atmos-orb-blue {
-  background: radial-gradient(circle, rgba(0, 71, 187, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(0, 71, 187, 0.12), transparent 70%);
 }
 
-.atmos-orb-cyan {
-  background: radial-gradient(circle, rgba(22, 233, 215, 0.2), transparent 70%);
+.atmos-orb-accent {
+  background: radial-gradient(circle, rgba(79, 147, 255, 0.12), transparent 70%);
 }
 
 .atmos-dots {
@@ -2985,7 +2985,7 @@ h4 {
   width: 620px;
 }
 
-.scout-hero .atmos-orb-cyan {
+.scout-hero .atmos-orb-accent {
   bottom: -40%;
   left: -10%;
   height: 460px;
@@ -3211,7 +3211,7 @@ h4 {
   width: 520px;
 }
 
-.scout-board .atmos-orb-cyan {
+.scout-board .atmos-orb-accent {
   right: -12%;
   bottom: 12%;
   height: 480px;
@@ -3833,122 +3833,318 @@ h4 {
   color: var(--muted);
 }
 
-/* ── who we look for ───────────────────────────────────────────────────── */
-.look-section {
+/* ── who we look for (interactive traits) ─────────────────────────────── */
+/* Selecting a trait cross-fades the visual beside it, so the section reads
+   as one editorial spread rather than a list bolted to a photo. */
+.traits {
   position: relative;
   overflow: hidden;
   background: #fff;
-  padding-block: 88px;
-}
-
-.look-section .atmos-orb-blue {
-  right: -10%;
-  top: 4%;
-  height: 480px;
-  width: 480px;
-}
-
-.look-grid {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: start;
-  gap: 40px;
+  padding-block: 96px;
 }
 
 @media (min-width: 1024px) {
-  .look-grid {
-    grid-template-columns: 340px 1fr;
-    gap: 64px;
+  .traits {
+    padding-block: 124px;
   }
 }
 
-.look-photo {
+.traits .atmos-orb-blue {
+  right: -12%;
+  top: -6%;
+  height: 520px;
+  width: 520px;
+}
+
+.traits-head {
   position: relative;
-  height: 360px;
+  max-width: 680px;
+}
+
+.traits-head h2 {
+  margin-top: 22px;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -1.3px;
+}
+
+.traits-head p {
+  margin-top: 18px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.traits-grid {
+  position: relative;
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .traits-grid {
+    margin-top: 72px;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+  }
+}
+
+/* ── the visual ── */
+.traits-visual {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .traits-visual {
+    position: sticky;
+    top: 112px;
+  }
+}
+
+.traits-stack {
+  position: relative;
+  aspect-ratio: 4 / 5;
   width: 100%;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 26px;
+  box-shadow: var(--sh-lift);
 }
 
-@media (min-width: 640px) {
-  .look-photo {
-    height: 400px;
-  }
+.traits-shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.8s var(--ease), transform 1.2s var(--ease);
 }
 
-.look-photo img {
+.traits-shot.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.traits-shot img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
-/* a small frosted badge floating over the photo */
-.look-badge {
+/* a soft floor so the caption never fights the photo */
+.traits-stack::after {
+  content: "";
   position: absolute;
-  left: 16px;
-  bottom: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 14px;
-  padding: 12px 14px;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(13, 13, 75, 0.72), rgba(13, 13, 75, 0.06) 52%, transparent);
 }
 
-.look-badge-icon {
+.traits-caption {
+  position: absolute;
+  inset-inline: 22px;
+  bottom: 22px;
+  z-index: 2;
+}
+
+.traits-caption-index {
+  font-family: var(--font-alt);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.traits-caption p {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #fff;
+}
+
+/* progress ticks mirroring the active trait */
+.traits-ticks {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.traits-ticks span {
+  height: 3px;
+  flex: 1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+
+.traits-ticks span::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #fff;
+  transition: transform 0.5s var(--ease);
+}
+
+.traits-ticks span.is-active::after {
+  transform: none;
+}
+
+/* ── the list ── */
+.traits-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.trait {
+  border-top: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.trait:last-child {
+  border-bottom: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.trait button {
+  position: relative;
   display: grid;
-  height: 34px;
-  width: 34px;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  padding: 26px 4px;
+  text-align: left;
+}
+
+/* the accent rail that grows down the active row */
+.trait::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.trait {
+  position: relative;
+}
+
+.trait.is-active::before {
+  transform: none;
+}
+
+.trait-num {
+  font-family: var(--font-alt);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  line-height: 1.9;
+  color: rgba(28, 31, 42, 0.32);
+  transition: color 0.4s var(--ease);
+}
+
+.trait.is-active .trait-num {
+  color: var(--blue);
+}
+
+.trait-title {
+  display: block;
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1.35;
+  color: rgba(28, 31, 42, 0.45);
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.trait.is-active .trait-title,
+.trait:hover .trait-title {
+  color: var(--ink);
+}
+
+.trait:hover .trait-title {
+  transform: translateX(3px);
+}
+
+/* the body reveals from a measured height, so copy length is free.
+   display:block matters — height/overflow are ignored on an inline span. */
+.trait-reveal {
+  display: block;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.5s var(--ease);
+}
+
+.trait-text {
+  display: block;
+  padding-top: 12px;
+  max-width: 540px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.trait-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.trait-more svg {
+  transition: transform 0.35s var(--ease);
+}
+
+.trait:hover .trait-more svg {
+  transform: translateX(4px);
+}
+
+/* closing note under the list */
+.traits-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.traits-note-icon {
+  display: grid;
+  height: 38px;
+  width: 38px;
   flex-shrink: 0;
   place-items: center;
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--blue);
   color: #fff;
 }
 
-.look-badge p {
-  font-size: 12.5px;
-  line-height: 17px;
+.traits-note p {
+  font-size: 13.5px;
+  line-height: 1.6;
   color: var(--ink);
 }
 
-.look-copy h3 {
-  font-size: 22px;
-}
-
-.look-copy > p {
-  margin-top: 8px;
-  font-size: 14px;
-  line-height: 25px;
-  color: var(--muted);
-}
-
-.look-copy .look-lead {
-  margin-top: 20px;
-  color: var(--ink);
-}
-
-.look-panel {
-  margin-top: 18px;
-  padding: 8px 20px;
-}
-
-.inline-head {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-@media (min-width: 1024px) {
-  .inline-head {
-    flex-direction: row;
-    align-items: center;
-    gap: 56px;
-  }
-  .inline-head > :first-child {
-    flex-shrink: 0;
-  }
+.traits-note a {
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ── your journey (scroll-drawn timeline) ──────────────────────────────── */
@@ -3959,7 +4155,7 @@ h4 {
   padding-block: 88px;
 }
 
-.journey .atmos-orb-cyan {
+.journey .atmos-orb-accent {
   left: -10%;
   bottom: -10%;
   height: 460px;
@@ -4012,11 +4208,13 @@ h4 {
   inset: 0;
   transform-origin: left;
   transform: scaleX(var(--progress, 0));
-  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  background: linear-gradient(90deg, var(--blue), var(--accent));
 }
 
 .journey-step {
   position: relative;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -4070,6 +4268,7 @@ h4 {
 }
 
 .journey-card {
+  flex: 1;
   margin-top: 12px;
   padding: 22px 20px 24px;
   border-radius: 18px;
@@ -4434,7 +4633,7 @@ h4 {
   align-items: center;
   justify-content: center;
   background: rgba(13, 13, 75, 0.45);
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .starcast.is-playing .starcast-thumb-eq {
@@ -4445,7 +4644,7 @@ h4 {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .starcast-head h3 {
@@ -4524,7 +4723,7 @@ h4 {
   height: 34px;
   align-items: center;
   gap: 3px;
-  color: rgba(22, 233, 215, 0.8);
+  color: rgba(79, 147, 255, 0.8);
 }
 
 .signal i {
@@ -4614,7 +4813,7 @@ h4 {
 
 .seek-fill {
   width: 0;
-  background: linear-gradient(to right, var(--blue), var(--cyan));
+  background: linear-gradient(to right, var(--blue), var(--accent));
 }
 
 .seek-thumb {
@@ -4624,7 +4823,7 @@ h4 {
   height: 14px;
   width: 14px;
   transform: translate(-50%, -50%);
-  border: 3px solid var(--cyan);
+  border: 3px solid var(--accent);
   border-radius: 999px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
@@ -4680,7 +4879,7 @@ h4 {
 }
 
 .episode.is-current .episode-index {
-  color: var(--cyan);
+  color: var(--accent);
 }
 
 .episode-index .eq {

@@ -590,6 +590,61 @@
     apply();
   }
 
+  /* ── "More than careers" traits ─────────────────────────────────────── */
+  // Selecting a trait cross-fades the visual and opens its copy, so the two
+  // halves of the section always describe the same thing.
+  function initTraits() {
+    var root = $("[data-traits]");
+    if (!root) return;
+
+    var rows = $$(".trait", root);
+    var shots = $$(".traits-shot", root);
+    var ticks = $$(".traits-ticks span", root);
+    var capIndex = $("[data-caption-index]", root);
+    var capText = $("[data-caption-text]", root);
+    if (!rows.length) return;
+
+    var pad = function (n) {
+      return (n < 10 ? "0" : "") + n;
+    };
+
+    var select = function (i) {
+      rows.forEach(function (row, n) {
+        var on = n === i;
+        row.classList.toggle("is-active", on);
+        var btn = $("button", row);
+        if (btn) btn.setAttribute("aria-expanded", String(on));
+        var panel = $(".trait-reveal", row);
+        if (panel) panel.style.height = on ? panel.scrollHeight + "px" : "0px";
+      });
+      shots.forEach(function (s, n) {
+        s.classList.toggle("is-active", n === i);
+      });
+      ticks.forEach(function (t, n) {
+        t.classList.toggle("is-active", n === i);
+      });
+      if (capIndex) capIndex.textContent = pad(i + 1) + " / " + pad(rows.length);
+      var title = $(".trait-title", rows[i]);
+      if (capText && title) capText.textContent = title.textContent.trim();
+    };
+
+    rows.forEach(function (row, i) {
+      var btn = $("button", row);
+      if (btn) btn.addEventListener("click", function () { select(i); });
+      row.addEventListener("mouseenter", function () {
+        if (window.matchMedia("(hover: hover)").matches) select(i);
+      });
+    });
+
+    // keep the open row correctly sized through a reflow
+    window.addEventListener("resize", function () {
+      var open = $(".trait.is-active .trait-reveal", root);
+      if (open) open.style.height = open.scrollHeight + "px";
+    });
+
+    select(0);
+  }
+
   /* ── Scroll-drawn process timeline ──────────────────────────────────── */
   function initTimeline() {
     var track = $("[data-timeline]");
@@ -966,6 +1021,7 @@
     initVideoPlayer();
     initVideoTiles();
     initScout();
+    initTraits();
     initTimeline();
     initBlogIndex();
     initStarcast();

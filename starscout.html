@@ -77,7 +77,7 @@
       <section class="scout-hero">
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue"></span>
-          <span class="atmos-orb atmos-orb-cyan"></span>
+          <span class="atmos-orb atmos-orb-accent"></span>
           <span class="atmos-dots"></span>
         </div>
 
@@ -137,7 +137,7 @@
       <section class="scout-board">
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue"></span>
-          <span class="atmos-orb atmos-orb-cyan"></span>
+          <span class="atmos-orb atmos-orb-accent"></span>
           <span class="atmos-dots"></span>
         </div>
 
@@ -616,97 +616,110 @@
       </section>
 
       <!-- ───────── WHO WE LOOK FOR ───────── -->
-      <section class="look-section">
+      <section class="traits" data-traits>
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue"></span>
         </div>
 
-        <div class="shell" style="position: relative">
-          <div class="inline-head">
+        <div class="shell">
+          <div class="traits-head">
             <div data-reveal><span class="eyebrow">WHO WE LOOK FOR</span></div>
-            <h2 class="section-title-sm" data-reveal>More than careers</h2>
+            <h2 data-reveal data-reveal-delay="0.06">More than careers</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              Everyone who lands here brings something unique. We hire for trajectory and
+              temperament — here’s what we look for in the people who choose to apply.
+            </p>
           </div>
 
-          <div class="look-grid">
-            <div data-reveal>
-              <div class="look-photo">
-                <img src="/img/scout/people.jpg" alt="STARTRADER people" loading="lazy" />
-                <div class="look-badge glass">
-                  <span class="look-badge-icon">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                  <p>We hire for trajectory and temperament — not just the résumé.</p>
+          <div class="traits-grid">
+            <div class="traits-visual" data-reveal>
+              <div class="traits-stack">
+            <figure class="traits-shot is-active" data-shot="0">
+              <img src="/img/scout/people.jpg" alt="A STARTRADER team in conversation" loading="lazy" />
+            </figure>
+            <figure class="traits-shot" data-shot="1">
+              <img src="/img/life/culture.jpg" alt="Ideas taking shape at STARTRADER" loading="lazy" />
+            </figure>
+            <figure class="traits-shot" data-shot="2">
+              <img src="/img/home/team.jpg" alt="The STARTRADER team at work" loading="lazy" />
+            </figure>
+                <div class="traits-caption">
+                  <span class="traits-caption-index" data-caption-index>01 / 03</span>
+                  <p data-caption-text>They bring more than a resume.</p>
+                  <div class="traits-ticks">
+              <span class="is-active" data-tick="0"></span>
+              <span class="" data-tick="1"></span>
+              <span class="" data-tick="2"></span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="look-copy" data-reveal data-reveal-delay="0.1">
-              <h3>Every story matters</h3>
-              <p>Everyone who lands here brings something unique.</p>
-              <p class="look-lead">Here’s what we look for in the people who choose to apply:</p>
-
-              <div class="accordion look-panel glass">
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="true">
-                    <span class="acc-label">
-                      <span class="acc-index">01</span>
-                      <span class="acc-q">They bring more than a resume.</span>
-                    </span>
-                    <span class="acc-icon">
+            <div data-reveal data-reveal-delay="0.1">
+              <ul class="traits-list">
+            <li class="trait is-active" data-trait="0">
+              <button type="button" aria-expanded="true">
+                <span class="trait-num">01</span>
+                <span>
+                  <span class="trait-title">They bring more than a resume.</span>
+                  <span class="trait-reveal">
+                    <span class="trait-text">We're not only interested in your years of experience — we want to feel the energy behind your words, and the stories that shaped who you are today.</span>
+                    <span class="trait-more">
+                      What that looks like day to day
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      We're not only interested in your years of experience — we want to feel the
-                      energy behind your words, the stories that shaped who you are today.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="false">
-                    <span class="acc-label">
-                      <span class="acc-index">02</span>
-                      <span class="acc-q">They are different and unique.</span>
-                    </span>
-                    <span class="acc-icon">
+                  </span>
+                </span>
+              </button>
+            </li>
+            <li class="trait" data-trait="1">
+              <button type="button" aria-expanded="false">
+                <span class="trait-num">02</span>
+                <span>
+                  <span class="trait-title">They are different and unique.</span>
+                  <span class="trait-reveal">
+                    <span class="trait-text">Distinct perspectives make stronger teams. We look for people who think differently and aren’t afraid to bring a fresh idea into the room.</span>
+                    <span class="trait-more">
+                      What that looks like day to day
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      Distinct perspectives make stronger teams. We look for people who think
-                      differently and aren’t afraid to bring fresh ideas forward.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="false">
-                    <span class="acc-label">
-                      <span class="acc-index">03</span>
-                      <span class="acc-q">They’re ready to grow.</span>
-                    </span>
-                    <span class="acc-icon">
+                  </span>
+                </span>
+              </button>
+            </li>
+            <li class="trait" data-trait="2">
+              <button type="button" aria-expanded="false">
+                <span class="trait-num">03</span>
+                <span>
+                  <span class="trait-title">They’re ready to grow.</span>
+                  <span class="trait-reveal">
+                    <span class="trait-text">Ambition matters. We look for people eager to learn, stretch themselves, and grow alongside a company that moves quickly.</span>
+                    <span class="trait-more">
+                      What that looks like day to day
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      Ambition matters. We look for people eager to learn, stretch themselves, and
-                      grow alongside a fast-moving global company.
-                    </p>
-                  </div>
-                </div>
+                  </span>
+                </span>
+              </button>
+            </li>
+              </ul>
+
+              <div class="traits-note glass">
+                <span class="traits-note-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <p>
+                  Recognise yourself in any of these? <a href="#job-search">Browse the open roles</a>
+                  — or join the talent pool and we’ll reach out when something fits.
+                </p>
               </div>
             </div>
           </div>
@@ -716,7 +729,7 @@
       <!-- ───────── YOUR JOURNEY ───────── -->
       <section class="journey">
         <div class="atmos">
-          <span class="atmos-orb atmos-orb-cyan"></span>
+          <span class="atmos-orb atmos-orb-accent"></span>
           <span class="atmos-dots"></span>
         </div>
 
