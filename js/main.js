@@ -616,6 +616,208 @@
     if (p && p.catch) p.catch(function () { /* autoplay blocked — poster stands in */ });
   }
 
+  /* ── StarLife showreel ──────────────────────────────────────────────── */
+  // A featured banner over a scrolling shelf. Picking a card promotes it to
+  // the banner; the shelf takes any number of clips without relayout.
+  function initReel() {
+    var root = $("[data-reel]");
+    if (!root) return;
+
+    var player = $("[data-reel-player]", root);
+    var cards = $$(".shelf-card", root);
+    var shelf = $("[data-shelf]", root);
+    if (!player || !cards.length) return;
+
+    var copy = $("[data-reel-copy]", root);
+    var titleEl = $("[data-reel-title]", root);
+    var kindEl = $("[data-reel-kind]", root);
+    var bar = $("[data-reel-progress]", root);
+    var playBtn = $("[data-reel-play]", root);
+    var soundBtn = $("[data-reel-sound]", root);
+    var at = 0;
+    var onSelect = null;
+
+    var swapIcons = function (btn, showFirst) {
+      if (!btn) return;
+      var a = $(".icon-pause, .icon-sound-off", btn);
+      var b = $(".icon-play, .icon-sound-on", btn);
+      if (a) a.style.display = showFirst ? "block" : "none";
+      if (b) b.style.display = showFirst ? "none" : "block";
+    };
+
+    var markPlaying = function (playing) {
+      swapIcons(playBtn, playing);
+      if (playBtn) {
+        playBtn.setAttribute("aria-pressed", String(playing));
+        playBtn.setAttribute("aria-label", (playing ? "Pause" : "Play") + " clip");
+      }
+    };
+
+    var select = function (i, autoplay) {
+      at = ((i % cards.length) + cards.length) % cards.length;
+      var d = cards[at].dataset;
+
+      cards.forEach(function (c, n) {
+        c.classList.toggle("is-active", n === at);
+        c.setAttribute("aria-selected", String(n === at));
+      });
+      if (onSelect) onSelect();
+
+      if (copy) copy.classList.add("is-swapping");
+      setTimeout(function () {
+        if (titleEl) titleEl.textContent = d.title;
+        if (kindEl) kindEl.textContent = d.kind;
+        if (copy) copy.classList.remove("is-swapping");
+      }, 200);
+
+      var poster = $("img", cards[at]);
+      if (poster) player.poster = poster.getAttribute("src");
+      player.src = d.src;
+      player.load();
+      if (bar) bar.style.width = "0%";
+
+      if (autoplay) {
+        var p = player.play();
+        if (p && p.then) p.then(function () { markPlaying(true); }).catch(function () { markPlaying(false); });
+      }
+    };
+
+    cards.forEach(function (c, i) {
+      c.addEventListener("click", function () {
+        select(i, true);
+      });
+    });
+
+    if (playBtn) {
+      playBtn.addEventListener("click", function () {
+        if (player.paused) {
+          var p = player.play();
+          if (p && p.then) p.then(function () { markPlaying(true); }).catch(function () {});
+        } else {
+          player.pause();
+          markPlaying(false);
+        }
+      });
+    }
+
+    if (soundBtn) {
+      soundBtn.addEventListener("click", function () {
+        player.muted = !player.muted;
+        soundBtn.setAttribute("aria-pressed", String(!player.muted));
+        soundBtn.setAttribute("aria-label", (player.muted ? "Unmute" : "Mute") + " clip");
+        swapIcons(soundBtn, player.muted);
+      });
+    }
+
+    player.addEventListener("timeupdate", function () {
+      if (!bar || !player.duration || !isFinite(player.duration)) return;
+      bar.style.width = (player.currentTime / player.duration) * 100 + "%";
+    });
+    player.addEventListener("play", function () { markPlaying(true); });
+    player.addEventListener("pause", function () { markPlaying(false); });
+    // roll into the next clip so the reel keeps moving on its own
+    player.addEventListener("ended", function () {
+      select(at + 1, true);
+    });
+
+    /* shelf: drifts on its own, yields the moment you touch it */
+    if (shelf) {
+      var originals = cards.length;
+      // a second copy makes the wrap invisible
+      cards.forEach(function (c) {
+        var clone = c.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.setAttribute("tabindex", "-1");
+        clone.removeAttribute("role");
+        clone.removeAttribute("aria-selected");
+        clone.dataset.clone = "1";
+        shelf.appendChild(clone);
+      });
+
+      var all = $$(".shelf-card", shelf);
+      all.forEach(function (c, i) {
+        c.addEventListener("click", function () {
+          select(i % originals, true);
+        });
+      });
+
+      // keep clones in step with the original they mirror
+      var syncClones = function () {
+        all.forEach(function (c, i) {
+          var on = i % originals === at;
+          c.classList.toggle("is-active", on);
+          if (!c.dataset.clone) c.setAttribute("aria-selected", String(on));
+        });
+      };
+      onSelect = syncClones;
+
+      var hovering = false;
+      var keyFocus = false;
+      var holdFor = 0;
+      var hold = function (ms) {
+        holdFor = ms;
+      };
+      var isPaused = function () {
+        return hovering || keyFocus || holdFor > 0;
+      };
+
+      shelf.addEventListener("pointerenter", function () { hovering = true; });
+      shelf.addEventListener("pointerleave", function () { hovering = false; });
+      // focus arriving without a pointer over the shelf means keyboard use
+      shelf.addEventListener("focusin", function () { if (!hovering) keyFocus = true; });
+      shelf.addEventListener("focusout", function () { keyFocus = false; });
+      // a manual flick wins; drifting resumes shortly after
+      shelf.addEventListener("wheel", function () { hold(1200); }, { passive: true });
+      shelf.addEventListener("touchstart", function () { hovering = true; }, { passive: true });
+      shelf.addEventListener("touchend", function () { hovering = false; hold(1600); }, { passive: true });
+
+      if (!reduceMotion) {
+        // scrollLeft snaps to whole pixels, so a sub-pixel step written straight
+        // back would be rounded away every frame — accumulate in a float instead
+        var pos = shelf.scrollLeft;
+        var SPEED = 0.05; // px per ms
+        shelf.addEventListener("scroll", function () {
+          if (Math.abs(shelf.scrollLeft - pos) > 2) pos = shelf.scrollLeft;
+        }, { passive: true });
+
+        var last = 0;
+        var drift = function (ts) {
+          var dt = Math.min(last ? ts - last : 16, 64);
+          last = ts;
+          if (holdFor > 0) holdFor -= dt;
+          if (!isPaused()) {
+            var half = shelf.scrollWidth / 2;
+            pos += dt * SPEED;
+            if (pos >= half) pos -= half;
+            shelf.scrollLeft = pos;
+          }
+          requestAnimationFrame(drift);
+        };
+        requestAnimationFrame(drift);
+      }
+    }
+
+    // only play while the banner is on screen
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              var p = player.play();
+              if (p && p.catch) p.catch(function () {});
+            } else {
+              player.pause();
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      io.observe($(".reel-feature", root) || player);
+    }
+
+    select(0, false);
+  }
+
   /* ── Products bento ─────────────────────────────────────────────────── */
   // Three pieces: a pointer spotlight, a segmented control over real figures,
   // and a platform carousel. Every value shown is one the site already states.
@@ -1185,6 +1387,7 @@
     initVideoTiles();
     initScout();
     initVideoHero();
+    initReel();
     initProductBento();
     initJurisdictions();
     initTraits();

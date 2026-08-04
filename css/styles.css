@@ -3422,259 +3422,594 @@ h4 {
 }
 
 /* ── 12. StarLife ──────────────────────────────────────────────────────── */
-.bento-gallery {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
 
-@media (min-width: 640px) {
-  .bento-gallery {
-    gap: 20px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .bento-gallery {
-    margin-top: 64px;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 252px;
-  }
-}
-
-.tile-hero {
-  grid-column: span 2;
-  height: 260px;
-}
-
-@media (min-width: 640px) {
-  .tile-hero {
-    height: 320px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .tile-hero {
-    grid-column: span 8;
-    grid-row: span 2;
-    height: auto;
-  }
-}
-
-.tile {
-  grid-column: span 1;
-  height: 200px;
-}
-
-@media (min-width: 640px) {
-  .tile {
-    height: 244px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .tile {
-    grid-column: span 4;
-    height: auto;
-  }
-}
-
-.tile-wide-sm {
-  grid-column: span 2;
-}
-
-@media (min-width: 640px) {
-  .tile-wide-sm {
-    grid-column: span 1;
-  }
-}
-
-/* must come after the .tile-wide-sm override above, or it loses the cascade */
-@media (min-width: 1024px) {
-  .tile-wide-sm {
-    grid-column: span 4;
-  }
-}
-
-/* autoplaying muted video tile with label + sound toggle */
-.video-tile {
+/* ── showreel: a featured banner over a scrolling shelf ────────────────── */
+/* Built to grow — the shelf takes any number of clips without relayout. */
+/* ── featured banner ── */
+/* full-bleed: the banner spans the whole section, edge to edge */
+.reel-feature {
   position: relative;
-  display: block;
-  height: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 78vh;
   width: 100%;
+  margin-top: 48px;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: var(--sh-card), inset 0 0 0 1px rgba(218, 227, 237, 0.5);
+  background: var(--deep);
 }
 
-.video-tile video {
+@media (min-width: 1024px) {
+  .reel-feature {
+    margin-top: 64px;
+  }
+}
+
+@media (max-width: 700px) {
+  .reel-feature {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.reel-feature video {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease-out;
 }
 
-.video-tile:hover video {
-  transform: scale(1.05);
-}
-
-.video-tile-scrim {
+.reel-scrim {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(13, 13, 75, 0.85), rgba(13, 13, 75, 0.3), transparent);
+  background: linear-gradient(to top, rgba(3, 6, 22, 0.88) 0%, rgba(3, 6, 22, 0.34) 32%, transparent 62%);
 }
 
-.video-tile-label {
+.reel-overlay {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.video-tile-sound {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  display: flex;
-  height: 36px;
-  width: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: rgba(13, 13, 75, 0.4);
-  color: #fff;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background-color 0.3s ease;
-}
-
-.video-tile:hover .video-tile-sound {
-  background: var(--blue);
-}
-
-/* Culture: sticky image + accordion */
-.sticky-split {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: start;
-  gap: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding-block: 32px;
 }
 
 @media (min-width: 1024px) {
-  .sticky-split {
-    margin-top: 64px;
-    grid-template-columns: 0.96fr 1.04fr;
-    gap: 64px;
-  }
-  .sticky-col {
-    position: sticky;
-    top: 104px;
+  .reel-overlay {
+    padding-block: 46px;
   }
 }
 
-.sticky-media {
-  height: 400px;
+.reel-overlay-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.reel-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* the brand chip, mirroring the reference's app badge */
+.reel-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.reel-brand img {
+  height: 26px;
+  width: 26px;
+  border-radius: 7px;
+  background: #fff;
+  padding: 5px;
+}
+
+.reel-kind {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.reel-headline {
+  margin-top: 14px;
+  max-width: 620px;
+  font-size: clamp(24px, 3.2vw, 38px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -1px;
+  color: #fff;
+  transition: opacity 0.3s var(--ease);
+}
+
+.reel-copy.is-swapping .reel-headline,
+.reel-copy.is-swapping .reel-meta {
+  opacity: 0;
+}
+
+.reel-meta {
+  transition: opacity 0.3s var(--ease);
+}
+
+.reel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+/* solid + outline pills, as the reference pairs them */
+.reel-btn {
+  display: inline-flex;
+  height: 46px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding-inline: 24px;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: all 0.3s var(--ease);
+}
+
+.reel-btn-solid {
+  background: #fff;
+  color: var(--deep);
+}
+
+.reel-btn-solid:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+.reel-btn-line {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+.reel-btn-line:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.reel-controls {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.reel-ctl {
+  display: grid;
+  height: 46px;
+  width: 46px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  color: #fff;
+  transition: all 0.3s var(--ease);
+}
+
+.reel-ctl:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #fff;
+  transform: scale(1.05);
+}
+
+.reel-progress {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.reel-progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, var(--accent), #fff);
+}
+
+/* ── the shelf ── */
+/* bleeds to the viewport edge so there is always a "there's more" cue */
+/* spans the section edge to edge and drifts on its own */
+.reel-shelf {
+  display: flex;
+  gap: 18px;
   width: 100%;
-  border-radius: 26px;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.reel-shelf::-webkit-scrollbar {
+  display: none;
+}
+
+.shelf-card {
+  width: 268px;
+  flex-shrink: 0;
+  text-align: left;
 }
 
 @media (min-width: 640px) {
-  .sticky-media {
-    height: 470px;
+  .shelf-card {
+    width: 300px;
   }
 }
 
-@media (min-width: 1024px) {
-  .sticky-media {
-    height: 560px;
-  }
+/* display:block matters — aspect-ratio and overflow are ignored on an inline
+   box, which let a portrait poster stretch the whole card. */
+.shelf-thumb {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--tint-45);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
-.sticky-media .frame {
+.shelf-thumb img {
   height: 100%;
   width: 100%;
-  border-radius: 26px;
-  box-shadow: var(--sh-glow);
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
 }
 
-/* Why: sticky heading + 2×2 glass bento */
-.why-grid {
-  position: relative;
+.shelf-card:hover .shelf-thumb {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-lift);
+}
+
+.shelf-card:hover .shelf-thumb img {
+  transform: scale(1.06);
+}
+
+/* the "Play now" pill only shows on hover, as in the reference */
+.shelf-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transform: translate(-50%, -50%) scale(0.9);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--deep);
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.35s var(--ease);
+}
+
+.shelf-card:hover .shelf-play,
+.shelf-card:focus-visible .shelf-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.shelf-card.is-active .shelf-thumb {
+  box-shadow: 0 0 0 2px var(--blue), var(--sh-card);
+}
+
+/* a small "now playing" flag on the active card */
+.shelf-now {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: var(--blue);
+  padding: 5px 11px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.shelf-card.is-active .shelf-now {
+  display: inline-flex;
+}
+
+.shelf-now i {
+  display: block;
+  height: 5px;
+  width: 5px;
+  border-radius: 999px;
+  background: #fff;
+  animation: now-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes now-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.shelf-card h4 {
+  margin-top: 13px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  transition: color 0.3s var(--ease);
+}
+
+.shelf-card:hover h4 {
+  color: var(--blue);
+}
+
+.shelf-card p {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-shelf {
+    scroll-behavior: auto;
+  }
+  .shelf-now i {
+    animation: none;
+  }
+}
+
+/* ── culture: sticky frame + numbered principles ───────────────────────── */
+.culture {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 44px;
   align-items: start;
-  gap: 48px;
+  margin-top: 56px;
 }
 
 @media (min-width: 1024px) {
-  .why-grid {
-    grid-template-columns: 0.82fr 1.18fr;
-    gap: 64px;
+  .culture {
+    margin-top: 72px;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
   }
-  .why-head {
+  .culture-visual {
     position: sticky;
     top: 112px;
   }
 }
 
-.why-head h2 {
-  margin-top: 24px;
-  font-size: clamp(28px, 3.6vw, 42px);
-  line-height: 1.08;
-  letter-spacing: -1px;
+.culture-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.culture-frame .frame {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+  box-shadow: var(--sh-lift);
+}
+
+/* a pull-quote riding the frame */
+.culture-quote {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background: rgba(4, 8, 28, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  padding: 18px 20px;
+}
+
+.culture-quote p {
+  font-size: 14px;
+  line-height: 1.55;
   color: #fff;
 }
 
-.why-head p {
-  margin-top: 12px;
+.culture-quote span {
+  display: block;
+  margin-top: 10px;
   font-family: var(--font-alt);
-  font-size: 14px;
-  line-height: 30px;
-  color: var(--line);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
 }
 
-.why-cards {
+/* principles read openly — nothing hidden behind a toggle */
+.principle {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  border-top: 1px solid rgba(28, 31, 42, 0.1);
+  padding: 30px 4px;
+  transition: transform 0.4s var(--ease);
+}
+
+.principle:last-child {
+  border-bottom: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.principle::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.principle:hover::before {
+  transform: none;
+}
+
+.principle:hover {
+  transform: translateX(4px);
+}
+
+.principle-num {
+  font-family: var(--font-alt);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  line-height: 1.9;
+  color: rgba(28, 31, 42, 0.3);
+  transition: color 0.4s var(--ease);
+}
+
+.principle:hover .principle-num {
+  color: var(--blue);
+}
+
+.principle h3 {
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1.3;
+}
+
+.principle p {
+  margin-top: 10px;
+  max-width: 540px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* ── traits: what our exploration group is ─────────────────────────────── */
+.life-traits {
+  margin-top: 56px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
 }
 
 @media (min-width: 640px) {
-  .why-cards {
+  .life-traits {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.why-cards .icon-tile {
-  height: 58px;
-  width: 58px;
-  border-radius: 14px;
+@media (min-width: 1024px) {
+  .life-traits {
+    margin-top: 72px;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.why-cards .icon-tile img {
-  height: 32px;
-  width: 32px;
+.life-trait {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  padding: 28px;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 
-.glass-card:hover .icon-tile {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px -10px rgba(79, 147, 255, 0.6);
+.life-trait::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s var(--ease);
 }
 
-.glass-card:hover .icon-tile img {
+.life-trait:hover::after {
+  transform: none;
+}
+
+.life-trait:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lift);
+}
+
+.life-trait-icon {
+  display: grid;
+  height: 56px;
+  width: 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 26px -14px rgba(0, 20, 137, 0.5);
+  transition: all 0.45s var(--ease);
+}
+
+.life-trait-icon img {
+  height: 30px;
+  width: 30px;
+  transition: transform 0.45s var(--ease);
+}
+
+.life-trait:hover .life-trait-icon {
+  transform: translateY(-3px) rotate(-6deg);
+}
+
+.life-trait:hover .life-trait-icon img {
   transform: scale(1.1);
 }
 
-.glass-card .sweep {
-  margin-top: 24px;
-  background: rgba(255, 255, 255, 0.12);
+.life-trait-num {
+  margin-top: 22px;
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.22em;
+  color: rgba(28, 31, 42, 0.35);
+}
+
+.life-trait h3 {
+  margin-top: 8px;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+  color: var(--blue);
+}
+
+.life-trait p {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-progress i {
+    transition: none;
+  }
 }
 
 /* ── 13. StarScout ─────────────────────────────────────────────────────── */
