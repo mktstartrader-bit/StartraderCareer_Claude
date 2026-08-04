@@ -144,8 +144,13 @@
     var run = function (el) {
       var to = parseFloat(el.getAttribute("data-counter")) || 0;
       var duration = (parseFloat(el.getAttribute("data-duration")) || 1.6) * 1000;
+      // opt-in thousands grouping, so 1000 reads as the brand's "1,000"
+      var group = el.hasAttribute("data-separator");
+      var fmt = function (n) {
+        return group ? String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : String(n);
+      };
       if (reduceMotion) {
-        el.textContent = String(to);
+        el.textContent = fmt(to);
         return;
       }
       var start = null;
@@ -155,7 +160,7 @@
       var tick = function (ts) {
         if (start === null) start = ts;
         var p = Math.min((ts - start) / duration, 1);
-        el.textContent = String(Math.round(to * ease(p)));
+        el.textContent = fmt(Math.round(to * ease(p)));
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -590,6 +595,78 @@
     apply();
   }
 
+  /* ── Video banner ───────────────────────────────────────────────────── */
+  // The file is only fetched on wide viewports with motion allowed; everywhere
+  // else the poster carries the hero, so phones never pull a 7MB loop.
+  function initVideoHero() {
+    var hero = $("[data-video-hero]");
+    if (!hero) return;
+    var video = $(".video-hero-media", hero);
+    if (!video) return;
+
+    var wide = window.matchMedia("(min-width: 768px)").matches;
+    if (reduceMotion || !wide) {
+      video.remove();
+      return;
+    }
+
+    video.src = video.getAttribute("data-src");
+    video.load();
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { /* autoplay blocked — poster stands in */ });
+  }
+
+  /* ── Bento spotlight ────────────────────────────────────────────────── */
+  // A soft light tracks the pointer across each cell.
+  function initBento() {
+    var root = $("[data-bento]");
+    if (!root || reduceMotion) return;
+
+    $$(".bento-card", root).forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+      });
+    });
+  }
+
+  /* ── Jurisdictions ──────────────────────────────────────────────────── */
+  // One licence open at a time, so the regulatory copy is never a wall.
+  function initJurisdictions() {
+    var root = $("[data-jurisdictions]");
+    if (!root) return;
+    var rows = $$(".jur", root);
+    if (!rows.length) return;
+
+    var open = function (i) {
+      rows.forEach(function (row, n) {
+        var on = n === i;
+        row.classList.toggle("is-active", on);
+        var btn = $("button", row);
+        if (btn) btn.setAttribute("aria-expanded", String(on));
+        var panel = $(".jur-reveal", row);
+        if (panel) panel.style.height = on ? panel.scrollHeight + "px" : "0px";
+      });
+    };
+
+    rows.forEach(function (row, i) {
+      var btn = $("button", row);
+      if (btn) {
+        btn.addEventListener("click", function () {
+          open(row.classList.contains("is-active") ? -1 : i);
+        });
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      var el = $(".jur.is-active .jur-reveal", root);
+      if (el) el.style.height = el.scrollHeight + "px";
+    });
+
+    open(0);
+  }
+
   /* ── "More than careers" traits ─────────────────────────────────────── */
   // Selecting a trait cross-fades the visual and opens its copy, so the two
   // halves of the section always describe the same thing.
@@ -1021,6 +1098,9 @@
     initVideoPlayer();
     initVideoTiles();
     initScout();
+    initVideoHero();
+    initBento();
+    initJurisdictions();
     initTraits();
     initTimeline();
     initBlogIndex();

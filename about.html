@@ -73,111 +73,149 @@
     </header>
 
     <main>
-      <!-- ───────── HERO ───────── -->
-      <section class="hero-single">
-        <div class="shell hero-single-grid">
-          <div class="editorial-hero-copy">
-            <div class="mask-line" data-reveal-delay="0.05" style="padding-bottom: 0.12em">
-              <h1><strong>STARTRADER:</strong><br />Built by people,<br />powered by purpose</h1>
+      <!-- ───────── VIDEO BANNER ───────── -->
+      <section class="video-hero" data-video-hero>
+        <img class="video-hero-poster" src="/img/about/banner-poster.jpg" alt="" />
+        <video
+          class="video-hero-media"
+          data-src="/video/about-banner.mp4"
+          poster="/img/about/banner-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"
+        ></video>
+        <div class="video-hero-scrim"></div>
+
+        <div class="shell video-hero-inner">
+          <div class="video-hero-copy" data-stagger="0.12">
+            <div><span class="eyebrow">ABOUT STARTRADER</span></div>
+            <div>
+              <h1>Built by people,<br />powered by <em>purpose</em></h1>
             </div>
-
-            <p class="hero-para hero-para-lead" data-reveal data-reveal-delay="0.2">
-              STARTRADER isn’t just a globally leading broker, it’s a collective of talent charting
-              new paths, challenging norms, and building success together.
-            </p>
-
-            <div class="scroll-cue" data-reveal data-reveal-delay="0.3">
-              <span class="scroll-cue-pill"><span class="scroll-cue-dot"></span></span>
-              <span class="scroll-cue-label">Our Story</span>
+            <div>
+              <p>
+                STARTRADER isn’t just a globally leading broker — it’s a collective of talent
+                charting new paths, challenging norms, and building success together.
+              </p>
             </div>
-          </div>
-
-          <div class="hero-single-media" data-reveal data-reveal-y="24">
-            <div class="frame frame-parallax frame-ring-line" data-parallax="24">
-              <img src="/img/about/force.webp" alt="The people of STARTRADER" fetchpriority="high" />
+            <div>
+              <div class="video-hero-actions">
+                <a class="btn btn-primary btn-hero" href="/starscout.html">
+                  Explore open roles
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a class="btn btn-hero btn-ghost" href="/starlife.html">See life here</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ───────── MISSION / VALUES / VISION ───────── -->
-      <section class="sec-white section-80">
-        <div class="shell mvv-grid" data-stagger="0.09">
-          <article class="mvv-card">
-            <div class="mvv-card-media">
-              <div class="frame frame-zoom"><img src="/img/about/mission.webp" alt="" loading="lazy" /></div>
-            </div>
-            <div class="mvv-card-body">
-              <h3>Our Mission</h3>
-              <p>
-                To make global trading accessible, trusted, and empowering, while creating
-                opportunities for people to grow, contribute, and build their future in global markets.
-              </p>
-            </div>
-          </article>
+      <section class="about-section sec-white">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="right: -12%; top: -8%; height: 560px; width: 560px"></span>
+          <span class="atmos-dots"></span>
+        </div>
 
-          <article class="mvv-values">
-            <img class="mvv-values-bg" src="/img/about/values-bg.jpg" alt="" loading="lazy" />
-            <div class="mvv-values-grid"></div>
-            <div class="mvv-values-body">
-              <h3>Our Values</h3>
-              <ul>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.6" />
-                    <path d="M8 12.5l2.5 2.5 5-5.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>We stay ambitious, advancing in global financial markets.</span>
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.6" />
-                    <path d="M8 12.5l2.5 2.5 5-5.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>We are strong in the platforms and tools that power trading decisions.</span>
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.6" />
-                    <path d="M8 12.5l2.5 2.5 5-5.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>We build trust through transparency and regulatory integrity.</span>
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.6" />
-                    <path d="M8 12.5l2.5 2.5 5-5.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>We remain resilient through changing market conditions.</span>
-                </li>
-              </ul>
-            </div>
-          </article>
+        <div class="shell" style="position: relative">
+          <div class="sec-head">
+            <div data-reveal><span class="eyebrow">WHAT DRIVES US</span></div>
+            <h2 data-reveal data-reveal-delay="0.06">The three things we never trade away</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              A mission that puts access first, values we hold when the pressure is on, and a vision
+              of where global markets take the people who build them.
+            </p>
+          </div>
 
-          <article class="mvv-card">
-            <div class="mvv-card-media">
-              <div class="frame frame-zoom"><img src="/img/about/vision.webp" alt="" loading="lazy" /></div>
-            </div>
-            <div class="mvv-card-body">
-              <h3>Our Vision</h3>
-              <p>
-                We equip traders and partners with the access, tools, and support they need to grow
-                with confidence in global financial markets.
-              </p>
-            </div>
-          </article>
+          <div class="pillars" data-stagger="0.1">
+            <article class="pillar glass pillar-mission">
+              <div class="pillar-media">
+                <img src="/img/about/mission.webp" alt="" loading="lazy" />
+              </div>
+              <div class="pillar-body">
+                <span class="pillar-num">01 — MISSION</span>
+                <h3>Our Mission</h3>
+                <p>
+                  To make global trading accessible, trusted, and empowering, while creating
+                  opportunities for people to grow, contribute, and build their future in global
+                  markets.
+                </p>
+              </div>
+            </article>
+
+            <article class="pillar pillar-values">
+              <img class="pillar-values-bg" src="/img/about/values-bg.jpg" alt="" loading="lazy" />
+              <div class="pillar-body" style="position: relative">
+                <span class="pillar-num">02 — VALUES</span>
+                <h3>Our Values</h3>
+                <ul class="value-list">
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.55" />
+                      <path d="M8 12.5l2.5 2.5 5-5.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>We stay ambitious, advancing in global financial markets.</span>
+                  </li>
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.55" />
+                      <path d="M8 12.5l2.5 2.5 5-5.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>We are strong in the platforms and tools that power trading decisions.</span>
+                  </li>
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.55" />
+                      <path d="M8 12.5l2.5 2.5 5-5.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>We build trust through transparency and regulatory integrity.</span>
+                  </li>
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.55" />
+                      <path d="M8 12.5l2.5 2.5 5-5.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>We remain resilient through changing market conditions.</span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="pillar glass pillar-vision">
+              <div class="pillar-media">
+                <img src="/img/about/vision.webp" alt="" loading="lazy" />
+              </div>
+              <div class="pillar-body">
+                <span class="pillar-num">03 — VISION</span>
+                <h3>Our Vision</h3>
+                <p>
+                  We equip traders and partners with the access, tools, and support they need to grow
+                  with confidence in global financial markets.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- ───────── A GLOBAL FORCE ───────── -->
-      <section class="split-section sec-tint">
-        <span class="edge-word edge-word-right">Our Company</span>
+      <section class="about-section" style="background: var(--tint-20)">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-accent" style="left: -12%; bottom: -18%; height: 520px; width: 520px"></span>
+        </div>
 
-        <div class="shell split-grid">
-          <div class="split-copy">
+        <div class="shell about-split">
+          <div class="about-split-copy">
             <div data-reveal><span class="eyebrow">OUR COMPANY</span></div>
-            <h2 data-reveal data-reveal-delay="0.06">STARTRADER, A Global Force Shaped by Talent.</h2>
-            <p data-reveal data-reveal-delay="0.12" style="margin-top: 20px">
+            <h2 class="sec-head-title" data-reveal data-reveal-delay="0.06" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
+              A global force shaped by talent
+            </h2>
+            <p data-reveal data-reveal-delay="0.12">
               As a reputed forex and CFD broker with over 30 global awards, STARTRADER continues to
               grow through innovation, market expertise, and the people behind its progress.
             </p>
@@ -186,45 +224,70 @@
               the NBA, Official Partner of the Porsche Carrera Cup Middle East, and Official Sponsor
               of the UAE National Cricket Team for the ICC Men’s T20 World Cup 2026.
             </p>
-            <p data-reveal data-reveal-delay="0.2">
-              Joining STARTRADER means becoming part of a company that values ambition,
-              collaboration, and continuous growth.
-            </p>
+
+            <div class="stat-strip" data-stagger="0.08">
+              <div class="stat-cell glass">
+                <strong data-counter="30" data-duration="1.6">0</strong>
+                <span>global awards</span>
+              </div>
+              <div class="stat-cell glass">
+                <strong data-counter="5" data-duration="1.2">0</strong>
+                <span>regulated jurisdictions</span>
+              </div>
+              <div class="stat-cell glass">
+                <strong data-counter="1000" data-duration="1.9" data-separator>0</strong>
+                <span>tradable instruments</span>
+              </div>
+            </div>
+
             <div data-reveal data-reveal-delay="0.26">
-              <a class="btn btn-primary btn-tall" href="/starscout.html" style="margin-top: 32px; padding-inline: 32px; font-size: 15px">
-                Apply Now!
+              <a class="btn btn-primary btn-hero" href="/starscout.html">
+                Join the team
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </a>
             </div>
           </div>
 
-          <div class="split-art">
-            <div class="split-art-ghost"></div>
+          <div class="about-split-art">
             <div class="mask-wipe">
               <div class="mask-wipe-inner">
-                <div class="frame frame-parallax frame-ring" data-parallax="30">
+                <div class="frame frame-parallax" data-parallax="28">
                   <img src="/img/about/force.webp" alt="STARTRADER, a global force shaped by talent" loading="lazy" />
                 </div>
               </div>
               <span class="mask-wipe-panel"></span>
+            </div>
+            <div class="art-tag glass">
+              <span class="art-tag-dot"></span>
+              <p>Official Partner of the NBA</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ───────── OUR AWARDS ───────── -->
-      <section class="sec-white section-lg">
-        <div class="shell">
-          <div class="center-head" style="max-width: 560px" data-reveal>
-            <h2 class="section-title">Our Awards</h2>
-            <p style="max-width: 420px">
+      <section class="about-section sec-white">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="left: -10%; top: 8%; height: 480px; width: 480px"></span>
+        </div>
+
+        <div class="shell" style="position: relative">
+          <div class="sec-head is-centered">
+            <div data-reveal style="display: flex; justify-content: center">
+              <span class="eyebrow">RECOGNITION</span>
+            </div>
+            <h2 data-reveal data-reveal-delay="0.06">Our awards</h2>
+            <p data-reveal data-reveal-delay="0.12">
               We’ve crossed many milestones. Each one made possible by the people who lead the way.
             </p>
           </div>
 
-          <div class="awards-grid">
-            <div class="awards-media mask-wipe">
+          <div class="awards-layout">
+            <div class="awards-figure mask-wipe" data-reveal>
               <div class="mask-wipe-inner">
-                <div class="frame frame-parallax frame-scrim" data-parallax="28">
+                <div class="frame frame-parallax frame-scrim" data-parallax="26">
                   <img src="/img/about/awards.jpg" alt="STARTRADER award-winning team" loading="lazy" />
                 </div>
               </div>
@@ -238,140 +301,187 @@
               </div>
             </div>
 
-            <div data-reveal data-reveal-delay="0.08">
-              <div class="awards-wall">
-                <ul class="awards-badges" data-stagger="0.06">
-                  <li><img src="/img/about/awards/affli.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/frx.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/wiki.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/smrt.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/exp.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/crp.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/wlt.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/arg.svg" alt="STARTRADER award" loading="lazy" /></li>
-                  <li><img src="/img/about/awards/cpy.svg" alt="STARTRADER award" loading="lazy" /></li>
-                </ul>
-              </div>
+            <div class="awards-wall glass" data-reveal data-reveal-delay="0.08">
+              <ul class="awards-badges" data-stagger="0.05">
+                <li><img src="/img/about/awards/affli.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/frx.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/wiki.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/smrt.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/exp.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/crp.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/wlt.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/arg.svg" alt="STARTRADER award" loading="lazy" /></li>
+                <li><img src="/img/about/awards/cpy.svg" alt="STARTRADER award" loading="lazy" /></li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ───────── GLOBAL PRESENCE ───────── -->
-      <section class="sec-tint section-lg" style="position: relative; overflow: hidden">
-        <div class="blob blob-blue" style="right: -6%; top: 10%; height: 420px; width: 420px"></div>
+      <section class="about-section" style="background: var(--tint-20)" data-jurisdictions>
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="right: -10%; top: 4%; height: 500px; width: 500px"></span>
+          <span class="atmos-dots"></span>
+        </div>
 
-        <div class="shell" style="position: relative">
-          <div class="center-head" style="max-width: 600px" data-reveal>
-            <h2 class="section-title">Global presence</h2>
-            <p style="max-width: 560px">
-              From our humble beginnings, we’ve expanded our reach across the globe. Our commitment
-              to regulatory compliance and excellence has led us to secure multiple licenses:
+        <div class="shell presence" style="position: relative">
+          <div class="presence-aside">
+            <div data-reveal><span class="eyebrow">GLOBAL PRESENCE</span></div>
+            <h2 data-reveal data-reveal-delay="0.06" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
+              Licensed where it counts
+            </h2>
+            <p data-reveal data-reveal-delay="0.12" style="margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 380px">
+              From humble beginnings we’ve expanded across the globe. Our commitment to regulatory
+              compliance has secured licences in five jurisdictions.
             </p>
+            <div class="presence-count" data-reveal data-reveal-delay="0.18">
+              <strong data-counter="5" data-duration="1.2">0</strong>
+              <span>regulated jurisdictions</span>
+            </div>
           </div>
 
-          <div class="country-grid" data-stagger="0.09">
-            <article class="country-card">
-              <div class="country-card-head">
-                <img src="/img/about/flag-au.png" alt="" loading="lazy" />
-                <h3>Australia</h3>
+          <div data-reveal data-reveal-delay="0.1">
+            <div class="jurisdictions">
+              <div class="jur is-active">
+                <button type="button" aria-expanded="true">
+                  <img class="jur-flag" src="/img/about/flag-au.png" alt="" loading="lazy" />
+                  <span class="jur-name">Australia</span>
+                  <span class="jur-sign" aria-hidden="true"></span>
+                </button>
+                <span class="jur-reveal">
+                  <p>
+                    STARTRADER Prime Global Pty Ltd is an Australian financial services licensee
+                    regulated by the ASIC, with ACN 156005668 and License No. 421210.
+                  </p>
+                </span>
               </div>
-              <span class="hover-rule"></span>
-              <p>
-                STARTRADER Prime Global Pty Ltd is an Australian financial services licensee regulated by the ASIC, with ACN 156005668 and License No. 421210.
-              </p>
-            </article>
-            <article class="country-card">
-              <div class="country-card-head">
-                <img src="/img/about/flag-ae.png" alt="" loading="lazy" />
-                <h3>United Arab Emirates</h3>
+
+              <div class="jur">
+                <button type="button" aria-expanded="false">
+                  <img class="jur-flag" src="/img/about/flag-ae.png" alt="" loading="lazy" />
+                  <span class="jur-name">United Arab Emirates</span>
+                  <span class="jur-sign" aria-hidden="true"></span>
+                </button>
+                <span class="jur-reveal">
+                  <p>
+                    STARTRADER Global Financial Consultation &amp; Financial Analysis LLC is regulated
+                    by the CMA under License No. 20200000241 (Category 5 - Introduction and
+                    Promotion).
+                  </p>
+                </span>
               </div>
-              <span class="hover-rule"></span>
-              <p>
-                STARTRADER Global Financial Consultation &amp; Financial Analysis LLC is regulated by the CMA under License No. 20200000241 (Category 5 - Introduction and Promotion).
-              </p>
-            </article>
-            <article class="country-card">
-              <div class="country-card-head">
-                <img src="/img/about/flag-sc.png" alt="" loading="lazy" />
-                <h3>Seychelles</h3>
+
+              <div class="jur">
+                <button type="button" aria-expanded="false">
+                  <img class="jur-flag" src="/img/about/flag-sc.png" alt="" loading="lazy" />
+                  <span class="jur-name">Seychelles</span>
+                  <span class="jur-sign" aria-hidden="true"></span>
+                </button>
+                <span class="jur-reveal">
+                  <p>
+                    STARTRADER Limited is a Securities Dealer regulated by the FSA of Seychelles, with
+                    License No. SD049 and Registration No. 8427362-1.
+                  </p>
+                </span>
               </div>
-              <span class="hover-rule"></span>
-              <p>
-                STARTRADER Limited is a Securities Dealer regulated by the FSA of Seychelles, with License No. SD049 and Registration No. 8427362-1.
-              </p>
-            </article>
-            <article class="country-card">
-              <div class="country-card-head">
-                <img src="/img/about/flag-mu.png" alt="" loading="lazy" />
-                <h3>Mauritius</h3>
+
+              <div class="jur">
+                <button type="button" aria-expanded="false">
+                  <img class="jur-flag" src="/img/about/flag-mu.png" alt="" loading="lazy" />
+                  <span class="jur-name">Mauritius</span>
+                  <span class="jur-sign" aria-hidden="true"></span>
+                </button>
+                <span class="jur-reveal">
+                  <p>
+                    STARTRADER Global Financial Consultation &amp; Financial Analysis LLC is regulated
+                    by the CMA under License No. 20200000241.
+                  </p>
+                </span>
               </div>
-              <span class="hover-rule"></span>
-              <p>
-                STARTRADER Global Financial Consultation &amp; Financial Analysis LLC is regulated by the CMA under License No. 20200000241.
-              </p>
-            </article>
-            <article class="country-card">
-              <div class="country-card-head">
-                <img src="/img/about/flag-za.png" alt="" loading="lazy" />
-                <h3>South Africa</h3>
+
+              <div class="jur">
+                <button type="button" aria-expanded="false">
+                  <img class="jur-flag" src="/img/about/flag-za.png" alt="" loading="lazy" />
+                  <span class="jur-name">South Africa</span>
+                  <span class="jur-sign" aria-hidden="true"></span>
+                </button>
+                <span class="jur-reveal">
+                  <p>
+                    STARTRADER International Pty Ltd is regulated by South Africa’s Financial Sector
+                    Conduct Authority (FSCA) under FSP No. 52464 and Registration No.
+                    2022/435897/07.
+                  </p>
+                </span>
               </div>
-              <span class="hover-rule"></span>
-              <p>
-                STARTRADER International Pty Ltd is regulated by South Africa’s Financial Sector Conduct Authority (FSCA) under FSP No. 52464 and Registration No. 2022/435897/07.
-              </p>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ───────── OUR PRODUCTS ───────── -->
-      <section class="sec-navy-radial section-96">
+      <!-- ───────── OUR PRODUCTS (bento) ───────── -->
+      <section class="about-section sec-navy-radial" data-bento>
         <div class="grid-texture"></div>
-        <div class="blob blob-blue-strong" style="left: -6%; top: 14%; height: 420px; width: 420px"></div>
-        <div class="blob blob-accent" style="right: -8%; bottom: 6%; height: 380px; width: 380px"></div>
+        <div class="blob blob-blue-strong" style="left: -8%; top: 12%; height: 440px; width: 440px"></div>
+        <div class="blob blob-accent" style="right: -8%; bottom: 6%; height: 400px; width: 400px"></div>
 
         <div class="shell" style="position: relative">
-          <div class="center-head on-dark" data-reveal>
-            <div class="eyebrow-wrap"><span class="eyebrow eyebrow-dark">OUR PRODUCTS</span></div>
-            <h2 class="section-title on-dark">Our Products</h2>
-            <p>You bring ambition, we’ll provide the stage for it to shine.</p>
+          <div class="sec-head is-centered on-dark">
+            <div data-reveal style="display: flex; justify-content: center">
+              <span class="eyebrow eyebrow-dark">OUR PRODUCTS</span>
+            </div>
+            <h2 data-reveal data-reveal-delay="0.06">What you’ll help build</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              You bring ambition, we’ll provide the stage for it to shine.
+            </p>
           </div>
 
-          <div class="product-grid" data-stagger="0.09">
-            <article class="glass-card product-card span-3">
-              <div class="product-card-media"><img src="/img/about/p1.png" alt="" loading="lazy" /></div>
-              <div class="sweep"></div>
-              <h3>Smart trading tools</h3>
-              <p>Charts, insights, and drawing features.</p>
+          <div class="bento" data-stagger="0.08">
+            <article class="bento-card bento-lead">
+              <div>
+                <span class="bento-num">01</span>
+                <h3>Smart trading tools</h3>
+                <p>
+                  Charts, insights, and drawing features built to turn a hunch into a considered
+                  decision — the products our teams sharpen release after release.
+                </p>
+                <div class="sweep"></div>
+              </div>
+              <div class="bento-art"><img src="/img/about/p1.png" alt="" loading="lazy" /></div>
             </article>
 
-            <article class="glass-card product-card span-3">
-              <div class="product-card-media"><img src="/img/about/p2.png" alt="" loading="lazy" /></div>
-              <div class="sweep"></div>
-              <h3>Flexible accounts</h3>
-              <p>From beginner to ECN — tailored for every trader.</p>
-            </article>
-
-            <article class="glass-card product-card span-2">
-              <div class="product-card-media"><img src="/img/about/p3.png" alt="" loading="lazy" /></div>
-              <div class="sweep"></div>
-              <h3>1,000+ instruments</h3>
+            <article class="bento-card bento-stat">
+              <span class="bento-num">02</span>
+              <div class="bento-stat-figure">
+                <strong data-counter="1000" data-duration="1.9" data-separator>0</strong>
+                <span>+</span>
+              </div>
+              <h3 style="margin-top: 12px">Instruments</h3>
               <p>Forex, indices, stocks, metals, and more.</p>
             </article>
 
-            <article class="glass-card product-card span-2">
-              <div class="product-card-media"><img src="/img/about/p4.png" alt="" loading="lazy" /></div>
+            <article class="bento-card bento-cell">
+              <div class="bento-art"><img src="/img/about/p2.png" alt="" loading="lazy" /></div>
+              <span class="bento-num">03</span>
+              <h3>Flexible accounts</h3>
+              <p>From beginner to ECN — tailored for every trader.</p>
               <div class="sweep"></div>
-              <h3>Strong trading conditions</h3>
-              <p>Spreads from 0.0, leverage up to 1:1000.</p>
             </article>
 
-            <article class="glass-card product-card span-2">
-              <div class="product-card-media"><img src="/img/about/p5.png" alt="" loading="lazy" /></div>
+            <article class="bento-card bento-cell">
+              <div class="bento-art"><img src="/img/about/p4.png" alt="" loading="lazy" /></div>
+              <span class="bento-num">04</span>
+              <h3>Strong conditions</h3>
+              <p>Spreads from 0.0, leverage up to 1:1000.</p>
               <div class="sweep"></div>
+            </article>
+
+            <article class="bento-card bento-cell">
+              <div class="bento-art"><img src="/img/about/p5.png" alt="" loading="lazy" /></div>
+              <span class="bento-num">05</span>
               <h3>Multiple platforms</h3>
-              <p>MT4, MT5, WebTrader, and our app.</p>
+              <p>MT4, MT5, WebTrader, and our own app.</p>
+              <div class="sweep"></div>
             </article>
           </div>
         </div>
