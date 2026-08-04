@@ -74,47 +74,37 @@
 
     <main>
       <!-- ───────── HERO ───────── -->
-      <section class="editorial-hero">
-        <div class="editorial-hero-blobs">
-          <div class="blob blob-blue"></div>
-          <div class="blob blob-cyan"></div>
+      <section class="hero-bleed">
+        <!-- square photo flush right, dissolving into white on its left edge -->
+        <div class="hero-bleed-media" aria-hidden="true">
+          <img src="/img/social/csr-hero.jpg" alt="" fetchpriority="high" />
+          <div class="hero-bleed-fade"></div>
         </div>
 
-        <div class="shell editorial-hero-grid">
-          <div class="editorial-hero-copy">
-            <div class="mask-line" data-reveal-delay="0.05" style="padding-bottom: 0.1em">
-              <h1 class="hero-word">STARSOCIAL</h1>
-            </div>
+        <div class="shell" style="position: relative">
+          <div class="hero-bleed-grid">
+            <div class="editorial-hero-copy hero-bleed-copy">
+              <div class="mask-line" data-reveal-delay="0.05" style="padding-bottom: 0.1em">
+                <h1 class="hero-word">STARSOCIAL</h1>
+              </div>
 
-            <p class="hero-kicker" data-reveal data-reveal-delay="0.18">
-              Our values go beyond numbers and growth.
-            </p>
-            <p class="hero-para" data-reveal data-reveal-delay="0.26">
-              We believe in making a real impact, not just in markets, but in communities. That’s why
-              we give back at every step, aiming to create meaningful change where it matters most.
-            </p>
+              <p class="hero-kicker" data-reveal data-reveal-delay="0.18">
+                Our values go beyond numbers and growth.
+              </p>
+              <p class="hero-para" data-reveal data-reveal-delay="0.26">
+                We believe in making a real impact, not just in markets, but in communities. That’s
+                why we give back at every step, aiming to create meaningful change where it matters
+                most.
+              </p>
 
-            <div class="scroll-cue" data-reveal data-reveal-delay="0.36">
-              <span class="scroll-cue-pill"><span class="scroll-cue-dot"></span></span>
-              <span class="scroll-cue-label">Scroll</span>
-            </div>
-          </div>
-
-          <div class="layered">
-            <div class="layered-ghost layered-ghost-left"></div>
-
-            <div class="layered-main layered-main-left" data-reveal data-reveal-y="24">
-              <div class="frame frame-parallax frame-ring" data-parallax="26">
-                <img src="/img/social/csr2.jpg" alt="STARTRADER giving back to the community" fetchpriority="high" />
+              <div class="scroll-cue" data-reveal data-reveal-delay="0.36">
+                <span class="scroll-cue-pill"><span class="scroll-cue-dot"></span></span>
+                <span class="scroll-cue-label">Scroll</span>
               </div>
             </div>
 
-            <div class="layered-sub layered-sub-right" data-reveal data-reveal-y="30" data-reveal-delay="0.18">
-              <div class="frame-matte">
-                <div class="frame frame-parallax" data-parallax="48">
-                  <img src="/img/social/nd-team-photo.webp" alt="The STARTRADER team" loading="lazy" />
-                </div>
-              </div>
+            <div class="hero-bleed-mobile" data-reveal>
+              <img src="/img/social/csr-hero.jpg" alt="STARTRADER giving back to the community" />
             </div>
           </div>
         </div>
