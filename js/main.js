@@ -616,19 +616,105 @@
     if (p && p.catch) p.catch(function () { /* autoplay blocked — poster stands in */ });
   }
 
-  /* ── Bento spotlight ────────────────────────────────────────────────── */
-  // A soft light tracks the pointer across each cell.
-  function initBento() {
-    var root = $("[data-bento]");
-    if (!root || reduceMotion) return;
+  /* ── Products bento ─────────────────────────────────────────────────── */
+  // Three pieces: a pointer spotlight, a segmented control over real figures,
+  // and a platform carousel. Every value shown is one the site already states.
+  function initProductBento() {
+    var root = $("[data-pbento]");
+    if (!root) return;
 
-    $$(".bento-card", root).forEach(function (card) {
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
-        card.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+    /* pointer-tracked light on every cell */
+    if (!reduceMotion) {
+      $$(".pb-card", root).forEach(function (card) {
+        card.addEventListener("pointermove", function (e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
+          card.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+        });
       });
-    });
+    }
+
+    /* glyph field — texture that re-scatters per segment, not a data readout */
+    var panel = $("[data-pb-panel]", root);
+    if (panel) {
+      var field = $(".pb-glyphs", panel);
+      var GLYPHS = 18;
+      if (field && !field.children.length) {
+        for (var i = 0; i < GLYPHS; i++) field.appendChild(document.createElement("i"));
+      }
+      var glyphs = field ? $$("i", field) : [];
+
+      var SEGMENTS = [
+        { on: 12, figure: "0.0", unit: "from", pill: "Spreads from 0.0" },
+        { on: 16, figure: "1:1000", unit: "up to", pill: "Leverage up to 1:1000" },
+        { on: 9, figure: "4", unit: "ways to trade", pill: "MT4 · MT5 · Web · App" },
+      ];
+
+      var figure = $("[data-pb-figure]", panel);
+      var unit = $("[data-pb-unit]", panel);
+      var pill = $("[data-pb-pill]", panel);
+
+      var paint = function (i) {
+        var s = SEGMENTS[i];
+        glyphs.forEach(function (g, n) {
+          g.classList.toggle("is-on", n < s.on);
+          g.style.transitionDelay = (n * 0.012).toFixed(3) + "s";
+        });
+        if (figure) figure.textContent = s.figure;
+        if (unit) unit.textContent = s.unit;
+        if (pill) pill.textContent = s.pill;
+      };
+
+      $$("[data-seg]", panel).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          $$("[data-seg]", panel).forEach(function (b) {
+            b.classList.toggle("is-active", b === btn);
+            b.setAttribute("aria-selected", String(b === btn));
+          });
+          paint(parseInt(btn.getAttribute("data-seg"), 10) || 0);
+        });
+      });
+      paint(0);
+    }
+
+    /* platform carousel */
+    var slider = $("[data-pb-slider]", root);
+    if (slider) {
+      var PLATFORMS = [
+        { tag: "MetaTrader 4", body: "The industry standard. Expert Advisors, custom indicators and a workspace traders already know inside out." },
+        { tag: "MetaTrader 5", body: "More timeframes, more order types and a deeper toolset for multi-asset strategies." },
+        { tag: "WebTrader", body: "Full charting in the browser. Nothing to install — sign in and the workspace is already there." },
+        { tag: "Mobile app", body: "Positions, alerts and charts in your pocket, synced with every other platform." },
+      ];
+      var tag = $("[data-slide-tag]", slider);
+      var body = $("[data-slide-body]", slider);
+      var idx = $("[data-slide-index]", slider);
+      var pips = $$(".pb-avatars span", slider);
+      var at = 0;
+
+      var show = function (n) {
+        at = ((n % PLATFORMS.length) + PLATFORMS.length) % PLATFORMS.length;
+        var p = PLATFORMS[at];
+        if (body) body.classList.add("is-swapping");
+        setTimeout(function () {
+          if (tag) tag.textContent = p.tag;
+          if (body) {
+            body.textContent = p.body;
+            body.classList.remove("is-swapping");
+          }
+        }, 180);
+        if (idx) idx.textContent = String(at + 1);
+        pips.forEach(function (s, n) {
+          s.classList.toggle("is-active", n === at);
+        });
+      };
+
+      var prev = $("[data-slide-prev]", slider);
+      var next = $("[data-slide-next]", slider);
+      if (prev) prev.addEventListener("click", function () { show(at - 1); });
+      if (next) next.addEventListener("click", function () { show(at + 1); });
+      show(0);
+    }
   }
 
   /* ── Jurisdictions ──────────────────────────────────────────────────── */
@@ -1099,7 +1185,7 @@
     initVideoTiles();
     initScout();
     initVideoHero();
-    initBento();
+    initProductBento();
     initJurisdictions();
     initTraits();
     initTimeline();
