@@ -1,0 +1,6 @@
+# Dev-only files — the deployment serves the repo root, so keep it to the site.
+scripts/
+_figma/
+README.md
+package.json
+.DS_Store
