@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StarBlog · STARTRADER Careers</title>
+    <title>Articles · STARTRADER Careers</title>
     <meta name="description" content="Ideas, insights and moments that matter — straight from the people who live them at STARTRADER." />
-    <link rel="canonical" href="/starblog.html" />
+    <link rel="canonical" href="/starblog/articles.html" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,58 +72,40 @@
       </div>
     </header>
 
-    <main class="blog-home">
+    <main class="blog-page" data-blog-index>
       <div class="atmos">
-        <span class="atmos-orb atmos-orb-blue" style="right: -10%; top: -14%; height: 560px; width: 560px"></span>
-        <span class="atmos-orb atmos-orb-accent" style="left: -12%; top: 20%; height: 420px; width: 420px"></span>
+        <span class="atmos-orb atmos-orb-blue" style="right: -10%; top: -10%; height: 520px; width: 520px"></span>
       </div>
 
       <div class="shell" style="position: relative">
-        <div class="blog-hero">
-          <img class="blog-hero-art" src="/img/blog/blog-title.png" alt="STARBLOG" fetchpriority="high" data-reveal />
-          <p data-reveal data-reveal-delay="0.06">
-            Welcome to the STARBLOG. Ideas, insights and moments that matter — market reads, team
-            stories and the milestones in between, straight from the people who live them.
-          </p>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="/starblog.html">StarBlog</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <span aria-current="page">Articles</span>
+        </nav>
 
-          <div class="blog-filter" data-reveal data-reveal-delay="0.12">
-            <form class="side-search" data-home-search action="/starblog/articles.html">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-              <label class="visually-hidden" for="home-search">Search articles</label>
-              <input id="home-search" type="search" autocomplete="off" placeholder="Search the blog" />
-              <button class="side-clear" type="button" aria-label="Clear search">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-              </button>
-            </form>
+        <h1 class="blog-title" data-reveal>Articles</h1>
+        <p class="blog-lede" data-reveal data-reveal-delay="0.06">
+          Ideas, insights and moments that matter — straight from the people who live them.
+        </p>
 
-            <div class="home-topics">
-              <a class="home-topic" href="/starblog/articles.html">All articles</a>
-            <a class="home-topic" href="/starblog/articles.html#topic=People%20%26%20culture">People &amp; culture</a>
-            <a class="home-topic" href="/starblog/articles.html#topic=Achievements">Achievements</a>
-            <a class="home-topic" href="/starblog/articles.html#topic=Market%20insights">Market insights</a>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div class="blog-layout">
+          <div>
+            <p class="blog-count" aria-live="polite"><strong data-blog-count>12</strong> articles</p>
+            <div class="blog-grid-top" style="scroll-margin-top: 96px"></div>
 
-      <!-- ───────── POPULAR ───────── -->
-      <section class="about-section" style="background: transparent; padding-block: 80px">
-        <div class="shell" style="position: relative">
-          <div class="rail-head" data-reveal>
-            <h2>Popular</h2>
-            <a class="explore-all" href="/starblog/articles.html">Explore all <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
+            <div class="post-grid">
 
-        <div class="shell" style="position: relative; padding-right: 0">
-          <div class="pop-rail" data-pop-rail>
             <a
               class="post-card"
               href="/starblog/startrader-christmas-celebration.html"
               data-reveal
+              data-post
+              data-category="People &amp; culture"
+              data-tags="Culture|Celebrations|Team"
+              data-search="unwrapping moments of joy: startrader’s christmas celebration santa claus visited our office this christmas — and he didn’t come only to give gifts. here’s how the team turned an ordinary day into a memory. people &amp; culture culture celebrations team"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
@@ -140,6 +122,10 @@
               class="post-card"
               href="/starblog/thirty-global-awards-what-they-mean.html"
               data-reveal
+              data-post
+              data-category="Achievements"
+              data-tags="Awards|Trust|Standards"
+              data-search="thirty global awards, and what they actually mean for traders trophies are nice. trust is better. we unpack what our 30+ industry awards signal about the experience behind the brand. achievements awards trust standards"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Achievements</span></span>
@@ -156,6 +142,10 @@
               class="post-card"
               href="/starblog/inside-our-trading-desk.html"
               data-reveal
+              data-post
+              data-category="Market insights"
+              data-tags="Markets|Dealing desk|Process"
+              data-search="inside our trading desk: a morning in the engine room before the markets open, the desk is already awake. a look at the rhythm, the rituals, and the reads that shape a trading day. market insights markets dealing desk process"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
@@ -172,6 +162,10 @@
               class="post-card"
               href="/starblog/from-intern-to-team-lead.html"
               data-reveal
+              data-post
+              data-category="People &amp; culture"
+              data-tags="Growth|Careers|Mentorship"
+              data-search="from intern to team lead in eighteen months ambition meets opportunity. one startrader story about what happens when you’re handed real responsibility — early. people &amp; culture growth careers mentorship"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
@@ -188,6 +182,10 @@
               class="post-card"
               href="/starblog/culture-behind-the-numbers.html"
               data-reveal
+              data-post
+              data-category="People &amp; culture"
+              data-tags="Culture|Hiring|Values"
+              data-search="the culture behind the numbers performance is the output. culture is the operating system. a candid look at what we protect when the pressure is on. people &amp; culture culture hiring values"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
@@ -204,6 +202,10 @@
               class="post-card"
               href="/starblog/reading-the-markets-volatility-playbook.html"
               data-reveal
+              data-post
+              data-category="Market insights"
+              data-tags="Markets|Volatility|Risk"
+              data-search="reading the markets: a volatility playbook when the tape gets wild, process beats prediction. the principles our team leans on when volatility spikes. market insights markets volatility risk"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
@@ -220,6 +222,10 @@
               class="post-card"
               href="/starblog/one-team-across-time-zones.html"
               data-reveal
+              data-post
+              data-category="People &amp; culture"
+              data-tags="Culture|Global teams|Remote"
+              data-search="one team, across time zones a global broker never really sleeps. how a single team stays connected from dubai to kuala lumpur to sydney. people &amp; culture culture global teams remote"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
@@ -236,6 +242,10 @@
               class="post-card"
               href="/starblog/on-the-global-stage.html"
               data-reveal
+              data-post
+              data-category="Achievements"
+              data-tags="Partnerships|Brand|Awards"
+              data-search="on the global stage: what our partnerships say about us from the nba to the porsche carrera cup, our partnerships aren’t just logos — they’re a statement of ambition. achievements partnerships brand awards"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Achievements</span></span>
@@ -248,42 +258,14 @@
                 <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Partnerships</span>
               </span>
             </a>
-          </div>
-        </div>
-
-        <div class="shell">
-          <div class="rail-nav">
-            <button type="button" data-rail-prev aria-label="Scroll left">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <span class="rail-dots" data-rail-dots aria-hidden="true"></span>
-            <button type="button" data-rail-next aria-label="Scroll right">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ───────── USEFUL TO READ ───────── -->
-      <section class="about-section" style="background: transparent; padding-block: 40px 90px">
-        <div class="shell" style="position: relative">
-          <div class="rail-head" data-reveal>
-            <h2>It’s useful to read</h2>
-            <a class="explore-all" href="/starblog/articles.html">Explore all <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-
-          <div class="useful-grid" data-stagger="0.08">
-            <article class="useful-promo">
-              <img class="useful-promo-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
-              <h3>Start your chapter at STARTRADER</h3>
-              <p>Explore open roles across dealing, technology, marketing and support — and find where your ambition fits.</p>
-              <a class="btn btn-white btn-tall" href="/starscout.html">See open roles</a>
-            </article>
-
             <a
               class="post-card"
               href="/starblog/spreads-from-zero-explained.html"
               data-reveal
+              data-post
+              data-category="Market insights"
+              data-tags="Spreads|Costs|Markets"
+              data-search="spreads from zero, explained “spreads from 0.0” sounds great on a banner. here’s what it actually means for the cost of your trade. market insights spreads costs markets"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
@@ -300,6 +282,10 @@
               class="post-card"
               href="/starblog/behind-thirty-awards-discipline.html"
               data-reveal
+              data-post
+              data-category="Achievements"
+              data-tags="Awards|Standards|Habits"
+              data-search="the discipline behind a winning year awards cluster around teams that do the boring things well. a look at the habits that quietly stack up wins. achievements awards standards habits"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Achievements</span></span>
@@ -316,6 +302,10 @@
               class="post-card"
               href="/starblog/a-day-in-customer-support.html"
               data-reveal
+              data-post
+              data-category="People &amp; culture"
+              data-tags="Careers|Support|Team"
+              data-search="a day in customer support the team that turns hard moments into loyal clients. what a shift on the support desk actually looks like. people &amp; culture careers support team"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
@@ -332,6 +322,10 @@
               class="post-card"
               href="/starblog/leverage-without-the-jargon.html"
               data-reveal
+              data-post
+              data-category="Market insights"
+              data-tags="Leverage|Risk|Markets"
+              data-search="leverage, without the jargon up to 1:1000 sounds powerful — and it is, in both directions. a plain-english guide to using leverage wisely. market insights leverage risk markets"
             >
               <span class="post-top">
                 <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
@@ -344,191 +338,91 @@
                 <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Leverage</span>
               </span>
             </a>
+            </div>
+
+            <div class="blog-empty" hidden>
+              <h3>Nothing matches that yet</h3>
+              <p>Try a different topic or tag, or clear the filters to see everything.</p>
+              <button class="btn btn-primary btn-tall" type="button" data-blog-reset>Clear filters</button>
+            </div>
+
+            <div class="pagination blog-pagination"></div>
           </div>
+
+          <aside class="blog-side">
+            <div class="side-search">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <label class="visually-hidden" for="blog-search">Search articles</label>
+              <input id="blog-search" type="search" autocomplete="off" placeholder="Search" />
+              <button class="side-clear" type="button" aria-label="Clear search">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+
+            <div class="side-panel">
+              <div class="side-panel-head">
+                <h2><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Topics</h2>
+              </div>
+              <div class="topic-list">
+                <button class="topic is-active" type="button" data-topic="All">
+                  All<span class="topic-count">12</span>
+                </button>
+                <button class="topic" type="button" data-topic="People &amp; culture">
+                  People &amp; culture<span class="topic-count">5</span>
+                </button>
+                <button class="topic" type="button" data-topic="Achievements">
+                  Achievements<span class="topic-count">3</span>
+                </button>
+                <button class="topic" type="button" data-topic="Market insights">
+                  Market insights<span class="topic-count">4</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="side-panel">
+              <div class="side-panel-head">
+                <h2><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.4" fill="currentColor"/></svg> Tags</h2>
+                <button class="side-reset" type="button" data-tag-reset>Reset all</button>
+              </div>
+              <div class="tag-cloud">
+              <button class="tag-chip" type="button" data-tag="Culture">Culture</button>
+              <button class="tag-chip" type="button" data-tag="Celebrations">Celebrations</button>
+              <button class="tag-chip" type="button" data-tag="Team">Team</button>
+              <button class="tag-chip" type="button" data-tag="Awards">Awards</button>
+              <button class="tag-chip" type="button" data-tag="Trust">Trust</button>
+              <button class="tag-chip" type="button" data-tag="Standards">Standards</button>
+              <button class="tag-chip" type="button" data-tag="Markets">Markets</button>
+              <button class="tag-chip" type="button" data-tag="Dealing desk">Dealing desk</button>
+              <button class="tag-chip" type="button" data-tag="Process">Process</button>
+              <button class="tag-chip" type="button" data-tag="Growth">Growth</button>
+              <button class="tag-chip" type="button" data-tag="Careers">Careers</button>
+              <button class="tag-chip" type="button" data-tag="Mentorship">Mentorship</button>
+              <button class="tag-chip" type="button" data-tag="Hiring" hidden data-extra>Hiring</button>
+              <button class="tag-chip" type="button" data-tag="Values" hidden data-extra>Values</button>
+              <button class="tag-chip" type="button" data-tag="Volatility" hidden data-extra>Volatility</button>
+              <button class="tag-chip" type="button" data-tag="Risk" hidden data-extra>Risk</button>
+              <button class="tag-chip" type="button" data-tag="Global teams" hidden data-extra>Global teams</button>
+              <button class="tag-chip" type="button" data-tag="Remote" hidden data-extra>Remote</button>
+              <button class="tag-chip" type="button" data-tag="Partnerships" hidden data-extra>Partnerships</button>
+              <button class="tag-chip" type="button" data-tag="Brand" hidden data-extra>Brand</button>
+              <button class="tag-chip" type="button" data-tag="Spreads" hidden data-extra>Spreads</button>
+              <button class="tag-chip" type="button" data-tag="Costs" hidden data-extra>Costs</button>
+              <button class="tag-chip" type="button" data-tag="Habits" hidden data-extra>Habits</button>
+              <button class="tag-chip" type="button" data-tag="Support" hidden data-extra>Support</button>
+              <button class="tag-chip" type="button" data-tag="Leverage" hidden data-extra>Leverage</button>
+              </div>
+              <button class="tag-more" type="button" data-tag-more>
+                Show more
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </aside>
         </div>
-      </section>
+      </div>
     </main>
-
-    <!-- ───────── STARCAST / WEBINARS ───────── -->
-    <section class="cast-band" data-starcast-band>
-      <div class="atmos">
-        <span class="atmos-orb atmos-orb-blue" style="left: -10%; top: 4%; height: 480px; width: 480px"></span>
-      </div>
-
-      <div class="shell" style="position: relative">
-        <div class="sec-head is-centered">
-          <div data-reveal style="display: flex; justify-content: center"><span class="eyebrow">STARCAST</span></div>
-          <h2 data-reveal data-reveal-delay="0.06">Insights beyond the screen</h2>
-          <p data-reveal data-reveal-delay="0.12">
-            Expert conversation, event moments and market-focused sessions — our podcast and
-            YouTube channels bring STARTRADER’s voice closer to you.
-          </p>
-        </div>
-
-        <div class="starcast" data-starcast data-reveal>
-          <video class="starcast-media" playsinline preload="metadata"></video>
-
-          <div class="cast-feature">
-            <div class="cast-head">
-              <div class="cast-art">
-                <img src="/img/life/woman.jpg" alt="" />
-                <span class="cast-art-eq"><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-              </div>
-              <div style="min-width: 0">
-                <p class="cast-kicker">Featured · Episode 01</p>
-                <h3>Building a career that compounds</h3>
-                <p class="cast-guest">With Peter Karsten, CEO, STARTRADER</p>
-              </div>
-            </div>
-
-            <p class="cast-excerpt">
-              What does it take to grow inside a fast-moving broker? Our CEO shares the mindset, the
-              missteps, and the moments that shaped a global team.
-            </p>
-
-            <div class="signal" aria-hidden="true"></div>
-
-            <div class="cast-transport">
-              <button class="cast-btn cast-prev" type="button" aria-label="Previous episode">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 6v12H5V6h2zm12 0v12l-9-6 9-6z"/></svg>
-              </button>
-              <button class="cast-play" type="button" aria-label="Play">
-                <span class="icon-play play-tri-sm"></span>
-                <svg class="icon-pause" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-              </button>
-              <button class="cast-btn cast-next" type="button" aria-label="Next episode">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 6v12h2V6h-2zM5 6v12l9-6-9-6z"/></svg>
-              </button>
-
-              <div class="seek" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                <span class="seek-rail"></span><span class="seek-fill"></span><span class="seek-thumb"></span>
-              </div>
-
-              <span class="cast-time">0:00 / 0:00</span>
-            </div>
-          </div>
-
-          <div class="cast-list" data-stagger="0.07">
-              <button class="episode is-current" type="button" aria-current="true"
-                data-n="01" data-title="Building a career that compounds" data-guest="With Peter Karsten, CEO, STARTRADER"
-                data-excerpt="What does it take to grow inside a fast-moving broker? Our CEO shares the mindset, the missteps, and the moments that shaped a global team." data-thumb="/img/life/woman.jpg" data-src="/starlife/life.mp4">
-                <span class="episode-index"><span class="episode-n">01</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/life/woman.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">Building a career that compounds</span>
-                  <span class="episode-cat">People &amp; culture</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-              <button class="episode" type="button" aria-current="false"
-                data-n="02" data-title="Inside our trading desk" data-guest="With Lena Ortiz, Head of Dealing"
-                data-excerpt="Before the bell rings, the desk is already awake. A walk through the rhythm and rituals of a live trading morning." data-thumb="/img/blog/b3.jpg" data-src="/starlife/national-day.mp4">
-                <span class="episode-index"><span class="episode-n">02</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/blog/b3.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">Inside our trading desk</span>
-                  <span class="episode-cat">Market insights</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-              <button class="episode" type="button" aria-current="false"
-                data-n="03" data-title="From intern to team lead" data-guest="With Aamir Khan, Business Development"
-                data-excerpt="Eighteen months, one steep curve. What happens when you’re trusted with real responsibility early." data-thumb="/img/blog/b2.jpg" data-src="/starlife/year-end-party.mp4">
-                <span class="episode-index"><span class="episode-n">03</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/blog/b2.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">From intern to team lead</span>
-                  <span class="episode-cat">People &amp; culture</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-              <button class="episode" type="button" aria-current="false"
-                data-n="04" data-title="What our 30+ awards really mean" data-guest="With Sofia Reyes, Brand &amp; Communications"
-                data-excerpt="Trophies are nice; trust is better. Unpacking the discipline behind every badge on the shelf." data-thumb="/img/blog/b4.jpg" data-src="/starlife/football-match.mp4">
-                <span class="episode-index"><span class="episode-n">04</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/blog/b4.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">What our 30+ awards really mean</span>
-                  <span class="episode-cat">Achievements</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-              <button class="episode" type="button" aria-current="false"
-                data-n="05" data-title="The culture behind the numbers" data-guest="With Priya Nair, People &amp; Culture"
-                data-excerpt="Performance is the output; culture is the operating system. What we protect when the pressure is on." data-thumb="/img/blog/b5.jpg" data-src="/starlife/celebrations.mp4">
-                <span class="episode-index"><span class="episode-n">05</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/blog/b5.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">The culture behind the numbers</span>
-                  <span class="episode-cat">People &amp; culture</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-              <button class="episode" type="button" aria-current="false"
-                data-n="06" data-title="Reading the markets" data-guest="With Daniel Wu, Dealing Desk"
-                data-excerpt="When the tape turns wild, process beats prediction. A trader’s playbook for staying steady." data-thumb="/img/blog/b1.jpg" data-src="/starlife/volunteering.mp4">
-                <span class="episode-index"><span class="episode-n">06</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>
-                <img src="/img/blog/b1.jpg" alt="" loading="lazy" />
-                <span class="episode-text">
-                  <span class="episode-title">Reading the markets</span>
-                  <span class="episode-cat">Market insights</span>
-                </span>
-                <span class="episode-dur">Listen</span>
-                <span class="episode-play">
-                  <span class="icon-play play-tri-sm"></span>
-                  <svg class="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                </span>
-              </button>
-          </div>
-        </div>
-
-        <div class="watch-grid" data-stagger="0.08">
-          <a class="watch-card" href="#" data-reveal>
-            <img src="/img/blog/v1.jpg" alt="" loading="lazy" />
-            <span class="watch-scrim"></span><span class="watch-time">3:24 min</span>
-            <span class="watch-play"><span class="play-tri-sm"></span></span>
-            <span class="watch-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 002.42 7.2 26 26 0 002 12a26 26 0 00.42 4.81 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 001.76-1.77A26 26 0 0022 12a26 26 0 00-.42-4.81zM10 15V9l5.2 3-5.2 3z" /></svg> STARTRADER</span><p>This is STARTRADER — one team, one mission</p></span>
-          </a>
-          <a class="watch-card" href="#" data-reveal data-reveal-delay="0.06">
-            <img src="/img/blog/v2.jpg" alt="" loading="lazy" />
-            <span class="watch-scrim"></span><span class="watch-time">3:24 min</span>
-            <span class="watch-play"><span class="play-tri-sm"></span></span>
-            <span class="watch-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 002.42 7.2 26 26 0 002 12a26 26 0 00.42 4.81 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 001.76-1.77A26 26 0 0022 12a26 26 0 00-.42-4.81zM10 15V9l5.2 3-5.2 3z" /></svg> STARTRADER</span><p>Inside the desks that never really sleep</p></span>
-          </a>
-          <a class="watch-card" href="#" data-reveal data-reveal-delay="0.12">
-            <img src="/img/blog/v1.jpg" alt="" loading="lazy" />
-            <span class="watch-scrim"></span><span class="watch-time">3:24 min</span>
-            <span class="watch-play"><span class="play-tri-sm"></span></span>
-            <span class="watch-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 002.42 7.2 26 26 0 002 12a26 26 0 00.42 4.81 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 001.76-1.77A26 26 0 0022 12a26 26 0 00-.42-4.81zM10 15V9l5.2 3-5.2 3z" /></svg> STARTRADER</span><p>The people behind every trade we clear</p></span>
-          </a>
-        </div>
-
-        <div class="subscribe-bar" data-reveal>
-          <p>Subscribe for new episodes, event recaps and trader stories every week.</p>
-          <a class="btn-youtube" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 002.42 7.2 26 26 0 002 12a26 26 0 00.42 4.81 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 001.76-1.77A26 26 0 0022 12a26 26 0 00-.42-4.81zM10 15V9l5.2 3-5.2 3z" /></svg> Visit our channel</a>
-        </div>
-      </div>
-    </section>
 
     <footer class="site-footer">
       <div class="shell" data-reveal>

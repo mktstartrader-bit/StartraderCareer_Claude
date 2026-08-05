@@ -1238,7 +1238,7 @@
       });
     }
 
-    // an article's tag link lands here as #tag=Culture
+    // links in from the blog home and from article tags: #tag=, #topic=, #q=
     var hash = decodeURIComponent(window.location.hash || "");
     if (hash.indexOf("#tag=") === 0) {
       var wanted = hash.slice(5);
@@ -1249,9 +1249,87 @@
         if (chip.hasAttribute("data-extra") && more) more.click();
         applyTag(wanted, true);
       }
+    } else if (hash.indexOf("#topic=") === 0) {
+      var wantedTopic = hash.slice(7);
+      var tbtn = $$("[data-topic]", root).filter(function (b) {
+        return b.getAttribute("data-topic") === wantedTopic;
+      })[0];
+      if (tbtn) tbtn.click();
+    } else if (hash.indexOf("#q=") === 0 && input) {
+      input.value = hash.slice(3);
+      query = input.value.trim().toLowerCase();
+      if (searchWrap) searchWrap.classList.add("has-value");
     }
 
     render();
+  }
+
+  /* ── Blog home ──────────────────────────────────────────────────────── */
+  function initBlogHome() {
+    /* the search under the title hands off to the articles page */
+    var form = $("[data-home-search]");
+    if (form) {
+      var field = $("input", form);
+      var go = function (e) {
+        if (e) e.preventDefault();
+        var q = (field && field.value.trim()) || "";
+        window.location.href = "/starblog/articles.html" + (q ? "#q=" + encodeURIComponent(q) : "");
+      };
+      form.addEventListener("submit", go);
+      var clear = $(".side-clear", form);
+      if (field) {
+        field.addEventListener("input", function () {
+          form.classList.toggle("has-value", field.value.length > 0);
+        });
+        field.addEventListener("focus", function () { form.classList.add("is-focused"); });
+        field.addEventListener("blur", function () { form.classList.remove("is-focused"); });
+      }
+      if (clear)
+        clear.addEventListener("click", function () {
+          if (field) {
+            field.value = "";
+            form.classList.remove("has-value");
+            field.focus();
+          }
+        });
+    }
+
+    /* Popular rail: arrows + page dots */
+    var rail = $("[data-pop-rail]");
+    if (!rail) return;
+    var prev = $("[data-rail-prev]");
+    var next = $("[data-rail-next]");
+    var dots = $("[data-rail-dots]");
+
+    var pages = function () {
+      return Math.max(1, Math.ceil(rail.scrollWidth / rail.clientWidth));
+    };
+    var current = function () {
+      return Math.round(rail.scrollLeft / rail.clientWidth);
+    };
+
+    var paint = function () {
+      var total = pages();
+      if (dots && dots.children.length !== total) {
+        dots.innerHTML = "";
+        for (var i = 0; i < total; i++) dots.appendChild(document.createElement("i"));
+      }
+      if (dots) {
+        var at = current();
+        Array.prototype.forEach.call(dots.children, function (d, i) {
+          d.classList.toggle("is-on", i === at);
+        });
+      }
+      var max = rail.scrollWidth - rail.clientWidth;
+      if (prev) prev.disabled = rail.scrollLeft <= 2;
+      if (next) next.disabled = rail.scrollLeft >= max - 2;
+    };
+
+    if (prev) prev.addEventListener("click", function () { rail.scrollLeft -= rail.clientWidth; });
+    if (next) next.addEventListener("click", function () { rail.scrollLeft += rail.clientWidth; });
+    rail.addEventListener("scroll", paint, { passive: true });
+    window.addEventListener("resize", paint);
+    paint();
   }
 
   /* ── Article page extras ────────────────────────────────────────────── */
@@ -1564,6 +1642,7 @@
     initTraits();
     initTimeline();
     initBlogIndex();
+    initBlogHome();
     initArticleExtras();
     initStarcast();
     initArticleToc();
