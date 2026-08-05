@@ -15,17 +15,17 @@
     />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/life/banner.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarLife · STARTRADER Careers" />
     <meta property="og:description" content="Life at STARTRADER: our culture, celebrations and the people who make the work worth showing up for." />
     <meta property="og:url" content="/starlife.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/about/banner-poster.webp" />
+    <meta property="og:image" content="/img/life/banner.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="StarLife · STARTRADER Careers" />
     <meta name="twitter:description" content="Life at STARTRADER: our culture, celebrations and the people who make the work worth showing up for." />
-    <meta name="twitter:image" content="/img/about/banner-poster.webp" />
+    <meta name="twitter:image" content="/img/life/banner.webp" />
     <script>
       document.documentElement.className += " js";
     </script>
@@ -35,6 +35,52 @@
     <!-- Page-specific styles (kept with the page for easy detachment) -->
     <style>
 /* ── page-specific styles (moved from css/style.css) ── */
+/* No scrim — the banner's own white left fade carries the copy,
+   so the hero text flips to dark ink on this page */
+.life-hero {
+  background: #fff;
+}
+
+.life-hero .video-hero-poster {
+  object-position: 72% center;
+  animation: hero-drift 22s ease-in-out infinite alternate;
+}
+
+.life-hero .video-hero-scrim {
+  background: none;
+}
+
+.life-hero h1,
+.life-hero .eyebrow {
+  color: var(--ink);
+}
+
+.life-hero .eyebrow {
+  border-color: rgba(28, 31, 42, 0.35);
+}
+
+.life-hero p {
+  color: var(--muted);
+}
+
+.life-hero .btn-ghost {
+  border-color: rgba(28, 31, 42, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+}
+
+.life-hero .btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* small screens crop into the photo, so a white floor keeps dark text legible */
+@media (max-width: 700px) {
+  .life-hero .video-hero-scrim {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0.5) 100%);
+  }
+}
+
 @keyframes now-blink {
   50% {
     opacity: 0.25;
@@ -642,18 +688,15 @@
 
     <main>
       <!-- ───────── VIDEO BANNER ───────── -->
-      <section class="video-hero" data-video-hero>
-        <img class="video-hero-poster" src="/img/about/banner-poster.webp" alt="" width="1600" height="888" />
-        <video
-          class="video-hero-media"
-          data-src="/video/hero-banner.mp4"
-          poster="/img/about/banner-poster.webp"
-          muted
-          loop
-          playsinline
-          preload="none"
-          aria-hidden="true"
-        ></video>
+      <section class="video-hero life-hero">
+        <img
+          class="video-hero-poster"
+          src="/img/life/banner.webp"
+          alt="Two executives shake hands over a basketball at a STARTRADER partnership event"
+          width="2400"
+          height="1256"
+          fetchpriority="high"
+        />
         <div class="video-hero-scrim"></div>
 
         <div class="shell video-hero-inner">
@@ -685,7 +728,7 @@
       </section>
 
       <!-- ───────── SHOWREEL ───────── -->
-      <section class="about-section sec-white" data-reel>
+      <section class="about-section sec-tint" data-reel>
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue" style="right: -12%; top: -6%; height: 540px; width: 540px"></span>
         </div>

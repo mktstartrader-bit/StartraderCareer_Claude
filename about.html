@@ -15,17 +15,17 @@
     />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/about/banner.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="About Us · STARTRADER Careers" />
     <meta property="og:description" content="STARTRADER is built by people and powered by purpose — our mission, values, global presence and 30+ industry awards." />
     <meta property="og:url" content="/about.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/about/banner-poster.webp" />
+    <meta property="og:image" content="/img/about/banner.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="About Us · STARTRADER Careers" />
     <meta name="twitter:description" content="STARTRADER is built by people and powered by purpose — our mission, values, global presence and 30+ industry awards." />
-    <meta name="twitter:image" content="/img/about/banner-poster.webp" />
+    <meta name="twitter:image" content="/img/about/banner.webp" />
     <script>
       document.documentElement.className += " js";
     </script>
@@ -35,6 +35,52 @@
     <!-- Page-specific styles (kept with the page for easy detachment) -->
     <style>
 /* ── page-specific styles (moved from css/style.css) ── */
+/* No scrim — the banner's own white left fade carries the copy,
+   so the hero text flips to dark ink on this page */
+.about-hero {
+  background: #fff;
+}
+
+.about-hero .video-hero-poster {
+  object-position: 72% center;
+  animation: hero-drift 22s ease-in-out infinite alternate;
+}
+
+.about-hero .video-hero-scrim {
+  background: none;
+}
+
+.about-hero h1,
+.about-hero .eyebrow {
+  color: var(--ink);
+}
+
+.about-hero .eyebrow {
+  border-color: rgba(28, 31, 42, 0.35);
+}
+
+.about-hero p {
+  color: var(--muted);
+}
+
+.about-hero .btn-ghost {
+  border-color: rgba(28, 31, 42, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+}
+
+.about-hero .btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* small screens crop into the photo, so a white floor keeps dark text legible */
+@media (max-width: 700px) {
+  .about-hero .video-hero-scrim {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0.5) 100%);
+  }
+}
+
 .about-split-copy .btn {
   margin-top: 32px;
 }
@@ -1281,18 +1327,15 @@
 
     <main>
       <!-- ───────── VIDEO BANNER ───────── -->
-      <section class="video-hero" data-video-hero>
-        <img class="video-hero-poster" src="/img/about/banner-poster.webp" alt="" width="1600" height="888" />
-        <video
-          class="video-hero-media"
-          data-src="/video/hero-banner.mp4"
-          poster="/img/about/banner-poster.webp"
-          muted
-          loop
-          playsinline
-          preload="none"
-          aria-hidden="true"
-        ></video>
+      <section class="video-hero about-hero">
+        <img
+          class="video-hero-poster"
+          src="/img/about/banner.webp"
+          alt="A rider on a white horse waves the STARTRADER flag across a green field"
+          width="2400"
+          height="1256"
+          fetchpriority="high"
+        />
         <div class="video-hero-scrim"></div>
 
         <div class="shell video-hero-inner">
@@ -1323,7 +1366,7 @@
       </section>
 
       <!-- ───────── MISSION / VALUES / VISION ───────── -->
-      <section class="about-section sec-white">
+      <section class="about-section sec-tint">
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue" style="right: -12%; top: -8%; height: 560px; width: 560px"></span>
         </div>

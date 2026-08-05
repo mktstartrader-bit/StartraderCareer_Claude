@@ -16,17 +16,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/social/banner.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarSocial · STARTRADER Careers" />
     <meta property="og:description" content="STARTRADER’s corporate social responsibility work — the initiatives, partnerships and communities we support." />
     <meta property="og:url" content="/starsocial.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/about/banner-poster.webp" />
+    <meta property="og:image" content="/img/social/banner.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="StarSocial · STARTRADER Careers" />
     <meta name="twitter:description" content="STARTRADER’s corporate social responsibility work — the initiatives, partnerships and communities we support." />
-    <meta name="twitter:image" content="/img/about/banner-poster.webp" />
+    <meta name="twitter:image" content="/img/social/banner.webp" />
     <script>
       document.documentElement.className += " js";
     </script>
@@ -37,6 +37,52 @@
     <!-- Page-specific styles (kept with the page for easy detachment) -->
     <style>
 /* ── page-specific styles (moved from css/style.css) ── */
+/* No scrim — the banner's own white left fade carries the copy,
+   so the hero text flips to dark ink on this page */
+.social-hero {
+  background: #fff;
+}
+
+.social-hero .video-hero-poster {
+  object-position: 72% center;
+  animation: hero-drift 22s ease-in-out infinite alternate;
+}
+
+.social-hero .video-hero-scrim {
+  background: none;
+}
+
+.social-hero h1,
+.social-hero .eyebrow {
+  color: var(--ink);
+}
+
+.social-hero .eyebrow {
+  border-color: rgba(28, 31, 42, 0.35);
+}
+
+.social-hero p {
+  color: var(--muted);
+}
+
+.social-hero .btn-ghost {
+  border-color: rgba(28, 31, 42, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+}
+
+.social-hero .btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* small screens crop into the photo, so a white floor keeps dark text legible */
+@media (max-width: 700px) {
+  .social-hero .video-hero-scrim {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0.5) 100%);
+  }
+}
+
 .impact-art > .frame,
 .impact-art .mask-wipe {
   height: 100%;
@@ -386,18 +432,15 @@
 
     <main>
       <!-- ───────── VIDEO BANNER ───────── -->
-      <section class="video-hero" data-video-hero>
-        <img class="video-hero-poster" src="/img/about/banner-poster.webp" alt="" width="1600" height="888" />
-        <video
-          class="video-hero-media"
-          data-src="/video/hero-banner.mp4"
-          poster="/img/about/banner-poster.webp"
-          muted
-          loop
-          playsinline
-          preload="none"
-          aria-hidden="true"
-        ></video>
+      <section class="video-hero social-hero">
+        <img
+          class="video-hero-poster"
+          src="/img/social/banner.webp"
+          alt="A STARTRADER volunteer cradles a baby during a community care visit"
+          width="2400"
+          height="1256"
+          fetchpriority="high"
+        />
         <div class="video-hero-scrim"></div>
 
         <div class="shell video-hero-inner">
@@ -429,7 +472,7 @@
       </section>
 
       <!-- ───────── OUR IMPACT ───────── -->
-      <section class="about-section sec-white">
+      <section class="about-section sec-tint">
         <div class="atmos">
           <span class="atmos-orb atmos-orb-blue" style="right: -12%; top: -8%; height: 540px; width: 540px"></span>
         </div>
@@ -466,7 +509,7 @@
       </section>
 
       <!-- ───────── CSR GALLERY ───────── -->
-      <section class="about-section sec-white" style="padding-top: 0">
+      <section class="about-section sec-tint" style="padding-top: 0">
         <div class="shell" style="position: relative">
           <div class="sec-head is-centered">
             <div data-aos="fade-up" style="display: flex; justify-content: center">

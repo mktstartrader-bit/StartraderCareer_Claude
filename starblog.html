@@ -15,17 +15,17 @@
     />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/blog/banner.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarBlog · STARTRADER Careers" />
     <meta property="og:description" content="Ideas, insights and moments that matter — straight from the people who live them at STARTRADER." />
     <meta property="og:url" content="/starblog.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/blog/b1.webp" />
+    <meta property="og:image" content="/img/blog/banner.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="StarBlog · STARTRADER Careers" />
     <meta name="twitter:description" content="Ideas, insights and moments that matter — straight from the people who live them at STARTRADER." />
-    <meta name="twitter:image" content="/img/blog/b1.webp" />
+    <meta name="twitter:image" content="/img/blog/banner.webp" />
     <script>
       document.documentElement.className += " js";
     </script>
@@ -35,6 +35,52 @@
     <!-- Page-specific styles (kept with the page for easy detachment) -->
     <style>
 /* ── page-specific styles (moved from css/style.css) ── */
+/* No scrim — the banner's own white left fade carries the copy,
+   so the hero text flips to dark ink on this page */
+.blog-hero {
+  background: #fff;
+}
+
+.blog-hero .video-hero-poster {
+  object-position: 72% center;
+  animation: hero-drift 22s ease-in-out infinite alternate;
+}
+
+.blog-hero .video-hero-scrim {
+  background: none;
+}
+
+.blog-hero h1,
+.blog-hero .eyebrow {
+  color: var(--ink);
+}
+
+.blog-hero .eyebrow {
+  border-color: rgba(28, 31, 42, 0.35);
+}
+
+.blog-hero p {
+  color: var(--muted);
+}
+
+.blog-hero .btn-ghost {
+  border-color: rgba(28, 31, 42, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+}
+
+.blog-hero .btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* small screens crop into the photo, so a white floor keeps dark text legible */
+@media (max-width: 700px) {
+  .blog-hero .video-hero-scrim {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0.5) 100%);
+  }
+}
+
 .side-search {
   position: relative;
   display: flex;
@@ -151,7 +197,7 @@
 /* ── blog home ─────────────────────────────────────────────────────────── */
 .blog-home {
   position: relative;
-  background: var(--tint-20);
+  background: var(--tint-35);
   padding-top: 46px;
   padding-bottom: 90px;
 }
@@ -1028,18 +1074,15 @@
     </header>
 
     <!-- ───────── VIDEO BANNER ───────── -->
-    <section class="video-hero" data-video-hero>
-      <img class="video-hero-poster" src="/img/about/banner-poster.webp" alt="" width="1600" height="888" />
-      <video
-        class="video-hero-media"
-        data-src="/video/hero-banner.mp4"
-        poster="/img/about/banner-poster.webp"
-        muted
-        loop
-        playsinline
-        preload="none"
-        aria-hidden="true"
-      ></video>
+    <section class="video-hero blog-hero">
+      <img
+        class="video-hero-poster"
+        src="/img/blog/banner.webp"
+        alt="Hands typing on a laptop at a wooden desk beside a phone and notes"
+        width="2400"
+        height="1256"
+        fetchpriority="high"
+      />
       <div class="video-hero-scrim"></div>
 
       <div class="shell video-hero-inner">

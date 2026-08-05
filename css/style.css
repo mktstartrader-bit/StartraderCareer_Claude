@@ -1877,3 +1877,8 @@ h4 {
 .topic.is-active .filter-box svg path {
   stroke-dashoffset: 0;
 }
+
+/* ── appended: light section tint for separation under white banners ───── */
+.sec-tint {
+  background: rgba(218, 227, 237, 0.65);
+}
