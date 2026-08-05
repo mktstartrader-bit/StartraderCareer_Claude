@@ -1049,63 +1049,63 @@
     window.addEventListener("resize", request);
   }
 
-  /* ── StarBlog: category tabs + pagination ───────────────────────────── */
+  /* ── StarBlog index: search, topics, tags, pagination ───────────────── */
+  // Three filters that compose, all client-side over the rendered cards.
   function initBlogIndex() {
     var root = $("[data-blog-index]");
     if (!root) return;
 
     var PAGE_SIZE = 6;
     var cards = $$("[data-post]", root);
-    var tabs = $$(".blog-tab", root);
+    var grid = $(".post-grid", root);
+    var empty = $(".blog-empty", root);
     var pager = $(".blog-pagination", root);
     var gridTop = $(".blog-grid-top", root);
-    var tab = "All";
+    var countEl = $("[data-blog-count]", root);
+    var searchWrap = $(".side-search", root);
+    var input = $("#blog-search", root);
+    var reset = $("[data-tag-reset]", root);
+
+    var topic = "All";
+    var tags = [];
+    var query = "";
     var page = 1;
-
-    var matching = function () {
-      return cards.filter(function (c) {
-        return tab === "All" || (c.getAttribute("data-category") || "").toLowerCase() === tab.toLowerCase();
-      });
-    };
-
-    var renderPager = function (total) {
-      if (!pager) return;
-      pager.innerHTML = "";
-      if (total <= 1) {
-        pager.hidden = true;
-        return;
-      }
-      pager.hidden = false;
-
-      var button = function (label, targetPage, opts) {
-        var b = document.createElement("button");
-        b.textContent = label;
-        b.type = "button";
-        if (opts && opts.arrow) {
-          b.className = "page-arrow";
-          b.setAttribute("aria-label", opts.label);
-        }
-        if (opts && opts.disabled) b.disabled = true;
-        if (opts && opts.current) {
-          b.classList.add("is-current");
-          b.setAttribute("aria-current", "true");
-        }
-        b.addEventListener("click", function () {
-          go(targetPage);
-        });
-        return b;
-      };
-
-      pager.appendChild(button("‹", page - 1, { arrow: true, label: "Previous page", disabled: page === 1 }));
-      for (var i = 1; i <= total; i++) {
-        pager.appendChild(button(String(i), i, { current: i === page }));
-      }
-      pager.appendChild(button("›", page + 1, { arrow: true, label: "Next page", disabled: page === total }));
-    };
-
     var first = true;
+
+    var matches = function (c) {
+      var d = c.dataset;
+      if (topic !== "All" && d.category !== topic) return false;
+      if (tags.length) {
+        var own = (d.tags || "").split("|");
+        for (var i = 0; i < tags.length; i++) if (own.indexOf(tags[i]) === -1) return false;
+      }
+      if (query && (d.search || "").indexOf(query) === -1) return false;
+      return true;
+    };
+
+    var button = function (label, target, opts) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = label;
+      if (opts.arrow) {
+        b.className = "page-arrow";
+        b.setAttribute("aria-label", opts.label);
+      }
+      if (opts.disabled) b.disabled = true;
+      if (opts.current) {
+        b.classList.add("is-current");
+        b.setAttribute("aria-current", "true");
+      }
+      b.addEventListener("click", function () {
+        page = target;
+        render();
+        if (gridTop) gridTop.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      return b;
+    };
+
     var render = function () {
-      var list = matching();
+      var list = cards.filter(matches);
       var total = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
       page = Math.min(Math.max(1, page), total);
       var from = (page - 1) * PAGE_SIZE;
@@ -1115,34 +1115,205 @@
       });
       list.slice(from, from + PAGE_SIZE).forEach(function (c, i) {
         c.hidden = false;
-        c.style.transitionDelay = (i * 0.05).toFixed(2) + "s";
-        // On load the scroll observer handles the entrance; after a tab or page
-        // change the cards are already past it, so reveal them here.
+        c.style.transitionDelay = (i * 0.045).toFixed(3) + "s";
         if (!first) c.classList.add("is-visible");
       });
-      renderPager(total);
+
+      if (countEl) countEl.textContent = String(list.length);
+      if (empty) empty.hidden = list.length > 0;
+      if (grid) grid.hidden = list.length === 0;
+
+      if (pager) {
+        pager.innerHTML = "";
+        pager.hidden = total <= 1;
+        if (total > 1) {
+          pager.appendChild(button("‹", page - 1, { arrow: true, label: "Previous page", disabled: page === 1 }));
+          for (var i = 1; i <= total; i++) pager.appendChild(button(String(i), i, { current: i === page }));
+          pager.appendChild(button("›", page + 1, { arrow: true, label: "Next page", disabled: page === total }));
+        }
+      }
+
+      if (reset) reset.classList.toggle("is-shown", tags.length > 0);
       first = false;
     };
 
-    var go = function (p) {
-      page = p;
-      render();
-      if (gridTop) gridTop.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
-    tabs.forEach(function (btn) {
+    /* topics */
+    $$("[data-topic]", root).forEach(function (btn) {
       btn.addEventListener("click", function () {
-        tab = btn.getAttribute("data-tab") || "All";
+        topic = btn.getAttribute("data-topic") || "All";
         page = 1;
-        tabs.forEach(function (b) {
+        $$("[data-topic]", root).forEach(function (b) {
           b.classList.toggle("is-active", b === btn);
-          b.setAttribute("aria-selected", String(b === btn));
         });
         render();
       });
     });
 
+    /* tags — additive, so two tags narrow rather than widen */
+    var applyTag = function (name, on) {
+      var i = tags.indexOf(name);
+      if (on && i === -1) tags.push(name);
+      if (!on && i > -1) tags.splice(i, 1);
+      $$("[data-tag]", root).forEach(function (c) {
+        c.classList.toggle("is-active", tags.indexOf(c.getAttribute("data-tag")) > -1);
+      });
+      page = 1;
+      render();
+    };
+
+    $$("[data-tag]", root).forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        applyTag(chip.getAttribute("data-tag"), !chip.classList.contains("is-active"));
+      });
+    });
+
+    if (reset) {
+      reset.addEventListener("click", function () {
+        tags = [];
+        $$("[data-tag]", root).forEach(function (c) {
+          c.classList.remove("is-active");
+        });
+        page = 1;
+        render();
+      });
+    }
+
+    var more = $("[data-tag-more]", root);
+    if (more) {
+      more.addEventListener("click", function () {
+        var open = more.classList.toggle("is-open");
+        $$("[data-extra]", root).forEach(function (c) {
+          c.hidden = !open;
+        });
+        more.childNodes[0].nodeValue = open ? "Show less" : "Show more";
+      });
+    }
+
+    /* search */
+    if (input) {
+      var onInput = function () {
+        query = input.value.trim().toLowerCase();
+        if (searchWrap) searchWrap.classList.toggle("has-value", input.value.length > 0);
+        page = 1;
+        render();
+      };
+      input.addEventListener("input", onInput);
+      input.addEventListener("focus", function () {
+        if (searchWrap) searchWrap.classList.add("is-focused");
+      });
+      input.addEventListener("blur", function () {
+        if (searchWrap) searchWrap.classList.remove("is-focused");
+      });
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          input.value = "";
+          onInput();
+        }
+      });
+      var clear = $(".side-clear", root);
+      if (clear)
+        clear.addEventListener("click", function () {
+          input.value = "";
+          onInput();
+          input.focus();
+        });
+    }
+
+    var hardReset = $("[data-blog-reset]", root);
+    if (hardReset) {
+      hardReset.addEventListener("click", function () {
+        topic = "All";
+        tags = [];
+        query = "";
+        if (input) input.value = "";
+        if (searchWrap) searchWrap.classList.remove("has-value");
+        $$("[data-topic]", root).forEach(function (b, i) {
+          b.classList.toggle("is-active", i === 0);
+        });
+        $$("[data-tag]", root).forEach(function (c) {
+          c.classList.remove("is-active");
+        });
+        page = 1;
+        render();
+      });
+    }
+
+    // an article's tag link lands here as #tag=Culture
+    var hash = decodeURIComponent(window.location.hash || "");
+    if (hash.indexOf("#tag=") === 0) {
+      var wanted = hash.slice(5);
+      var chip = $$("[data-tag]", root).filter(function (c) {
+        return c.getAttribute("data-tag") === wanted;
+      })[0];
+      if (chip) {
+        if (chip.hasAttribute("data-extra") && more) more.click();
+        applyTag(wanted, true);
+      }
+    }
+
     render();
+  }
+
+  /* ── Article page extras ────────────────────────────────────────────── */
+  function initArticleExtras() {
+    var bar = $("[data-read-progress]");
+    var article = $(".article-content");
+    if (bar && article) {
+      var ticking = false;
+      var update = function () {
+        ticking = false;
+        var r = article.getBoundingClientRect();
+        var total = r.height - window.innerHeight;
+        var done = total > 0 ? (-r.top / total) : (r.top <= 0 ? 1 : 0);
+        bar.style.width = Math.max(0, Math.min(1, done)) * 100 + "%";
+      };
+      var request = function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      };
+      update();
+      window.addEventListener("scroll", request, { passive: true });
+      window.addEventListener("resize", request);
+    }
+
+    var copy = $("[data-copy-link]");
+    if (copy) {
+      copy.addEventListener("click", function () {
+        var done = function () {
+          copy.classList.add("is-copied");
+          copy.setAttribute("aria-label", "Link copied");
+          setTimeout(function () {
+            copy.classList.remove("is-copied");
+            copy.setAttribute("aria-label", "Copy link to this article");
+          }, 1600);
+        };
+        // execCommand fallback: the async clipboard API needs a secure context
+        // and a real gesture, and a silent failure gives the user nothing
+        var legacy = function () {
+          try {
+            var ta = document.createElement("textarea");
+            ta.value = window.location.href;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+          } catch (e) {
+            /* nothing else to try */
+          }
+          done();
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(window.location.href).then(done).catch(legacy);
+        } else {
+          legacy();
+        }
+      });
+    }
   }
 
   /* ── Starcast player ────────────────────────────────────────────────── */
@@ -1160,17 +1331,17 @@
     var scrubbing = false;
 
     var featured = {
-      thumb: $(".starcast-thumb img", root),
-      kicker: $(".starcast-kicker", root),
-      title: $(".starcast-head h3", root),
-      guest: $(".starcast-guest", root),
-      excerpt: $(".starcast-excerpt", root),
+      thumb: $(".cast-art img", root),
+      kicker: $(".cast-kicker", root),
+      title: $(".cast-head h3", root),
+      guest: $(".cast-guest", root),
+      excerpt: $(".cast-excerpt", root),
     };
-    var timeLabel = $(".starcast-time", root);
+    var timeLabel = $(".cast-time", root);
     var fill = $(".seek-fill", root);
     var thumbEl = $(".seek-thumb", root);
     var seek = $(".seek", root);
-    var playBtn = $(".transport-play", root);
+    var playBtn = $(".cast-play", root);
 
     // decorative signal strip
     var signal = $(".signal", root);
@@ -1266,8 +1437,8 @@
     };
 
     if (playBtn) playBtn.addEventListener("click", toggle);
-    var prev = $(".transport-prev", root);
-    var next = $(".transport-next", root);
+    var prev = $(".cast-prev", root);
+    var next = $(".cast-next", root);
     if (prev) prev.addEventListener("click", function () { loadEpisode(index - 1, true); });
     if (next) next.addEventListener("click", function () { loadEpisode(index + 1, true); });
 
@@ -1393,6 +1564,7 @@
     initTraits();
     initTimeline();
     initBlogIndex();
+    initArticleExtras();
     initStarcast();
     initArticleToc();
   }

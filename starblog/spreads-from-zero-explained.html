@@ -51,6 +51,7 @@
     "@id": "/starblog/spreads-from-zero-explained.html"
   },
   "articleSection": "Market insights",
+  "keywords": "Spreads, Costs, Markets",
   "wordCount": 57
 }
     </script>
@@ -109,44 +110,56 @@
     </header>
 
     <main>
-      <!-- ───────── HEADER ───────── -->
+      <div class="read-progress" aria-hidden="true"><i data-read-progress></i></div>
+
       <header class="article-header">
-        <div class="shell">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <ol>
-              <li><a href="/">Home</a></li>
-              <li aria-hidden="true">/</li>
-              <li><a href="/starblog.html">StarBlog</a></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page">Market insights</li>
-            </ol>
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="right: -10%; top: -20%; height: 460px; width: 460px"></span>
+        </div>
+
+        <div class="shell" style="position: relative">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <a href="/starblog.html">StarBlog</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span aria-current="page">Market insights</span>
           </nav>
 
           <div data-reveal>
-            <span class="article-badge">Market insights</span>
+            <span class="article-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Market insights</span>
             <h1 class="article-title">Spreads from zero, explained</h1>
           </div>
 
-          <div class="article-meta" data-reveal data-reveal-delay="0.08">
-            <strong>Daniel Wu</strong>
-            <span class="sep" aria-hidden="true">·</span>
-            <span>Dealing Desk</span>
-            <span class="sep" aria-hidden="true">·</span>
-            <time datetime="2025-04-15">April 15, 2025</time>
-            <span class="sep" aria-hidden="true">·</span>
-            <span>5 min read</span>
+          <div class="article-bar" data-reveal data-reveal-delay="0.08">
+            <div class="article-meta">
+              <span><strong>Daniel Wu</strong> · Dealing Desk</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <time datetime="2025-04-15">April 15, 2025</time>
+              <span class="sep" aria-hidden="true">·</span>
+              <span>5 min read</span>
+            </div>
+
+            <div class="share-row">
+              <span>Share</span>
+              <a class="share-btn" href="https://www.linkedin.com/shareArticle?url=%2Fstarblog%2Fspreads-from-zero-explained.html" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 7.5a1.94 1.94 0 11-.01-3.88 1.94 1.94 0 01.01 3.88zM8.6 20H5.28V9.25H8.6V20zM19.99 20h-3.31v-5.23c0-1.25-.02-2.85-1.74-2.85-1.74 0-2.01 1.36-2.01 2.76V20H9.62V9.25h3.18v1.47h.05c.44-.84 1.53-1.73 3.14-1.73 3.36 0 3.98 2.21 3.98 5.08V20z" /></svg>
+              </a>
+              <a class="share-btn" href="https://twitter.com/intent/tweet?text=Spreads%20from%20zero%2C%20explained" target="_blank" rel="noopener" aria-label="Share on X">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.53 3h2.94l-6.42 7.34L21.6 21h-5.9l-4.63-6.05L5.78 21H2.84l6.87-7.85L2.4 3h6.05l4.18 5.53L17.53 3z" /></svg>
+              </a>
+              <button class="share-btn" type="button" data-copy-link aria-label="Copy link to this article">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 13a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="article-cover" data-reveal data-reveal-delay="0.12">
+            <img src="/img/blog/b3.jpg" alt="Spreads from zero, explained" fetchpriority="high" />
           </div>
         </div>
       </header>
 
-      <!-- ───────── COVER ───────── -->
-      <div class="shell">
-        <div class="article-cover" data-reveal>
-          <img src="/img/blog/b3.jpg" alt="Spreads from zero, explained" fetchpriority="high" />
-        </div>
-      </div>
-
-      <!-- ───────── BODY + INDEX ───────── -->
       <section class="shell article-body">
         <div class="article-layout">
           <aside class="article-toc">
@@ -170,9 +183,15 @@
               <p>“From 0.0” describes the best case, not the average. The honest question is what spreads look like when volatility hits — and that’s where execution quality shows.</p>
             </section>
 
+            <div class="article-tags">
+            <a href="/starblog.html#tag=Spreads">Spreads</a>
+            <a href="/starblog.html#tag=Costs">Costs</a>
+            <a href="/starblog.html#tag=Markets">Markets</a>
+            </div>
+
             <div class="article-foot">
               <a class="article-back" href="/starblog.html">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 All articles
@@ -183,9 +202,11 @@
         </div>
       </section>
 
-      <!-- ───────── RELATED READS ───────── -->
       <section class="related-section">
-        <div class="shell">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-accent" style="left: -10%; bottom: -20%; height: 440px; width: 440px"></span>
+        </div>
+        <div class="shell" style="position: relative">
           <div data-reveal>
             <h2>Related reads</h2>
             <p>More from the world of STARTRADER.</p>
@@ -196,93 +217,63 @@
               href="/starblog/inside-our-trading-desk.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
+                <span class="post-date">30.10.2025</span>
+              </span>
+              <h3>Inside our trading desk: a morning in the engine room</h3>
+              <p>Before the markets open, the desk is already awake. A look at the rhythm, the rituals, and the reads that shape a trading day.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b3.jpg" alt="Inside our trading desk: a morning in the engine room" loading="lazy" />
-                <span class="post-badge">Market insights</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-10-30">October 30, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>6 min read</span>
-                </div>
-                <h3>Inside our trading desk: a morning in the engine room</h3>
-                <p>Before the markets open, the desk is already awake. A look at the rhythm, the rituals, and the reads that shape a trading day.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Markets</span>
+              </span>
             </a>
             <a
               class="post-card"
               href="/starblog/reading-the-markets-volatility-playbook.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
+                <span class="post-date">09.07.2025</span>
+              </span>
+              <h3>Reading the markets: a volatility playbook</h3>
+              <p>When the tape gets wild, process beats prediction. The principles our team leans on when volatility spikes.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b6.jpg" alt="Reading the markets: a volatility playbook" loading="lazy" />
-                <span class="post-badge">Market insights</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-07-09">July 9, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>6 min read</span>
-                </div>
-                <h3>Reading the markets: a volatility playbook</h3>
-                <p>When the tape gets wild, process beats prediction. The principles our team leans on when volatility spikes.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Markets</span>
+              </span>
             </a>
             <a
               class="post-card"
               href="/starblog/leverage-without-the-jargon.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market insights</span></span>
+                <span class="post-date">20.01.2025</span>
+              </span>
+              <h3>Leverage, without the jargon</h3>
+              <p>Up to 1:1000 sounds powerful — and it is, in both directions. A plain-English guide to using leverage wisely.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b1.jpg" alt="Leverage, without the jargon" loading="lazy" />
-                <span class="post-badge">Market insights</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-01-20">January 20, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>6 min read</span>
-                </div>
-                <h3>Leverage, without the jargon</h3>
-                <p>Up to 1:1000 sounds powerful — and it is, in both directions. A plain-English guide to using leverage wisely.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Leverage</span>
+              </span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- ───────── CTA BAND ───────── -->
-      <section class="cta-section" style="padding-block: 90px">
+      <section class="cta-section">
         <div class="shell">
-          <div class="cta-panel cta-panel-band" data-reveal>
+          <div class="cta-panel cta-panel-dark" data-reveal>
+            <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
-                <h2 class="section-title" style="max-width: 560px">
-                  It’s more than a blog, it’s our story, in real time.
-                </h2>
-                <a class="btn btn-primary btn-tall" href="/starscout.html">Join Us</a>
+                <h2 class="section-title on-dark">It’s more than a blog, it’s our story, in real time.</h2>
+                <a class="btn btn-white btn-tall" href="/starscout.html">Join Us</a>
               </div>
               <div class="cta-media">
-                <img class="cta-watermark" src="/img/brand/footer-bg.svg" alt="" aria-hidden="true" />
                 <img class="cta-people" src="/img/life/cta-people.png" alt="STARTRADER team" loading="lazy" />
               </div>
             </div>

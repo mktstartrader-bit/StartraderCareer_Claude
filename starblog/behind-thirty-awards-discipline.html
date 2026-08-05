@@ -51,6 +51,7 @@
     "@id": "/starblog/behind-thirty-awards-discipline.html"
   },
   "articleSection": "Achievements",
+  "keywords": "Awards, Standards, Habits",
   "wordCount": 42
 }
     </script>
@@ -109,44 +110,56 @@
     </header>
 
     <main>
-      <!-- ───────── HEADER ───────── -->
+      <div class="read-progress" aria-hidden="true"><i data-read-progress></i></div>
+
       <header class="article-header">
-        <div class="shell">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <ol>
-              <li><a href="/">Home</a></li>
-              <li aria-hidden="true">/</li>
-              <li><a href="/starblog.html">StarBlog</a></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page">Achievements</li>
-            </ol>
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="right: -10%; top: -20%; height: 460px; width: 460px"></span>
+        </div>
+
+        <div class="shell" style="position: relative">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <a href="/starblog.html">StarBlog</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span aria-current="page">Achievements</span>
           </nav>
 
           <div data-reveal>
-            <span class="article-badge">Achievements</span>
+            <span class="article-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Achievements</span>
             <h1 class="article-title">The discipline behind a winning year</h1>
           </div>
 
-          <div class="article-meta" data-reveal data-reveal-delay="0.08">
-            <strong>Sofia Reyes</strong>
-            <span class="sep" aria-hidden="true">·</span>
-            <span>Brand &amp; Communications</span>
-            <span class="sep" aria-hidden="true">·</span>
-            <time datetime="2025-03-11">March 11, 2025</time>
-            <span class="sep" aria-hidden="true">·</span>
-            <span>4 min read</span>
+          <div class="article-bar" data-reveal data-reveal-delay="0.08">
+            <div class="article-meta">
+              <span><strong>Sofia Reyes</strong> · Brand &amp; Communications</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <time datetime="2025-03-11">March 11, 2025</time>
+              <span class="sep" aria-hidden="true">·</span>
+              <span>4 min read</span>
+            </div>
+
+            <div class="share-row">
+              <span>Share</span>
+              <a class="share-btn" href="https://www.linkedin.com/shareArticle?url=%2Fstarblog%2Fbehind-thirty-awards-discipline.html" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 7.5a1.94 1.94 0 11-.01-3.88 1.94 1.94 0 01.01 3.88zM8.6 20H5.28V9.25H8.6V20zM19.99 20h-3.31v-5.23c0-1.25-.02-2.85-1.74-2.85-1.74 0-2.01 1.36-2.01 2.76V20H9.62V9.25h3.18v1.47h.05c.44-.84 1.53-1.73 3.14-1.73 3.36 0 3.98 2.21 3.98 5.08V20z" /></svg>
+              </a>
+              <a class="share-btn" href="https://twitter.com/intent/tweet?text=The%20discipline%20behind%20a%20winning%20year" target="_blank" rel="noopener" aria-label="Share on X">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.53 3h2.94l-6.42 7.34L21.6 21h-5.9l-4.63-6.05L5.78 21H2.84l6.87-7.85L2.4 3h6.05l4.18 5.53L17.53 3z" /></svg>
+              </a>
+              <button class="share-btn" type="button" data-copy-link aria-label="Copy link to this article">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 13a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="article-cover" data-reveal data-reveal-delay="0.12">
+            <img src="/img/blog/b6.jpg" alt="The discipline behind a winning year" fetchpriority="high" />
           </div>
         </div>
       </header>
 
-      <!-- ───────── COVER ───────── -->
-      <div class="shell">
-        <div class="article-cover" data-reveal>
-          <img src="/img/blog/b6.jpg" alt="The discipline behind a winning year" fetchpriority="high" />
-        </div>
-      </div>
-
-      <!-- ───────── BODY + INDEX ───────── -->
       <section class="shell article-body">
         <div class="article-layout">
           <aside class="article-toc">
@@ -170,9 +183,15 @@
               <p>We name the teams, not just the trophy. Recognition that’s shared widely is recognition that actually changes behaviour.</p>
             </section>
 
+            <div class="article-tags">
+            <a href="/starblog.html#tag=Awards">Awards</a>
+            <a href="/starblog.html#tag=Standards">Standards</a>
+            <a href="/starblog.html#tag=Habits">Habits</a>
+            </div>
+
             <div class="article-foot">
               <a class="article-back" href="/starblog.html">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 All articles
@@ -183,9 +202,11 @@
         </div>
       </section>
 
-      <!-- ───────── RELATED READS ───────── -->
       <section class="related-section">
-        <div class="shell">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-accent" style="left: -10%; bottom: -20%; height: 440px; width: 440px"></span>
+        </div>
+        <div class="shell" style="position: relative">
           <div data-reveal>
             <h2>Related reads</h2>
             <p>More from the world of STARTRADER.</p>
@@ -196,93 +217,63 @@
               href="/starblog/thirty-global-awards-what-they-mean.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Achievements</span></span>
+                <span class="post-date">14.11.2025</span>
+              </span>
+              <h3>Thirty global awards, and what they actually mean for traders</h3>
+              <p>Trophies are nice. Trust is better. We unpack what our 30+ industry awards signal about the experience behind the brand.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b4.jpg" alt="Thirty global awards, and what they actually mean for traders" loading="lazy" />
-                <span class="post-badge">Achievements</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-11-14">November 14, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>5 min read</span>
-                </div>
-                <h3>Thirty global awards, and what they actually mean for traders</h3>
-                <p>Trophies are nice. Trust is better. We unpack what our 30+ industry awards signal about the experience behind the brand.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Awards</span>
+              </span>
             </a>
             <a
               class="post-card"
               href="/starblog/on-the-global-stage.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 15.8 6.9 18.5l1.2-5.7L4 8.9l5.6-.6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>Achievements</span></span>
+                <span class="post-date">22.05.2025</span>
+              </span>
+              <h3>On the global stage: what our partnerships say about us</h3>
+              <p>From the NBA to the Porsche Carrera Cup, our partnerships aren’t just logos — they’re a statement of ambition.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b4.jpg" alt="On the global stage: what our partnerships say about us" loading="lazy" />
-                <span class="post-badge">Achievements</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-05-22">May 22, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>4 min read</span>
-                </div>
-                <h3>On the global stage: what our partnerships say about us</h3>
-                <p>From the NBA to the Porsche Carrera Cup, our partnerships aren’t just logos — they’re a statement of ambition.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Partnerships</span>
+              </span>
             </a>
             <a
               class="post-card"
               href="/starblog/startrader-christmas-celebration.html"
               data-reveal
             >
-              <div class="post-card-media">
+              <span class="post-top">
+                <span class="post-cat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M18 19c-.3-1.9-1-3.4-2-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>People &amp; culture</span></span>
+                <span class="post-date">22.12.2025</span>
+              </span>
+              <h3>Unwrapping moments of joy: STARTRADER’s Christmas celebration</h3>
+              <p>Santa Claus visited our office this Christmas — and he didn’t come only to give gifts. Here’s how the team turned an ordinary day into a memory.</p>
+              <span class="post-shot">
                 <img src="/img/blog/b1.jpg" alt="Unwrapping moments of joy: STARTRADER’s Christmas celebration" loading="lazy" />
-                <span class="post-badge">People &amp; culture</span>
-              </div>
-              <div class="post-card-body">
-                <div class="post-meta">
-                  <time datetime="2025-12-22">December 22, 2025</time>
-                  <span aria-hidden="true">·</span>
-                  <span>4 min read</span>
-                </div>
-                <h3>Unwrapping moments of joy: STARTRADER’s Christmas celebration</h3>
-                <p>Santa Claus visited our office this Christmas — and he didn’t come only to give gifts. Here’s how the team turned an ordinary day into a memory.</p>
-                <span class="post-more">
-                  Read More
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </div>
+                <span class="post-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>Culture</span>
+              </span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- ───────── CTA BAND ───────── -->
-      <section class="cta-section" style="padding-block: 90px">
+      <section class="cta-section">
         <div class="shell">
-          <div class="cta-panel cta-panel-band" data-reveal>
+          <div class="cta-panel cta-panel-dark" data-reveal>
+            <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
-                <h2 class="section-title" style="max-width: 560px">
-                  It’s more than a blog, it’s our story, in real time.
-                </h2>
-                <a class="btn btn-primary btn-tall" href="/starscout.html">Join Us</a>
+                <h2 class="section-title on-dark">It’s more than a blog, it’s our story, in real time.</h2>
+                <a class="btn btn-white btn-tall" href="/starscout.html">Join Us</a>
               </div>
               <div class="cta-media">
-                <img class="cta-watermark" src="/img/brand/footer-bg.svg" alt="" aria-hidden="true" />
                 <img class="cta-people" src="/img/life/cta-people.png" alt="STARTRADER team" loading="lazy" />
               </div>
             </div>
