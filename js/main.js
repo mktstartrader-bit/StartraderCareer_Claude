@@ -84,6 +84,9 @@
       });
     });
 
+    // threshold 0, not 0.2 — a section taller than the viewport can never show
+    // 20% of itself at once, so it would sit hidden until the page happened to
+    // scroll past it (or forever, if it was the last thing on the page)
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -92,10 +95,17 @@
           io.unobserve(entry.target);
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
 
+    // anything already at or above the fold shows immediately; waiting for the
+    // observer's first callback leaves the opening screen half-empty
+    var vh = window.innerHeight;
     targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top < vh * 0.92) {
+        el.classList.add("is-visible");
+        return;
+      }
       io.observe(el);
     });
   }
