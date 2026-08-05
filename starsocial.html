@@ -73,203 +73,242 @@
     </header>
 
     <main>
-      <!-- ───────── HERO ───────── -->
-      <section class="hero-bleed">
-        <!-- square photo flush right, dissolving into white on its left edge -->
-        <div class="hero-bleed-media" aria-hidden="true">
-          <img src="/img/social/csr-hero.jpg" alt="" fetchpriority="high" />
-          <div class="hero-bleed-fade"></div>
-        </div>
+      <!-- ───────── VIDEO BANNER ───────── -->
+      <section class="video-hero" data-video-hero>
+        <img class="video-hero-poster" src="/img/about/banner-poster.jpg" alt="" />
+        <video
+          class="video-hero-media"
+          data-src="/video/hero-banner.mp4"
+          poster="/img/about/banner-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"
+        ></video>
+        <div class="video-hero-scrim"></div>
 
-        <div class="shell" style="position: relative">
-          <div class="hero-bleed-grid">
-            <div class="editorial-hero-copy hero-bleed-copy">
-              <div class="mask-line" data-reveal-delay="0.05" style="padding-bottom: 0.1em">
-                <h1 class="hero-word">STARSOCIAL</h1>
-              </div>
-
-              <p class="hero-kicker" data-reveal data-reveal-delay="0.18">
-                Our values go beyond numbers and growth.
-              </p>
-              <p class="hero-para" data-reveal data-reveal-delay="0.26">
-                We believe in making a real impact, not just in markets, but in communities. That’s
-                why we give back at every step, aiming to create meaningful change where it matters
-                most.
-              </p>
-
-              <div class="scroll-cue" data-reveal data-reveal-delay="0.36">
-                <span class="scroll-cue-pill"><span class="scroll-cue-dot"></span></span>
-                <span class="scroll-cue-label">Scroll</span>
-              </div>
+        <div class="shell video-hero-inner">
+          <div class="video-hero-copy" data-stagger="0.12">
+            <div><span class="eyebrow">STARSOCIAL</span></div>
+            <div>
+              <h1>Beyond numbers,<br />beyond <em>growth</em></h1>
             </div>
-
-            <div class="hero-bleed-mobile" data-reveal>
-              <img src="/img/social/csr-hero.jpg" alt="STARTRADER giving back to the community" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ───────── CSR MARQUEE ───────── -->
-      <section class="sec-white section-80-flat" style="overflow: hidden">
-        <div class="shell">
-          <div class="split-head">
-            <div data-reveal><span class="eyebrow">CSR</span></div>
-            <div class="split-head-body split-head-body-wide">
-              <h2 class="section-title-sm" data-reveal>Learn more about our past CSR initiatives</h2>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal style="margin-top: 48px">
-          <div class="marquee">
-            <ul class="marquee-track" style="--marquee-duration: 45s">
-              <li><img src="/img/social/swiper06.webp" alt="STARTRADER CSR initiative" loading="lazy" /></li>
-              <li><img src="/img/social/nd-team-photo.webp" alt="STARTRADER Dubai team group photo on UAE National Day" loading="lazy" /></li>
-              <li><img src="/img/social/swiper07.webp" alt="STARTRADER CSR initiative" loading="lazy" /></li>
-              <li><img src="/img/social/nd-emirati-dress.webp" alt="STARTRADER colleagues in Emirati dress at UAE National Day celebration" loading="lazy" /></li>
-              <li><img src="/img/social/nd-sweets-flags.webp" alt="Arabic sweets with STARTRADER and UAE flags for National Day" loading="lazy" /></li>
-              <li><img src="/img/social/nd-office-sweets.webp" alt="UAE National Day sweets with STARTRADER and UAE flags in the office" loading="lazy" /></li>
-
-              <li aria-hidden="true"><img src="/img/social/swiper06.webp" alt="" loading="lazy" /></li>
-              <li aria-hidden="true"><img src="/img/social/nd-team-photo.webp" alt="" loading="lazy" /></li>
-              <li aria-hidden="true"><img src="/img/social/swiper07.webp" alt="" loading="lazy" /></li>
-              <li aria-hidden="true"><img src="/img/social/nd-emirati-dress.webp" alt="" loading="lazy" /></li>
-              <li aria-hidden="true"><img src="/img/social/nd-sweets-flags.webp" alt="" loading="lazy" /></li>
-              <li aria-hidden="true"><img src="/img/social/nd-office-sweets.webp" alt="" loading="lazy" /></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- ───────── WE GROW IN BUSINESS AND IN SPIRIT ───────── -->
-      <section class="sec-white section-60">
-        <div class="shell impact-grid">
-          <div data-reveal>
-            <div class="stamped-photo">
-              <img src="/img/home/team.jpg" alt="" loading="lazy" />
-              <div class="stamped-photo-scrim"></div>
-              <span class="stamped-photo-mark">✳ STARTRADER</span>
-            </div>
-          </div>
-
-          <div class="impact-copy">
-            <div data-reveal><span class="eyebrow">OUR IMPACT</span></div>
-            <h2 class="section-title-sm" data-reveal data-reveal-delay="0.06">
-              We grow in business and in spirit!
-            </h2>
-            <div data-reveal data-reveal-delay="0.12">
+            <div>
               <p>
-                We believe that success goes beyond financial growth. As such, we aim to create a
-                meaningful difference in people’s lives. Our commitment to corporate social
-                responsibility reflects our dedication to giving back, fostering positive change in
-                the society.
+                We believe in making a real impact — not just in markets, but in communities. That’s
+                why we give back at every step, where it matters most.
               </p>
-              <p class="impact-note">
-                The STARTRADERs believe that success is in expanding business and giving back to the
-                community.
-              </p>
+            </div>
+            <div>
+              <div class="video-hero-actions">
+                <a class="btn btn-primary btn-hero" href="/starscout.html">
+                  Explore open roles
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a class="btn btn-hero btn-ghost" href="/starlife.html">See life here</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ───────── MAKING A DIFFERENCE ───────── -->
-      <section class="sec-tint-soft section" style="position: relative; overflow: hidden">
-        <span class="ghost-word">JOIN US</span>
+      <!-- ───────── OUR IMPACT ───────── -->
+      <section class="about-section sec-white">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-blue" style="right: -12%; top: -8%; height: 540px; width: 540px"></span>
+        </div>
 
         <div class="shell" style="position: relative">
-          <div class="split-head">
-            <div data-reveal><span class="eyebrow">OUR INITIATIVES</span></div>
-            <div class="split-head-body split-head-body-wide">
-              <h2 class="section-title-sm" style="max-width: 470px" data-reveal>
-                Making a difference, One Initiative at a time
-              </h2>
-              <p data-reveal data-reveal-delay="0.08" style="font-size: 16px; line-height: 1.6">
-                Striving to create change in the world, we work on several initiatives:
-              </p>
-            </div>
+          <div class="sec-head">
+            <div data-reveal><span class="eyebrow">OUR IMPACT</span></div>
+            <h2 data-reveal data-reveal-delay="0.06">We grow in business and in spirit</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              Success goes beyond financial growth. Our commitment to corporate social responsibility
+              is how we give back, and how we keep the company honest about what growth is for.
+            </p>
           </div>
 
-          <div class="look-grid">
-            <div data-reveal>
-              <div class="look-photo">
-                <img src="/img/social/mark.webp" alt="STARTRADER initiatives" loading="lazy" />
+          <div class="impact-split">
+            <div class="impact-art" data-reveal>
+              <div class="mask-wipe">
+                <div class="mask-wipe-inner">
+                  <div class="frame frame-parallax" data-parallax="26">
+                    <img src="/img/social/csr2.jpg" alt="STARTRADER giving back to the community" loading="lazy" />
+                  </div>
+                </div>
+                <span class="mask-wipe-panel"></span>
+              </div>
+              <div class="art-tag">
+                <span class="art-tag-dot"></span>
+                <p>Community work, run by the same people who run the desks</p>
               </div>
             </div>
 
-            <div data-reveal data-reveal-delay="0.1">
-              <div class="accordion">
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="true">
-                    <span class="acc-label"><span class="acc-q">Education &amp; child welfare</span></span>
-                    <span class="acc-icon">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      Our work calls everyone to put on their binoculars of creativity and innovation
-                      to easily discover opportunities budding along the way. With STARTRADER, your
-                      abilities are challenged to improve and shine.
-                    </p>
-                  </div>
-                </div>
+            <div class="impact-copy" data-reveal data-reveal-delay="0.1">
+              <p>
+                We aim to create a meaningful difference in people’s lives. That means showing up for
+                education, for the environment, and for communities in the moments they need it —
+                not only when it makes a good headline.
+              </p>
+              <p>
+                The work is carried by volunteers from across the business, which is why it keeps
+                going after the campaign ends.
+              </p>
 
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="false">
-                    <span class="acc-label"><span class="acc-q">Sustainability &amp; environmental care</span></span>
-                    <span class="acc-icon">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      We invest in greener operations and community programmes that protect the
-                      environment and build a more sustainable future for the next generation.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="false">
-                    <span class="acc-label"><span class="acc-q">Disaster relief &amp; humanitarian aid</span></span>
-                    <span class="acc-icon">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      When crises strike, we move quickly — supporting relief efforts and standing
-                      with the communities that need help the most.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="acc-item">
-                  <button class="acc-trigger" type="button" aria-expanded="false">
-                    <span class="acc-label"><span class="acc-q">Community empowerment</span></span>
-                    <span class="acc-icon">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div class="acc-panel">
-                    <p>
-                      From mentorship to local partnerships, we help people gain the skills,
-                      confidence, and resources to shape their own success.
-                    </p>
-                  </div>
-                </div>
+              <div class="impact-pull">
+                <p>The STARTRADERs believe success is in expanding business <em>and</em> giving back to the community.</p>
+                <span>What we mean by impact</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────── CSR GALLERY ───────── -->
+      <section class="about-section sec-white" style="padding-top: 0">
+        <div class="shell" style="position: relative">
+          <div class="sec-head is-centered">
+            <div data-reveal style="display: flex; justify-content: center">
+              <span class="eyebrow">CSR</span>
+            </div>
+            <h2 data-reveal data-reveal-delay="0.06">Learn more about our past CSR initiatives</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              A look at where our people have shown up — hover any frame for the story behind it.
+            </p>
+          </div>
+        </div>
+
+        <div class="csr-strip" data-reveal>
+          <div class="csr-track">
+            <figure class="csr-shot">
+              <img src="/img/social/swiper06.webp" alt="A STARTRADER CSR initiative in the community" loading="lazy" />
+              <figcaption>A STARTRADER CSR initiative in the community</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/nd-team-photo.webp" alt="The Dubai team together on UAE National Day" loading="lazy" />
+              <figcaption>The Dubai team together on UAE National Day</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/csr1.jpg" alt="Volunteering hours given, not just donations sent" loading="lazy" />
+              <figcaption>Volunteering hours given, not just donations sent</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/swiper07.webp" alt="Supporting the causes our people care about" loading="lazy" />
+              <figcaption>Supporting the causes our people care about</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/nd-emirati-dress.webp" alt="Colleagues in Emirati dress for National Day" loading="lazy" />
+              <figcaption>Colleagues in Emirati dress for National Day</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/csr3.jpg" alt="Community work that outlasts a single campaign" loading="lazy" />
+              <figcaption>Community work that outlasts a single campaign</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/nd-sweets-flags.webp" alt="Arabic sweets and flags marking National Day" loading="lazy" />
+              <figcaption>Arabic sweets and flags marking National Day</figcaption>
+            </figure>
+            <figure class="csr-shot">
+              <img src="/img/social/init.jpg" alt="Local partnerships built to keep going" loading="lazy" />
+              <figcaption>Local partnerships built to keep going</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/swiper06.webp" alt="" loading="lazy" />
+              <figcaption>A STARTRADER CSR initiative in the community</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/nd-team-photo.webp" alt="" loading="lazy" />
+              <figcaption>The Dubai team together on UAE National Day</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/csr1.jpg" alt="" loading="lazy" />
+              <figcaption>Volunteering hours given, not just donations sent</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/swiper07.webp" alt="" loading="lazy" />
+              <figcaption>Supporting the causes our people care about</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/nd-emirati-dress.webp" alt="" loading="lazy" />
+              <figcaption>Colleagues in Emirati dress for National Day</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/csr3.jpg" alt="" loading="lazy" />
+              <figcaption>Community work that outlasts a single campaign</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/nd-sweets-flags.webp" alt="" loading="lazy" />
+              <figcaption>Arabic sweets and flags marking National Day</figcaption>
+            </figure>
+            <figure class="csr-shot" aria-hidden="true">
+              <img src="/img/social/init.jpg" alt="" loading="lazy" />
+              <figcaption>Local partnerships built to keep going</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────── INITIATIVES ───────── -->
+      <section class="about-section" style="background: var(--tint-20)">
+        <div class="atmos">
+          <span class="atmos-orb atmos-orb-accent" style="left: -12%; bottom: -16%; height: 520px; width: 520px"></span>
+        </div>
+
+        <div class="shell" style="position: relative">
+          <div class="sec-head is-centered">
+            <div data-reveal style="display: flex; justify-content: center">
+              <span class="eyebrow">OUR INITIATIVES</span>
+            </div>
+            <h2 data-reveal data-reveal-delay="0.06">Making a difference, one initiative at a time</h2>
+            <p data-reveal data-reveal-delay="0.12">
+              Four areas we keep coming back to, because progress in them compounds.
+            </p>
+          </div>
+
+          <div class="initiatives" data-stagger="0.09">
+            <article class="initiative glass">
+              <div class="initiative-media">
+                <span class="initiative-num">01</span>
+                <img src="/img/social/csr2.jpg" alt="" loading="lazy" />
+              </div>
+              <div class="initiative-body">
+                <h3>Education &amp; child welfare</h3>
+                <p>We back the schooling and safety of children in the communities we operate in — the work that compounds longest.</p>
+              </div>
+            </article>
+            <article class="initiative glass">
+              <div class="initiative-media">
+                <span class="initiative-num">02</span>
+                <img src="/img/social/csr3.jpg" alt="" loading="lazy" />
+              </div>
+              <div class="initiative-body">
+                <h3>Sustainability &amp; environmental care</h3>
+                <p>Greener operations and community programmes that protect the environment for the generation after this one.</p>
+              </div>
+            </article>
+            <article class="initiative glass">
+              <div class="initiative-media">
+                <span class="initiative-num">03</span>
+                <img src="/img/social/csr1.jpg" alt="" loading="lazy" />
+              </div>
+              <div class="initiative-body">
+                <h3>Disaster relief &amp; humanitarian aid</h3>
+                <p>When crises strike we move quickly, supporting relief efforts and standing with the communities that need it most.</p>
+              </div>
+            </article>
+            <article class="initiative glass">
+              <div class="initiative-media">
+                <span class="initiative-num">04</span>
+                <img src="/img/social/mark.webp" alt="" loading="lazy" />
+              </div>
+              <div class="initiative-body">
+                <h3>Community empowerment</h3>
+                <p>From mentorship to local partnerships, we help people gain the skills, confidence and resources to shape their own success.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>

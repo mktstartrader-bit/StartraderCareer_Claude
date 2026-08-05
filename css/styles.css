@@ -2341,7 +2341,8 @@ h4 {
   box-shadow: var(--sh-lift);
 }
 
-/* a frosted caption riding the image corner */
+/* Dark frost, not light — the caption rides arbitrary photography, and
+   light-on-dark is the only pairing that stays legible over all of it. */
 .art-tag {
   position: absolute;
   left: 20px;
@@ -2350,7 +2351,11 @@ h4 {
   display: flex;
   align-items: center;
   gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 14px;
+  background: rgba(4, 8, 28, 0.6);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   padding: 12px 16px;
 }
 
@@ -2376,7 +2381,7 @@ h4 {
 .art-tag p {
   font-size: 12.5px;
   line-height: 1.4;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 /* ── awards ────────────────────────────────────────────────────────────── */
@@ -5428,76 +5433,308 @@ h4 {
 }
 
 /* ── 14. StarSocial ────────────────────────────────────────────────────── */
-.impact-grid {
+
+/* ── impact split ──────────────────────────────────────────────────────── */
+.impact-split {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  gap: 40px;
+  gap: 44px;
+  margin-top: 56px;
 }
 
 @media (min-width: 1024px) {
-  .impact-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 64px;
+  .impact-split {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 72px;
+    margin-top: 72px;
   }
 }
 
-.stamped-photo {
+.impact-art {
   position: relative;
-  height: 320px;
-  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 28px;
   overflow: hidden;
-  border-radius: 16px;
 }
 
-@media (min-width: 640px) {
-  .stamped-photo {
-    height: 400px;
-  }
-}
-
-.stamped-photo img {
+.impact-art .mask-wipe {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  border-radius: 28px;
 }
 
-.stamped-photo-scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 13, 75, 0.45);
-}
-
-.stamped-photo-mark {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.impact-copy h2 {
-  margin-top: 24px;
-  max-width: 443px;
+.impact-art .frame {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+  box-shadow: var(--sh-lift);
 }
 
 .impact-copy p {
-  margin-top: 20px;
-  font-size: 14px;
-  line-height: 25px;
+  margin-top: 18px;
+  font-size: 14.5px;
+  line-height: 1.78;
   color: var(--muted);
 }
 
-.impact-copy .impact-note {
-  margin-top: 16px;
-  font-size: 16px;
-  line-height: 30px;
+/* the line the section turns on, set apart from the body copy */
+.impact-pull {
+  position: relative;
+  margin-top: 30px;
+  border-left: 3px solid var(--blue);
+  padding-left: 22px;
+}
+
+.impact-pull p {
+  margin-top: 0;
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
   color: var(--ink);
+}
+
+.impact-pull span {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-alt);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+}
+
+/* ── CSR gallery: a full-bleed strip that drifts ───────────────────────── */
+.csr-strip {
+  position: relative;
+  width: 100%;
+  margin-top: 48px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .csr-strip {
+    margin-top: 64px;
+  }
+}
+
+.csr-strip::before,
+.csr-strip::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  z-index: 3;
+  width: 120px;
+  pointer-events: none;
+}
+
+.csr-strip::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.csr-strip::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, transparent);
+}
+
+.csr-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  animation: csr-drift 64s linear infinite;
+}
+
+.csr-strip:hover .csr-track,
+.csr-strip:focus-within .csr-track {
+  animation-play-state: paused;
+}
+
+@keyframes csr-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.csr-shot {
+  position: relative;
+  height: 260px;
+  width: 380px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--sh-card);
+}
+
+@media (min-width: 640px) {
+  .csr-shot {
+    height: 300px;
+    width: 440px;
+  }
+}
+
+.csr-shot img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.csr-shot:hover img {
+  transform: scale(1.06);
+}
+
+/* the caption only surfaces on hover, so the strip stays photographic */
+.csr-shot figcaption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 42px 20px 18px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #fff;
+  background: linear-gradient(to top, rgba(4, 8, 28, 0.85), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s var(--ease);
+}
+
+.csr-shot:hover figcaption {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── initiatives ───────────────────────────────────────────────────────── */
+.initiatives {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .initiatives {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .initiatives {
+    margin-top: 72px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.initiative {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+
+.initiative::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s var(--ease);
+}
+
+.initiative:hover::after {
+  transform: none;
+}
+
+.initiative:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lift);
+}
+
+.initiative-media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.initiative-media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+
+.initiative:hover .initiative-media img {
+  transform: scale(1.07);
+}
+
+.initiative-num {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 2;
+  display: grid;
+  height: 32px;
+  width: 32px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(4, 8, 28, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  transition: all 0.4s var(--ease);
+}
+
+.initiative:hover .initiative-num {
+  background: var(--blue);
+  transform: scale(1.08);
+}
+
+.initiative-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.initiative-body h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+  transition: color 0.35s var(--ease);
+}
+
+.initiative:hover .initiative-body h3 {
+  color: var(--blue);
+}
+
+.initiative-body p {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csr-track {
+    animation: none;
+  }
 }
 
 /* ── 15. StarBlog ──────────────────────────────────────────────────────── */
