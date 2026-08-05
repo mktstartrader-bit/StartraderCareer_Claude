@@ -1454,22 +1454,37 @@ h4 {
   overflow: hidden;
 }
 
-.home-hero .parallax {
+.home-hero-poster,
+.home-hero .video-hero-media {
   position: absolute;
   inset: 0;
-}
-
-.home-hero .parallax img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transform: translateY(var(--p, 0px)) scale(1.1);
 }
 
+/* Black from the left, clearing by the right edge — the footage is bright,
+   so the copy column needs a real floor rather than a wash. */
 .home-hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.35), transparent);
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.7) 24%,
+      rgba(0, 0, 0, 0.44) 48%,
+      rgba(0, 0, 0, 0.16) 74%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 42%);
+}
+
+/* on narrow screens the copy sits over the middle of the frame */
+@media (max-width: 700px) {
+  .home-hero-scrim {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 55%, rgba(0, 0, 0, 0.55) 100%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 45%);
+  }
 }
 
 .home-hero .shell {

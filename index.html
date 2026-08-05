@@ -72,10 +72,18 @@
 
     <main>
       <!-- ───────── HERO ───────── -->
-      <section class="home-hero">
-        <div class="parallax" data-parallax="60">
-          <img src="/img/home/hero-banner.jpg" alt="" fetchpriority="high" />
-        </div>
+      <section class="home-hero" data-video-hero>
+        <img class="home-hero-poster" src="/img/home/hero-poster.jpg" alt="" fetchpriority="high" />
+        <video
+          class="video-hero-media"
+          data-src="/video/home-hero.mp4"
+          poster="/img/home/hero-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"
+        ></video>
         <div class="home-hero-scrim"></div>
 
         <div class="shell">
