@@ -1483,11 +1483,11 @@ h3.mask-line {
   inset: 0;
   background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.82) 0%,
-      rgba(0, 0, 0, 0.7) 24%,
-      rgba(0, 0, 0, 0.44) 48%,
-      rgba(0, 0, 0, 0.16) 74%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.88) 26%,
+      rgba(0, 0, 0, 0.66) 50%,
+      rgba(0, 0, 0, 0.3) 76%,
+      rgba(0, 0, 0, 0.05) 100%
     ),
     linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 42%);
 }
