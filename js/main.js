@@ -96,6 +96,20 @@
       });
     });
 
+    // once a stagger group has fully entered, drop the inline delays so hover
+    // micro-interactions on the children respond immediately
+    var clearStaggerDelays = function (el) {
+      if (!el.hasAttribute("data-stagger")) return;
+      var step = parseFloat(el.getAttribute("data-stagger")) || 0.09;
+      var base = parseFloat(el.getAttribute("data-stagger-delay")) || 0;
+      var kids = $$(":scope > *", el);
+      setTimeout(function () {
+        kids.forEach(function (c) {
+          c.style.transitionDelay = "0s";
+        });
+      }, (base + kids.length * step) * 1000 + 700);
+    };
+
     // threshold 0, not 0.2 — a section taller than the viewport can never show
     // 20% of itself at once, so it would sit hidden until the page happened to
     // scroll past it (or forever, if it was the last thing on the page)
@@ -104,6 +118,7 @@
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           entry.target.classList.add("is-visible");
+          clearStaggerDelays(entry.target);
           io.unobserve(entry.target);
         });
       },
@@ -116,6 +131,7 @@
     targets.forEach(function (el) {
       if (el.getBoundingClientRect().top < vh * 0.92) {
         el.classList.add("is-visible");
+        clearStaggerDelays(el);
         return;
       }
       io.observe(el);
@@ -156,6 +172,87 @@
     update();
     window.addEventListener("scroll", request, { passive: true });
     window.addEventListener("resize", request);
+  }
+
+  /* ── Cursor glow ────────────────────────────────────────────────────── */
+  // Elements with [data-glow] get the pointer position written onto them as
+  // --mx/--my; their CSS renders a radial wash that follows the cursor.
+  function initGlow() {
+    $$("[data-glow]").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 100).toFixed(2) + "%");
+        el.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 100).toFixed(2) + "%");
+      });
+    });
+  }
+
+  /* ── CEO quote: word-by-word reveal ─────────────────────────────────── */
+  // Splits the quote into word spans (content untouched) and lets them
+  // cascade in when the quote scrolls into view.
+  function initQuoteReveal() {
+    var quote = $(".ceo-quote");
+    if (!quote || reduceMotion || !("IntersectionObserver" in window)) return;
+
+    var idx = 0;
+    var delay = function (el) {
+      el.style.transitionDelay = (idx++ * 0.022).toFixed(3) + "s";
+    };
+
+    Array.prototype.slice.call(quote.childNodes).forEach(function (node) {
+      if (node.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(" "));
+            return;
+          }
+          var w = document.createElement("span");
+          w.className = "quote-word";
+          w.textContent = part;
+          delay(w);
+          frag.appendChild(w);
+        });
+        quote.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        node.classList.add("quote-word");
+        delay(node);
+      }
+    });
+
+    if (quote.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      quote.classList.add("is-live");
+      return;
+    }
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          quote.classList.add("is-live");
+          io.disconnect();
+        });
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(quote);
+  }
+
+  /* ── Magnetic buttons ───────────────────────────────────────────────── */
+  // Elements with [data-magnetic] lean toward the cursor and spring back.
+  function initMagnetic() {
+    if (reduceMotion) return;
+    $$("[data-magnetic]").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = (e.clientX - r.left - r.width / 2) * 0.28;
+        var dy = (e.clientY - r.top - r.height / 2) * 0.28;
+        el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
+      });
+      el.addEventListener("pointerleave", function () {
+        el.style.transform = "";
+      });
+    });
   }
 
   /* ── Count-up ───────────────────────────────────────────────────────── */
@@ -1677,6 +1774,9 @@
     initNav();
     initReveal();
     initParallax();
+    initGlow();
+    initQuoteReveal();
+    initMagnetic();
     initCounters();
     initAccordions();
     initVideoPlayer();
