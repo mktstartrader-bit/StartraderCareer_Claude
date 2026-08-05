@@ -29,9 +29,21 @@
 
     var toggle = $(".nav-toggle", header);
     if (toggle) {
-      toggle.addEventListener("click", function () {
-        var open = header.classList.toggle("is-open");
+      var setOpen = function (open) {
+        header.classList.toggle("is-open", open);
         toggle.setAttribute("aria-expanded", String(open));
+      };
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setOpen(!header.classList.contains("is-open"));
+      });
+      // a tap outside or Escape should close it — on a phone the menu covers
+      // the page, and the toggle is easy to miss on the way back out
+      document.addEventListener("click", function (e) {
+        if (header.classList.contains("is-open") && !header.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setOpen(false);
       });
     }
 
@@ -319,6 +331,7 @@
     var list = $(".job-list", root);
     var order = cards.slice();
     var empty = $(".results-empty", root);
+    var pager = $(".job-pagination", root);
     var countEl = $("[data-result-count]", root);
     var countWrap = $(".results-count", root);
     var chipsEl = $("[data-active-chips]", root);
@@ -357,15 +370,6 @@
         if (hay.indexOf(q) === -1) return false;
       }
       return true;
-    };
-
-    var setPanel = function (card, open) {
-      var panel = $(".job-panel", card);
-      card.classList.toggle("is-open", open);
-      $$("[data-job-toggle]", card).forEach(function (b) {
-        b.setAttribute("aria-expanded", String(open));
-      });
-      if (panel) panel.style.height = open ? panel.scrollHeight + "px" : "0px";
     };
 
     var renderChips = function () {
@@ -422,15 +426,56 @@
       });
     };
 
+    var PAGE_SIZE = 4;
+    var page = 1;
+
+    var renderPager = function (total) {
+      if (!pager) return;
+      pager.innerHTML = "";
+      pager.hidden = total <= 1;
+      if (total <= 1) return;
+
+      var button = function (label, target, opts) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = label;
+        if (opts.arrow) {
+          b.className = "page-arrow";
+          b.setAttribute("aria-label", opts.label);
+        }
+        if (opts.disabled) b.disabled = true;
+        if (opts.current) {
+          b.classList.add("is-current");
+          b.setAttribute("aria-current", "true");
+        }
+        b.addEventListener("click", function () {
+          page = target;
+          apply();
+          var list = $(".job-list", root);
+          if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        return b;
+      };
+
+      pager.appendChild(button("‹", page - 1, { arrow: true, label: "Previous page", disabled: page === 1 }));
+      for (var i = 1; i <= total; i++) pager.appendChild(button(String(i), i, { current: i === page }));
+      pager.appendChild(button("›", page + 1, { arrow: true, label: "Next page", disabled: page === total }));
+    };
+
     var apply = function () {
-      // visible cards
-      var visible = 0;
-      cards.forEach(function (card) {
-        var ok = passes(card.dataset, null);
-        card.hidden = !ok;
-        if (ok) visible++;
-        else if (card.classList.contains("is-open")) setPanel(card, false);
+      var matched = cards.filter(function (card) {
+        return passes(card.dataset, null);
       });
+      var visible = matched.length;
+      var totalPages = Math.max(1, Math.ceil(visible / PAGE_SIZE));
+      page = Math.min(Math.max(1, page), totalPages);
+      var from = (page - 1) * PAGE_SIZE;
+      var shown = matched.slice(from, from + PAGE_SIZE);
+
+      cards.forEach(function (card) {
+        card.hidden = shown.indexOf(card) === -1;
+      });
+      renderPager(totalPages);
 
       // facet counts — how many roles each option would leave
       GROUPS.forEach(function (g) {
@@ -478,6 +523,7 @@
     GROUPS.forEach(function (g) {
       $$('.filter-group[data-filter-group="' + g + '"] input', root).forEach(function (box) {
         box.addEventListener("change", function () {
+          page = 1;
           if (box.checked) state[g].push(box.value);
           else
             state[g] = state[g].filter(function (v) {
@@ -489,6 +535,7 @@
     });
 
     var resetAll = function () {
+      page = 1;
       state = { dept: [], location: [], type: [], query: "" };
       $$(".filter-group input", root).forEach(function (b) {
         b.checked = false;
@@ -505,6 +552,7 @@
     /* search */
     if (input) {
       var onInput = function () {
+        page = 1;
         state.query = input.value.trim();
         if (searchbar) searchbar.classList.toggle("has-value", input.value.length > 0);
         syncQuickChips();
@@ -535,6 +583,7 @@
     $$(".quick-chip", root).forEach(function (chip) {
       chip.addEventListener("click", function () {
         var term = chip.getAttribute("data-quick");
+        page = 1;
         state.query = state.query === term ? "" : term;
         if (input) input.value = state.query;
         if (searchbar) searchbar.classList.toggle("has-value", !!state.query);
@@ -564,15 +613,9 @@
       });
     });
 
-    /* expand + save */
+    /* saved roles */
     var saved = readSaved();
     cards.forEach(function (card) {
-      $$("[data-job-toggle]", card).forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          setPanel(card, !card.classList.contains("is-open"));
-        });
-      });
-
       var save = $(".job-save", card);
       if (!save) return;
       var title = card.dataset.title;
@@ -594,12 +637,6 @@
       save.addEventListener("animationend", function () {
         save.classList.remove("pop");
       });
-    });
-
-    // keep an open description correctly sized through a reflow
-    window.addEventListener("resize", function () {
-      var open = $(".job-card.is-open .job-panel", root);
-      if (open) open.style.height = open.scrollHeight + "px";
     });
 
     apply();

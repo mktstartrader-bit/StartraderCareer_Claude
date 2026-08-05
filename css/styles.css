@@ -869,10 +869,18 @@ h4 {
   font-weight: 600;
 }
 
-.nav-mobile .btn {
+.nav-mobile li:last-child {
   margin-top: 16px;
+}
+
+.nav-mobile li:last-child a {
+  display: flex;
   width: 100%;
   height: 46px;
+  border-bottom: 0;
+  padding-block: 0;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* ── 8. Footer ─────────────────────────────────────────────────────────── */
@@ -1742,13 +1750,7 @@ h4 {
 .ceo-section {
   position: relative;
   overflow: hidden;
-  padding-bottom: 64px;
-}
-
-@media (min-width: 1024px) {
-  .ceo-section {
-    padding-bottom: 0;
-  }
+  padding-bottom: 0;
 }
 
 .ceo-bg {
@@ -1783,19 +1785,32 @@ h4 {
   }
 }
 
+/* the cut-out is shown whole and flush with the section floor, so no crop */
 .ceo-portrait {
+  display: flex;
+  align-items: flex-end;
   margin-inline: auto;
-  height: clamp(360px, 44vw, 560px);
   width: 100%;
-  max-width: 450px;
-  overflow: hidden;
+  max-width: 460px;
 }
 
 .ceo-portrait img {
-  height: 100%;
+  display: block;
+  height: auto;
   width: 100%;
-  object-fit: cover;
-  object-position: top;
+}
+
+/* on one column the message reads first and the portrait closes the section */
+@media (max-width: 1023px) {
+  .ceo-grid > :first-child {
+    order: 2;
+  }
+  .ceo-grid > .ceo-message {
+    order: 1;
+  }
+  .ceo-grid {
+    gap: 24px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -2511,66 +2526,30 @@ h4 {
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* two badge rows drifting opposite ways — a logo wall that never sits still */
-.badge-rail {
-  margin-top: 56px;
-  position: relative;
-  overflow: hidden;
+/* all nine badges in a single view, in their own colours */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 48px;
 }
 
-.badge-rail::before,
-.badge-rail::after {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  z-index: 3;
-  width: 90px;
-  pointer-events: none;
-}
-
-.badge-rail::before {
-  left: 0;
-  background: linear-gradient(to right, #fff, transparent);
-}
-
-.badge-rail::after {
-  right: 0;
-  background: linear-gradient(to left, #fff, transparent);
-}
-
-.badge-row {
-  display: flex;
-  width: max-content;
-  gap: 18px;
-  padding-block: 9px;
-}
-
-.badge-row-a {
-  animation: badge-scroll 46s linear infinite;
-}
-
-.badge-row-b {
-  animation: badge-scroll 54s linear infinite reverse;
-}
-
-.badge-rail:hover .badge-row {
-  animation-play-state: paused;
-}
-
-@keyframes badge-scroll {
-  from {
-    transform: translateX(0);
+@media (min-width: 640px) {
+  .badge-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
   }
-  to {
-    transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  .badge-grid {
+    margin-top: 56px;
   }
 }
 
 .badge-chip {
   display: grid;
-  height: 104px;
-  width: 210px;
-  flex-shrink: 0;
+  min-height: 112px;
   place-items: center;
   border: 1px solid rgba(28, 31, 42, 0.07);
   border-radius: 18px;
@@ -2578,33 +2557,19 @@ h4 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 20px;
-  transition: all 0.45s var(--ease);
+  transition: all 0.4s var(--ease);
 }
 
 .badge-chip img {
-  max-height: 62px;
-  width: auto;
-  max-width: 100%;
-  filter: grayscale(1);
-  opacity: 0.5;
-  transition: all 0.45s var(--ease);
+  width: 100%;
+  max-width: 160px;
+  height: auto;
 }
 
 .badge-chip:hover {
-  border-color: rgba(0, 71, 187, 0.3);
-  box-shadow: var(--sh-card);
   transform: translateY(-4px);
-}
-
-.badge-chip:hover img {
-  filter: none;
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .badge-row {
-    animation: none;
-  }
+  border-color: rgba(0, 71, 187, 0.28);
+  box-shadow: var(--sh-card);
 }
 
 /* ── global presence (expanding jurisdictions) ─────────────────────────── */
@@ -4813,10 +4778,6 @@ h4 {
   transition: transform 0.35s var(--ease);
 }
 
-.job-card.is-open .job-expand svg {
-  transform: rotate(180deg);
-}
-
 .job-save.is-saved {
   border-color: var(--blue);
   background: rgba(0, 71, 187, 0.1);
@@ -4834,50 +4795,6 @@ h4 {
   72% {
     transform: scale(1.22);
   }
-}
-
-.job-panel {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  height: 0;
-  transition: height 0.4s var(--ease);
-}
-
-.job-panel-inner {
-  border-top: 1px solid rgba(28, 31, 42, 0.08);
-  padding: 20px 24px 24px;
-}
-
-.job-panel-inner p {
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--muted);
-}
-
-.job-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.job-highlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(28, 31, 42, 0.08);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 8px 12px;
-  font-size: 12.5px;
-  color: rgba(28, 31, 42, 0.75);
-}
-
-.job-highlight svg {
-  height: 14px;
-  width: 14px;
-  color: var(--blue);
 }
 
 /* empty state carries the way out, not just the bad news */
