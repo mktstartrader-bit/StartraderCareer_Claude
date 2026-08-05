@@ -13,7 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarBlog · STARTRADER Careers" />
     <meta property="og:description" content="Ideas, insights and moments that matter — straight from the people who live them at STARTRADER." />
@@ -21,7 +22,298 @@
     <script>
       document.documentElement.className += " js";
     </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="/js/main.js" defer></script>
+  
+    <!-- Page-specific styles (kept with the page for easy detachment) -->
+    <style>
+/* ── page-specific styles (moved from css/style.css) ── */
+.blog-side .searchbar {
+  margin: 0;
+  max-width: none;
+  padding: 7px 7px 7px 18px;
+}
+
+.blog-side .searchbar input {
+  height: 40px;
+  font-size: 14px;
+}
+
+.blog-side .searchbar-go {
+  height: 40px;
+  padding-inline: 18px;
+  font-size: 13.5px;
+}
+
+.blog-panel .filter-panel-head h2 {
+  font-size: 14.5px;
+}
+
+.blog-panel .filter-group {
+  margin-top: 14px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* no overflow:hidden here — it would make this the sticky container and
+   silently break the sidebar. The .atmos child clips its own orb. */
+.blog-page {
+  position: relative;
+  background: var(--tint-20);
+  padding-top: calc(var(--nav-h) + 44px);
+  padding-bottom: 96px;
+}
+
+@media (min-width: 1024px) {
+  .blog-page {
+    padding-top: calc(var(--nav-h) + 56px);
+    padding-bottom: 120px;
+  }
+}
+
+.blog-title {
+  margin-top: 26px;
+  text-align: center;
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -2.5px;
+}
+
+.blog-lede {
+  margin: 16px auto 0;
+  max-width: 520px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ── articles + sidebar ────────────────────────────────────────────────── */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  margin-top: 44px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .blog-layout {
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-side {
+    position: sticky;
+    top: calc(var(--nav-h) + 22px);
+  }
+}
+
+.topic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 9px;
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 13.5px;
+  color: var(--muted);
+  transition: all 0.28s var(--ease);
+}
+
+.topic:hover {
+  background: rgba(218, 227, 237, 0.4);
+  color: var(--ink);
+}
+
+.topic.is-active {
+  background: rgba(0, 71, 187, 0.07);
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.topic-count {
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.tag-chip {
+  border: 1px solid rgba(28, 31, 42, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px 11px;
+  font-size: 11.5px;
+  color: var(--muted);
+  transition: all 0.28s var(--ease);
+}
+
+.tag-chip:hover {
+  border-color: rgba(0, 71, 187, 0.4);
+  color: var(--blue);
+}
+
+.tag-chip.is-active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.tag-chip[hidden] {
+  display: none !important;
+}
+
+.tag-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--muted);
+  transition: color 0.28s var(--ease);
+}
+
+.tag-more:hover {
+  color: var(--blue);
+}
+
+.tag-more svg {
+  transition: transform 0.35s var(--ease);
+}
+
+.tag-more.is-open svg {
+  transform: rotate(180deg);
+}
+
+/* ── results state ─────────────────────────────────────────────────────── */
+.blog-count {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.blog-count strong {
+  font-family: var(--font-alt);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.blog-empty {
+  border: 1px solid rgba(28, 31, 42, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  padding: 54px 24px;
+  text-align: center;
+}
+
+.blog-empty h3 {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.blog-empty p {
+  margin: 8px auto 18px;
+  max-width: 320px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.blog-pagination {
+  margin-top: 40px;
+}
+
+.blog-pagination button {
+  border: 1px solid rgba(28, 31, 42, 0.08);
+  background: #fff;
+}
+
+.blog-pagination button.is-current {
+  border-color: var(--blue);
+}
+
+.blog-pagination .page-arrow {
+  border-color: transparent;
+  background: transparent;
+}
+
+.blog-panel {
+  margin-top: 16px;
+  padding: 20px;
+}
+
+/* topic rows mirror .filter-opt, but they are buttons rather than checkboxes */
+.topic {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 11px;
+  padding-block: 9px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.topic-label {
+  font-size: 14px;
+  color: var(--ink);
+  transition: transform 0.28s var(--ease), color 0.28s var(--ease);
+}
+
+.topic:hover .topic-label {
+  transform: translateX(2px);
+  color: var(--blue);
+}
+
+.topic.is-active .topic-label {
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.topic-count {
+  margin-left: auto;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(28, 31, 42, 0.42);
+}
+
+/* tag chips take the job board's pill treatment */
+.tag-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.tag-chip.is-active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+    </style>
   </head>
   <body>
 <header class="site-header">
@@ -86,8 +378,8 @@
           <span aria-current="page">Articles</span>
         </nav>
 
-        <h1 class="blog-title" data-reveal>Articles</h1>
-        <p class="blog-lede" data-reveal data-reveal-delay="0.06">
+        <h1 class="blog-title" data-aos="fade-up">Articles</h1>
+        <p class="blog-lede" data-aos="fade-up" data-aos-delay="60">
           Ideas, insights and moments that matter — straight from the people who live them.
         </p>
 
@@ -101,7 +393,7 @@
             <a
               class="post-card"
               href="/starblog/startrader-christmas-celebration.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="People &amp; culture"
               data-tags="Culture|Celebrations|Team"
@@ -121,7 +413,7 @@
             <a
               class="post-card"
               href="/starblog/thirty-global-awards-what-they-mean.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Achievements"
               data-tags="Awards|Trust|Standards"
@@ -141,7 +433,7 @@
             <a
               class="post-card"
               href="/starblog/inside-our-trading-desk.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Market insights"
               data-tags="Markets|Dealing desk|Process"
@@ -161,7 +453,7 @@
             <a
               class="post-card"
               href="/starblog/from-intern-to-team-lead.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="People &amp; culture"
               data-tags="Growth|Careers|Mentorship"
@@ -181,7 +473,7 @@
             <a
               class="post-card"
               href="/starblog/culture-behind-the-numbers.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="People &amp; culture"
               data-tags="Culture|Hiring|Values"
@@ -201,7 +493,7 @@
             <a
               class="post-card"
               href="/starblog/reading-the-markets-volatility-playbook.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Market insights"
               data-tags="Markets|Volatility|Risk"
@@ -221,7 +513,7 @@
             <a
               class="post-card"
               href="/starblog/one-team-across-time-zones.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="People &amp; culture"
               data-tags="Culture|Global teams|Remote"
@@ -241,7 +533,7 @@
             <a
               class="post-card"
               href="/starblog/on-the-global-stage.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Achievements"
               data-tags="Partnerships|Brand|Awards"
@@ -261,7 +553,7 @@
             <a
               class="post-card"
               href="/starblog/spreads-from-zero-explained.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Market insights"
               data-tags="Spreads|Costs|Markets"
@@ -281,7 +573,7 @@
             <a
               class="post-card"
               href="/starblog/behind-thirty-awards-discipline.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Achievements"
               data-tags="Awards|Standards|Habits"
@@ -301,7 +593,7 @@
             <a
               class="post-card"
               href="/starblog/a-day-in-customer-support.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="People &amp; culture"
               data-tags="Careers|Support|Team"
@@ -321,7 +613,7 @@
             <a
               class="post-card"
               href="/starblog/leverage-without-the-jargon.html"
-              data-reveal
+              data-aos="fade-up"
               data-post
               data-category="Market insights"
               data-tags="Leverage|Risk|Markets"
@@ -445,7 +737,7 @@
     </main>
 
     <footer class="site-footer">
-      <div class="shell" data-reveal>
+      <div class="shell" data-aos="fade-up">
         <div class="footer-top">
           <a href="/" aria-label="STARTRADER Careers home">
             <span class="logo" role="img" aria-label="STARTRADER Careers">

@@ -13,7 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarSocial · STARTRADER Careers" />
@@ -28,7 +30,310 @@
     <script>
       document.documentElement.className += " js";
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="/js/main.js" defer></script>
+  
+    <!-- Page-specific styles (kept with the page for easy detachment) -->
+    <style>
+/* ── page-specific styles (moved from css/style.css) ── */
+.impact-art > .frame,
+.impact-art .mask-wipe {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+}
+
+.impact-art .frame {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+  box-shadow: var(--sh-lift);
+}
+
+/* ── impact split ──────────────────────────────────────────────────────── */
+.impact-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 44px;
+  margin-top: 56px;
+}
+
+@media (min-width: 1024px) {
+  .impact-split {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 72px;
+    margin-top: 72px;
+  }
+}
+
+.impact-art {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.impact-copy p {
+  margin-top: 18px;
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: var(--muted);
+}
+
+/* the line the section turns on, set apart from the body copy */
+.impact-pull {
+  position: relative;
+  margin-top: 30px;
+  border-left: 3px solid var(--blue);
+  padding-left: 22px;
+}
+
+.impact-pull p {
+  margin-top: 0;
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+.impact-pull span {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-alt);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+}
+
+/* ── CSR gallery: a full-bleed strip that drifts ───────────────────────── */
+.csr-strip {
+  position: relative;
+  width: 100%;
+  margin-top: 48px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .csr-strip {
+    margin-top: 64px;
+  }
+}
+
+.csr-strip::before,
+.csr-strip::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  z-index: 3;
+  width: 120px;
+  pointer-events: none;
+}
+
+.csr-strip::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.csr-strip::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, transparent);
+}
+
+.csr-strip.swiper {
+  overflow: hidden;
+  padding-inline: var(--shell-pad);
+}
+
+/* continuous linear drift via Swiper autoplay */
+.csr-strip .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.csr-track {
+  display: flex;
+}
+
+.csr-shot {
+  position: relative;
+  height: 260px;
+  width: 380px !important; /* swiper slidesPerView:auto */
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--sh-card);
+}
+
+@media (min-width: 640px) {
+  .csr-shot {
+    height: 300px;
+    width: 440px;
+  }
+}
+
+.csr-shot img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.csr-shot:hover img {
+  transform: scale(1.06);
+}
+
+/* the caption only surfaces on hover, so the strip stays photographic */
+.csr-shot figcaption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 42px 20px 18px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #fff;
+  background: linear-gradient(to top, rgba(4, 8, 28, 0.85), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s var(--ease);
+}
+
+.csr-shot:hover figcaption {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── initiatives ───────────────────────────────────────────────────────── */
+.initiatives {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .initiatives {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .initiatives {
+    margin-top: 72px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.initiative {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+
+.initiative::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s var(--ease);
+}
+
+.initiative:hover::after {
+  transform: none;
+}
+
+.initiative:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lift);
+}
+
+.initiative-media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.initiative-media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+
+.initiative:hover .initiative-media img {
+  transform: scale(1.07);
+}
+
+.initiative-num {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 2;
+  display: grid;
+  height: 32px;
+  width: 32px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(4, 8, 28, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  transition: all 0.4s var(--ease);
+}
+
+.initiative:hover .initiative-num {
+  background: var(--blue);
+  transform: scale(1.08);
+}
+
+.initiative-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.initiative-body h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+  transition: color 0.35s var(--ease);
+}
+
+.initiative:hover .initiative-body h3 {
+  color: var(--blue);
+}
+
+.initiative-body p {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csr-track {
+    animation: none;
+  }
+}
+    </style>
   </head>
   <body>
 <header class="site-header">
@@ -131,27 +436,22 @@
 
         <div class="shell" style="position: relative">
           <div class="sec-head">
-            <div data-reveal><span class="eyebrow">OUR IMPACT</span></div>
-            <h2 data-reveal data-reveal-delay="0.06">We grow in business and in spirit!</h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <div data-aos="fade-up"><span class="eyebrow">OUR IMPACT</span></div>
+            <h2 data-aos="fade-up" data-aos-delay="60">We grow in business and in spirit!</h2>
+            <p data-aos="fade-up" data-aos-delay="120">
               We believe that success goes beyond financial growth. As such, we aim to create a
               meaningful difference in people’s lives.
             </p>
           </div>
 
           <div class="impact-split">
-            <div class="impact-art" data-reveal>
-              <div class="mask-wipe">
-                <div class="mask-wipe-inner">
-                  <div class="frame frame-parallax" data-parallax="26">
-                    <img src="/img/social/csr2.webp" alt="STARTRADER giving back to the community" loading="lazy" width="1000" height="668" />
-                  </div>
-                </div>
-                <span class="mask-wipe-panel"></span>
+            <div class="impact-art" data-aos="fade-up">
+              <div class="frame frame-parallax" data-parallax="26">
+                <img src="/img/social/csr2.webp" alt="STARTRADER giving back to the community" loading="lazy" width="1000" height="668" />
               </div>
             </div>
 
-            <div class="impact-copy" data-reveal data-reveal-delay="0.1">
+            <div class="impact-copy" data-aos="fade-up" data-aos-delay="100">
               <p>
                 Our commitment to corporate social responsibility reflects our dedication to giving
                 back, fostering positive change in the society.
@@ -169,46 +469,46 @@
       <section class="about-section sec-white" style="padding-top: 0">
         <div class="shell" style="position: relative">
           <div class="sec-head is-centered">
-            <div data-reveal style="display: flex; justify-content: center">
+            <div data-aos="fade-up" style="display: flex; justify-content: center">
               <span class="eyebrow">CSR</span>
             </div>
-            <h2 data-reveal data-reveal-delay="0.06">Learn more about our past CSR initiatives</h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <h2 data-aos="fade-up" data-aos-delay="60">Learn more about our past CSR initiatives</h2>
+            <p data-aos="fade-up" data-aos-delay="120">
 
             </p>
           </div>
         </div>
 
-        <div class="csr-strip" data-reveal>
-          <div class="csr-track">
-            <figure class="csr-shot">
+        <div class="csr-strip swiper" data-aos="fade-up" data-csr-swiper>
+          <div class="csr-track swiper-wrapper">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr1.webp" alt="Volunteering hours given, not just donations sent" loading="lazy" width="1000" height="652" />
             </figure>
-            <figure class="csr-shot">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/swiper07.webp" alt="Supporting the causes our people care about" loading="lazy" width="1200" height="600" />
             </figure>
-            <figure class="csr-shot">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr3.webp" alt="Community work that outlasts a single campaign" loading="lazy" width="1000" height="668" />
             </figure>
-            <figure class="csr-shot">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr-ramadan-box.webp" alt="A STARTRADER volunteer holding a Ramadan Kareem giving box" loading="lazy" width="1136" height="800" />
             </figure>
-            <figure class="csr-shot">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr-tree-planting.webp" alt="The STARTRADER team planting trees together" loading="lazy" width="1360" height="1600" />
             </figure>
-            <figure class="csr-shot" aria-hidden="true">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr1.webp" alt="" loading="lazy" width="1000" height="652" />
             </figure>
-            <figure class="csr-shot" aria-hidden="true">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/swiper07.webp" alt="" loading="lazy" width="1200" height="600" />
             </figure>
-            <figure class="csr-shot" aria-hidden="true">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr3.webp" alt="" loading="lazy" width="1000" height="668" />
             </figure>
-            <figure class="csr-shot" aria-hidden="true">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr-ramadan-box.webp" alt="" loading="lazy" width="1136" height="800" />
             </figure>
-            <figure class="csr-shot" aria-hidden="true">
+            <figure class="csr-shot swiper-slide">
               <img src="/img/social/csr-tree-planting.webp" alt="" loading="lazy" width="1360" height="1600" />
             </figure>
           </div>
@@ -223,11 +523,11 @@
 
         <div class="shell" style="position: relative">
           <div class="sec-head is-centered">
-            <div data-reveal style="display: flex; justify-content: center">
+            <div data-aos="fade-up" style="display: flex; justify-content: center">
               <span class="eyebrow">OUR INITIATIVES</span>
             </div>
-            <h2 data-reveal data-reveal-delay="0.06">Making a difference, One Initiative at a time</h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <h2 data-aos="fade-up" data-aos-delay="60">Making a difference, One Initiative at a time</h2>
+            <p data-aos="fade-up" data-aos-delay="120">
 Striving to create change in the world, we work on several initiatives:
             </p>
           </div>
@@ -280,7 +580,7 @@ Striving to create change in the world, we work on several initiatives:
       <!-- ───────── CLOSING CTA ───────── -->
       <section class="cta-section">
         <div class="shell">
-          <div class="cta-panel cta-panel-dark" data-reveal>
+          <div class="cta-panel cta-panel-dark" data-aos="fade-up">
             <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
@@ -297,7 +597,7 @@ Striving to create change in the world, we work on several initiatives:
     </main>
 
     <footer class="site-footer">
-      <div class="shell" data-reveal>
+      <div class="shell" data-aos="fade-up">
         <div class="footer-top">
           <a href="/" aria-label="STARTRADER Careers home">
             <span class="logo" role="img" aria-label="STARTRADER Careers">

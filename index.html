@@ -15,7 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="canonical" href="/" />
     <link rel="preload" as="image" href="/img/home/hero-poster.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
@@ -31,7 +32,704 @@
     <script>
       document.documentElement.className += " js";
     </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="/js/main.js" defer></script>
+  
+    <!-- Page-specific styles (kept with the page for easy detachment) -->
+    <style>
+/* ── page-specific styles (moved from css/style.css) ── */
+.home-hero-poster,
+.home-hero .video-hero-media {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.home-hero .shell {
+  position: relative;
+}
+
+.home-hero-copy .btn {
+  margin-top: 28px;
+}
+
+@keyframes arrow-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.quote-word {
+  display: inline-block;
+}
+
+.section {
+  padding-block: 90px;
+}
+
+.sec-navy {
+  background: var(--navy-grad);
+  color: #fff;
+}
+
+/* ── 4. Typography helpers ─────────────────────────────────────────────── */
+.hero-title {
+  font-size: clamp(34px, 5.2vw, 50px);
+  font-weight: 500;
+  line-height: 1.06;
+}
+
+.body {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.on-dark-soft {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.eyebrow-dark {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+/* editorial split heading: eyebrow left, title + intro right */
+.split-head {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .split-head {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .split-head > :first-child {
+    flex-shrink: 0;
+  }
+
+  .split-head-body {
+    width: 60%;
+  }
+}
+
+.split-head-body p {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* the helper must win over the rule above on dark sections */
+.split-head-body p.on-dark-soft {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.cta-panel-band {
+  border-radius: var(--r-card);
+  border: 1px solid rgba(218, 227, 237, 0.4);
+  background: rgba(218, 227, 237, 0.35);
+}
+
+.cta-watermark {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 118%;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .cta-watermark {
+    right: 24px;
+  }
+}
+
+/* ── 10. Home ──────────────────────────────────────────────────────────── */
+.home-hero {
+  position: relative;
+  display: flex;
+  height: clamp(600px, 56vw, 800px);
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Black from the left, clearing by the right edge — the footage is bright,
+   so the copy column needs a real floor rather than a wash. */
+.home-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.88) 26%,
+      rgba(0, 0, 0, 0.66) 50%,
+      rgba(0, 0, 0, 0.3) 76%,
+      rgba(0, 0, 0, 0.05) 100%
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 42%);
+}
+
+@media (max-width: 700px) {
+  .home-hero-scrim {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 55%, rgba(0, 0, 0, 0.55) 100%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 45%);
+  }
+}
+
+.home-hero-copy {
+  max-width: 651px;
+}
+
+.hero-scroll-arrow {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  animation: arrow-bob 1.8s ease-in-out infinite;
+}
+
+/* click-to-play banner video */
+.banner-section {
+  position: relative;
+  height: clamp(320px, 44vw, 638px);
+  width: 100%;
+  overflow: hidden;
+  background: var(--deep);
+}
+
+.video-player {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-player img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 1.2s ease-out;
+}
+
+.video-player:hover img {
+  transform: scale(1.1);
+}
+
+.video-player video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+.video-player-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 13, 75, 0.25);
+  transition: background-color 0.3s ease;
+}
+
+.video-player:hover .video-player-scrim {
+  background: rgba(13, 13, 75, 0.1);
+}
+
+.play-badge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-badge > span {
+  position: relative;
+  display: flex;
+  height: 88px;
+  width: 88px;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: ping 2.4s ease-out infinite;
+}
+
+.play-ping:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.play-disc {
+  position: relative;
+  display: flex;
+  height: 72px;
+  width: 72px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--sh-lift);
+  transition: transform 0.3s ease;
+}
+
+.video-player:hover .play-disc {
+  transform: scale(1.1);
+}
+
+.play-tri {
+  margin-left: 4px;
+  height: 0;
+  width: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 18px solid var(--blue);
+  transition: border-left-color 0.3s ease;
+}
+
+.video-player:hover .play-tri {
+  border-left-color: var(--navy);
+}
+
+/* STARSTORY — large-type interactive index */
+.story-index {
+  margin-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.story-row {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 24px;
+  overflow: hidden;
+  padding: 26px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (min-width: 900px) {
+  .story-row {
+    grid-template-columns: minmax(300px, 1fr) 1.1fr auto;
+    gap: 56px;
+    padding: 34px 14px;
+  }
+}
+
+/* cursor-tracked wash behind the hovered row */
+.story-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 71, 187, 0.38),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+/* brand line that draws itself over the divider */
+.story-row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(to right, var(--blue), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+
+.story-row:hover::before,
+.story-row:focus-visible::before {
+  opacity: 1;
+}
+
+.story-row:hover::after,
+.story-row:focus-visible::after {
+  transform: none;
+}
+
+.story-row-title {
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.35s ease, transform 0.5s var(--ease);
+}
+
+.story-row:hover .story-row-title {
+  color: #fff;
+  transform: translateX(12px);
+}
+
+.story-row-copy {
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 0.58);
+  transition: color 0.35s ease;
+}
+
+@media (max-width: 899px) {
+  .story-row-copy {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+.story-row:hover .story-row-copy {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* arrow chip: points ↗ at rest, spins level and fills on hover */
+.story-row-arrow {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  transform: rotate(-45deg);
+  transition: transform 0.5s var(--ease), background-color 0.35s var(--ease),
+    border-color 0.35s var(--ease), color 0.35s ease, box-shadow 0.35s var(--ease);
+}
+
+.story-row:hover .story-row-arrow {
+  transform: rotate(0deg);
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 12px 28px -8px rgba(79, 147, 255, 0.6);
+}
+
+/* CEO message — elevated navy panel on the light page */
+.ceo-section {
+  background: #fff;
+}
+
+.ceo-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--navy-radial);
+  color: #fff;
+  box-shadow: 0 44px 90px -44px rgba(0, 20, 137, 0.55);
+}
+
+/* the old section texture survives as a quiet overlay inside the panel */
+.ceo-texture {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  mix-blend-mode: luminosity;
+}
+
+/* giant watermark quotation mark in the panel corner */
+.ceo-panel::before {
+  content: "\201C" / "";
+  position: absolute;
+  top: -0.14em;
+  right: 4%;
+  z-index: -1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(160px, 22vw, 320px);
+  line-height: 1;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+/* warm brand glow rising behind the portrait side */
+.ceo-panel::after {
+  content: "";
+  position: absolute;
+  right: -8%;
+  bottom: -30%;
+  z-index: -1;
+  width: 56%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(79, 147, 255, 0.28), rgba(0, 71, 187, 0.12) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+.ceo-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  padding: 48px 28px 0;
+}
+
+@media (min-width: 1024px) {
+  .ceo-grid {
+    grid-template-columns: 1fr 400px;
+    align-items: end;
+    gap: 64px;
+    padding: 72px 72px 0;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ceo-message {
+    align-self: center;
+    padding-bottom: 64px;
+  }
+}
+
+.ceo-message h2 {
+  font-size: clamp(24px, 2.7vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.ceo-message .ceo-name {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 25px;
+  color: var(--accent);
+}
+
+.ceo-message .ceo-name::before {
+  content: "";
+  height: 2px;
+  width: 34px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--accent), rgba(79, 147, 255, 0.2));
+}
+
+/* editorial pull-quote scale; words are revealed one by one from JS */
+.ceo-quote {
+  margin-top: 26px;
+  max-width: 640px;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ceo-quote .quote-mark {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.js .ceo-quote .quote-word {
+  opacity: 0;
+  transform: translateY(0.45em);
+  filter: blur(4px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), filter 0.5s var(--ease);
+}
+
+.js .ceo-quote.is-live .quote-word {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* the cut-out sits whole and flush with the panel floor */
+.ceo-portrait {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.ceo-portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+/* WHO WE ARE — cinematic banner with glass belief cards riding over it */
+.team-banner {
+  position: relative;
+  margin-top: 56px;
+  height: clamp(280px, 38vw, 440px);
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+/* parallax drives `transform`; `scale` provides the overscan separately */
+.team-banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: translateY(var(--p, 0px));
+  scale: 1.15;
+}
+
+/* navy floor so the glass cards read against the photo */
+.team-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 12, 60, 0.72), rgba(0, 12, 60, 0.05) 55%);
+}
+
+.team-beliefs {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: -64px clamp(16px, 4vw, 56px) 0;
+}
+
+@media (min-width: 768px) {
+  .team-beliefs {
+    grid-template-columns: 1fr 1fr;
+    margin-top: -76px;
+  }
+}
+
+.team-belief {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 13, 62, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 24px 60px -30px rgba(0, 5, 40, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 30px 32px;
+  translate: 0 0;
+  transition: translate 0.45s var(--ease), border-color 0.4s ease, box-shadow 0.45s var(--ease);
+}
+
+/* cursor-tracked interior glow */
+.team-belief::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    300px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(0, 71, 187, 0.5),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.team-belief:hover {
+  translate: 0 -6px;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 34px 70px -30px rgba(0, 30, 120, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.team-belief:hover::before {
+  opacity: 1;
+}
+
+.team-belief h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.team-belief h3::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(79, 147, 255, 0.9);
+}
+
+.team-belief p {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.team-cta {
+  margin-top: 44px;
+  display: flex;
+  justify-content: center;
+}
+
+.head-split {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .head-split {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .head-split-copy {
+    width: 55%;
+  }
+}
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -141,10 +839,10 @@
       <section class="sec-navy section">
         <div class="shell">
           <div class="split-head">
-            <div data-reveal><span class="eyebrow eyebrow-dark">STARSTORY</span></div>
+            <div data-aos="fade-up"><span class="eyebrow eyebrow-dark">STARSTORY</span></div>
             <div class="split-head-body">
-              <h2 class="section-title on-dark mask-line"><span>STARSTORY</span></h2>
-              <p class="on-dark-soft" data-reveal data-reveal-delay="0.1" style="margin-top: 20px">
+              <h2 class="section-title on-dark" data-aos="fade-up"><span>STARSTORY</span></h2>
+              <p class="on-dark-soft" data-aos="fade-up" data-aos-delay="100" style="margin-top: 20px">
                 Every great venture starts with a simple idea. Ours was to demystify trading and
                 empower individuals worldwide to achieve financial independence, and we grew to
                 become a globally-leading broker.
@@ -209,11 +907,11 @@
       <!-- ───────── CEO MESSAGE ───────── -->
       <section class="ceo-section section">
         <div class="shell">
-          <div class="ceo-panel" data-reveal>
+          <div class="ceo-panel" data-aos="fade-up">
             <img class="ceo-texture" src="/img/home/ceo-texture.webp" alt="" loading="lazy" width="1920" height="924" />
             <div class="ceo-grid">
               <div class="ceo-message">
-                <h2 class="mask-line"><span>Our CEO’s message to the people</span></h2>
+                <h2 data-aos="fade-up"><span>Our CEO’s message to the people</span></h2>
                 <p class="ceo-name">Mr. Peter Karsten, CEO of STARTRADER</p>
                 <p class="ceo-quote">
                   <span class="quote-mark">“</span>Great platforms are built by great people — and at STARTRADER, we’re proud
@@ -233,13 +931,13 @@
       <!-- ───────── WHO WE ARE ───────── -->
       <section class="sec-navy section">
         <div class="shell">
-          <div data-reveal><span class="eyebrow eyebrow-dark">WHO WE ARE</span></div>
+          <div data-aos="fade-up"><span class="eyebrow eyebrow-dark">WHO WE ARE</span></div>
 
           <div class="head-split" style="margin-top: 32px">
-            <h2 class="section-title on-dark mask-line" style="max-width: 454px">
+            <h2 class="section-title on-dark" style="max-width: 454px" data-aos="fade-up">
               <span>A team that moves with purpose</span>
             </h2>
-            <div class="head-split-copy" data-reveal data-reveal-delay="0.1">
+            <div class="head-split-copy" data-aos="fade-up" data-aos-delay="100">
               <p class="body on-dark-soft">
                 At STARTRADER, everyone plays a part in shaping how we grow: from the developers
                 behind our platforms to the people who guide and support our clients every day.
@@ -247,7 +945,7 @@
             </div>
           </div>
 
-          <div class="team-banner" data-parallax="40" data-reveal>
+          <div class="team-banner" data-parallax="40" data-aos="fade-up">
             <img src="/img/home/team.webp" alt="" loading="lazy" width="1200" height="800" />
           </div>
 
@@ -262,7 +960,7 @@
             </div>
           </div>
 
-          <div class="team-cta" data-reveal data-reveal-delay="0.1">
+          <div class="team-cta" data-aos="fade-up" data-aos-delay="100">
             <a class="btn btn-white" href="/about.html" data-magnetic style="height: 45px; padding-inline: 40px">
               Know More
             </a>
@@ -273,7 +971,7 @@
       <!-- ───────── CTA BAND ───────── -->
       <section class="cta-section" style="padding-block: 90px">
         <div class="shell">
-          <div class="cta-panel cta-panel-band" data-reveal>
+          <div class="cta-panel cta-panel-band" data-aos="fade-up">
             <div class="cta-grid">
               <div class="cta-copy">
                 <h2 class="section-title" style="max-width: 560px">
@@ -292,7 +990,7 @@
     </main>
 
     <footer class="site-footer">
-      <div class="shell" data-reveal>
+      <div class="shell" data-aos="fade-up">
         <div class="footer-top">
           <a href="/" aria-label="STARTRADER Careers home">
             <span class="logo" role="img" aria-label="STARTRADER Careers">

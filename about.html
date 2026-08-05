@@ -13,7 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="About Us · STARTRADER Careers" />
@@ -28,7 +29,1206 @@
     <script>
       document.documentElement.className += " js";
     </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="/js/main.js" defer></script>
+  
+    <!-- Page-specific styles (kept with the page for easy detachment) -->
+    <style>
+/* ── page-specific styles (moved from css/style.css) ── */
+.about-split-copy .btn {
+  margin-top: 32px;
+}
+
+.about-split-art > .frame,
+.about-split-art .mask-wipe {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+}
+
+.about-split-art .frame {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+  box-shadow: var(--sh-lift);
+}
+
+.awards-shot .frame {
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+}
+
+@keyframes wave-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes wave-dot {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── pillars: mission / values / vision ────────────────────────────────── */
+.pillars {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+@media (min-width: 768px) {
+  .pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillars {
+    margin-top: 72px;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .pillar-mission {
+    grid-column: span 4;
+  }
+
+  .pillar-values {
+    grid-column: span 4;
+  }
+
+  .pillar-vision {
+    grid-column: span 4;
+  }
+}
+
+.pillar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+
+.pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-lift);
+}
+
+/* the rail that ties every section together */
+.pillar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s var(--ease);
+}
+
+.pillar:hover::after {
+  transform: none;
+}
+
+.pillar-media {
+  height: 176px;
+  overflow: hidden;
+}
+
+.pillar-media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+
+.pillar:hover .pillar-media img {
+  transform: scale(1.07);
+}
+
+.pillar-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 28px;
+}
+
+.pillar-num {
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.22em;
+  color: rgba(28, 31, 42, 0.35);
+}
+
+.pillar-body h3 {
+  margin-top: 10px;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+  color: var(--blue);
+}
+
+.pillar-body p {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.72;
+  color: var(--muted);
+}
+
+/* the values pillar carries the brand weight */
+.pillar-values {
+  background: linear-gradient(155deg, var(--blue), var(--navy));
+  color: #fff;
+  box-shadow: var(--sh-glow);
+}
+
+.pillar-values .pillar-num {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pillar-values h3 {
+  color: #fff;
+}
+
+.pillar-values::after {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.pillar-values-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.16;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease), transform 0.9s var(--ease);
+}
+
+.pillar-values:hover .pillar-values-bg {
+  opacity: 0.26;
+  transform: scale(1.06);
+}
+
+.value-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.value-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.value-list svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ── editorial split + stat strip ──────────────────────────────────────── */
+.about-split {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .about-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+  }
+}
+
+.about-split-copy p {
+  margin-top: 16px;
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: var(--muted);
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.stat-cell {
+  border-radius: 16px;
+  padding: 16px 18px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.stat-cell:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-card);
+}
+
+.stat-cell strong {
+  display: block;
+  font-family: var(--font-alt);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--blue);
+}
+
+.stat-cell span {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.about-split-art {
+  position: relative;
+  height: 400px;
+}
+
+@media (min-width: 640px) {
+  .about-split-art {
+    height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-split-art {
+    height: 600px;
+  }
+}
+
+/* ── awards ────────────────────────────────────────────────────────────── */
+.awards-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 40px;
+  margin-top: 56px;
+}
+
+@media (min-width: 1024px) {
+  .awards-top {
+    grid-template-columns: 1fr 0.85fr;
+    gap: 72px;
+    margin-top: 72px;
+  }
+}
+
+.awards-lede h2 {
+  margin-top: 22px;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -1.3px;
+}
+
+.awards-lede p {
+  margin-top: 18px;
+  max-width: 470px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* the figure carries the section — oversized, tight, with the unit riding it */
+.awards-figure-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.awards-bignum {
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--font-alt);
+  font-size: clamp(78px, 10vw, 132px);
+  font-weight: 600;
+  line-height: 0.78;
+  letter-spacing: -5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--blue);
+}
+
+.awards-bignum sup {
+  margin-top: 0.1em;
+  font-size: 0.42em;
+  letter-spacing: -1px;
+  color: var(--accent);
+}
+
+.awards-stat-note {
+  border-left: 2px solid rgba(0, 71, 187, 0.25);
+  padding-left: 18px;
+  max-width: 190px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.awards-stat-note strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+}
+
+.awards-shot {
+  position: relative;
+  height: 380px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .awards-shot {
+    height: 460px;
+  }
+}
+
+/* all nine badges in a single view, in their own colours */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 48px;
+}
+
+@media (min-width: 640px) {
+  .badge-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .badge-grid {
+    margin-top: 56px;
+  }
+}
+
+.badge-chip {
+  display: grid;
+  min-height: 112px;
+  place-items: center;
+  border: 1px solid rgba(28, 31, 42, 0.07);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 20px;
+  transition: all 0.4s var(--ease);
+}
+
+.badge-chip img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+}
+
+.badge-chip:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 71, 187, 0.28);
+  box-shadow: var(--sh-card);
+}
+
+/* ── global presence (expanding jurisdictions) ─────────────────────────── */
+.presence {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .presence {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 72px;
+  }
+
+  .presence-aside {
+    position: sticky;
+    top: 112px;
+  }
+}
+
+.presence-count {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.presence-count strong {
+  font-family: var(--font-alt);
+  font-size: clamp(60px, 8vw, 96px);
+  font-weight: 600;
+  line-height: 0.82;
+  letter-spacing: -3px;
+  font-variant-numeric: tabular-nums;
+  color: var(--blue);
+}
+
+.presence-count span {
+  margin-bottom: 8px;
+  max-width: 150px;
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.jurisdictions {
+  display: flex;
+  flex-direction: column;
+}
+
+.jur {
+  position: relative;
+  border-top: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.jur:last-child {
+  border-bottom: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.jur::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.jur.is-active::before {
+  transform: none;
+}
+
+.jur button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 4px;
+  text-align: left;
+}
+
+.jur-flag {
+  height: 38px;
+  width: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  filter: grayscale(0.6);
+  transition: all 0.45s var(--ease);
+}
+
+.jur.is-active .jur-flag,
+.jur:hover .jur-flag {
+  filter: none;
+  transform: scale(1.06);
+}
+
+.jur-name {
+  flex: 1;
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: rgba(28, 31, 42, 0.5);
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.jur.is-active .jur-name,
+.jur:hover .jur-name {
+  color: var(--ink);
+}
+
+.jur:hover .jur-name {
+  transform: translateX(3px);
+}
+
+.jur-sign {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  flex-shrink: 0;
+  color: rgba(28, 31, 42, 0.4);
+  transition: color 0.4s var(--ease), transform 0.5s var(--ease);
+}
+
+.jur-sign::before,
+.jur-sign::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+}
+
+.jur-sign::before {
+  height: 2px;
+  width: 16px;
+  transform: translate(-50%, -50%);
+}
+
+.jur-sign::after {
+  height: 16px;
+  width: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.jur.is-active .jur-sign {
+  color: var(--blue);
+  transform: rotate(180deg);
+}
+
+.jur.is-active .jur-sign::after {
+  transform: translate(-50%, -50%) scaleY(0);
+  opacity: 0;
+}
+
+.jur-reveal {
+  display: block;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.5s var(--ease);
+}
+
+.jur-reveal p {
+  padding: 0 0 24px 56px;
+  max-width: 620px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* ── products bento ────────────────────────────────────────────────────── */
+.pbento {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 768px) {
+  .pbento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pbento {
+    margin-top: 72px;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+
+  .pb-hero {
+    grid-column: span 7;
+  }
+
+  .pb-panel {
+    grid-column: span 5;
+  }
+
+  .pb-tile {
+    grid-column: span 4;
+  }
+}
+
+.pb-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+
+.pb-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ── hero cell: artwork bleeding right, copy and actions over it ───────── */
+.pb-hero {
+  display: flex;
+  min-height: 330px;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #eaf0fb 0%, #dfe8f8 45%, #cfdcf4 100%);
+  padding: 30px;
+}
+
+.pb-hero:hover {
+  box-shadow: var(--sh-lift);
+}
+
+.pb-hero-art {
+  position: absolute;
+  right: -4%;
+  bottom: -6%;
+  width: 46%;
+  max-width: 330px;
+  pointer-events: none;
+  transition: transform 0.9s var(--ease);
+}
+
+.pb-hero:hover .pb-hero-art {
+  transform: translateY(-8px) scale(1.04);
+}
+
+.pb-hero-head {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+}
+
+.pb-hero-head h3 {
+  font-size: clamp(24px, 2.7vw, 32px);
+  line-height: 1.12;
+  letter-spacing: -0.9px;
+  color: var(--deep);
+}
+
+.pb-hero-head p {
+  margin-top: 12px;
+  max-width: 330px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(13, 13, 75, 0.62);
+}
+
+.pb-hero-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.pb-cred-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(13, 13, 75, 0.5);
+}
+
+.pb-cred-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* overlapping flag discs, the way an avatar stack reads */
+.pb-flags {
+  display: flex;
+}
+
+.pb-flags img {
+  height: 34px;
+  width: 34px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  object-fit: cover;
+  margin-left: -11px;
+  transition: transform 0.4s var(--ease);
+}
+
+.pb-flags img:first-child {
+  margin-left: 0;
+}
+
+.pb-hero:hover .pb-flags img {
+  transform: translateY(-3px);
+}
+
+.pb-cred-figure strong {
+  display: block;
+  font-family: var(--font-alt);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--deep);
+}
+
+.pb-cred-figure span {
+  font-size: 11.5px;
+  color: rgba(13, 13, 75, 0.55);
+}
+
+/* ── panel cell: solid brand colour, data-led ──────────────────────────── */
+.pb-panel {
+  display: flex;
+  min-height: 330px;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(160deg, var(--blue) 0%, var(--navy) 100%);
+  padding: 28px;
+  color: #fff;
+}
+
+.pb-panel:hover {
+  box-shadow: var(--sh-glow);
+}
+
+.pb-panel-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.pb-panel-top h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.pb-panel-top p {
+  margin-top: 8px;
+  max-width: 210px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* glyph field — texture, not a data readout */
+.pb-glyphs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.pb-glyphs i {
+  height: 17px;
+  width: 12px;
+  border-radius: 3px 3px 5px 5px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background-color 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.pb-glyphs i.is-on {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-1px);
+}
+
+.pb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+.pb-panel-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+/* segmented control — the reference's D/W/M discs */
+.pb-seg {
+  display: flex;
+  gap: 8px;
+}
+
+.pb-seg button {
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  padding-inline: 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s var(--ease);
+}
+
+.pb-seg button:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.pb-seg button.is-active {
+  background: #fff;
+  border-color: #fff;
+  color: var(--blue);
+}
+
+.pb-figure {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  text-align: right;
+}
+
+.pb-figure strong {
+  font-family: var(--font-alt);
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -1.6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pb-figure span {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── tiles: white data cards ───────────────────────────────────────────── */
+.pb-tile {
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  border: 1px solid rgba(28, 31, 42, 0.07);
+  background: #fff;
+  padding: 24px;
+  box-shadow: var(--sh-card);
+}
+
+.pb-tile:hover {
+  box-shadow: var(--sh-lift);
+}
+
+.pb-tile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.pb-tile-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.pb-icon {
+  display: grid;
+  height: 34px;
+  width: 34px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(218, 227, 237, 0.55);
+  color: var(--blue);
+  transition: all 0.4s var(--ease);
+}
+
+.pb-tile:hover .pb-icon {
+  background: var(--blue);
+  color: #fff;
+  transform: rotate(-8deg);
+}
+
+.pb-tile-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.pb-tile-value em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.pb-sub {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.pb-big {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  margin-top: 16px;
+}
+
+.pb-big strong {
+  font-family: var(--font-alt);
+  font-size: clamp(38px, 4.4vw, 52px);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.pb-big span {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* segmented bar, per the calories card */
+.pb-bar-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  font-size: 10.5px;
+  color: rgba(28, 31, 42, 0.4);
+}
+
+.pb-bar {
+  display: flex;
+  gap: 3px;
+  margin-top: 7px;
+}
+
+.pb-bar i {
+  height: 26px;
+  flex: 1;
+  border-radius: 2px;
+  background: rgba(28, 31, 42, 0.09);
+  transition: background-color 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.pb-bar i.is-on {
+  background: linear-gradient(to bottom, var(--accent), var(--blue));
+}
+
+.pb-tile:hover .pb-bar i.is-on {
+  transform: scaleY(1.12);
+}
+
+.pb-triplet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.pb-triplet strong {
+  display: block;
+  font-family: var(--font-alt);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+.pb-triplet span {
+  display: block;
+  margin-top: 5px;
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* line chart, per the weight card */
+.pb-wave {
+  margin-top: 14px;
+}
+
+.pb-wave svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.pb-wave-line {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+}
+
+.aos-animate .pb-wave-line,
+.pb-tile.is-drawn .pb-wave-line {
+  animation: wave-draw 1.8s var(--ease) forwards;
+}
+
+.pb-wave-dot {
+  opacity: 0;
+  animation: wave-dot 0.5s var(--ease) 1.3s forwards;
+}
+
+.pb-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.pb-foot p {
+  max-width: 130px;
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pb-foot strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* carousel tile */
+.pb-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: var(--deep);
+  padding: 7px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.pb-tag svg {
+  color: var(--accent);
+}
+
+.pb-rule {
+  height: 1px;
+  width: 100%;
+  margin-top: 16px;
+  background: rgba(28, 31, 42, 0.09);
+}
+
+.pb-slide-body {
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  transition: opacity 0.3s var(--ease);
+}
+
+.pb-slide-body.is-swapping {
+  opacity: 0;
+}
+
+.pb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.pb-count {
+  font-family: var(--font-alt);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pb-count span {
+  font-size: 12px;
+  color: rgba(28, 31, 42, 0.4);
+}
+
+.pb-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.pb-arrows button {
+  display: grid;
+  height: 34px;
+  width: 34px;
+  place-items: center;
+  border: 1px solid rgba(28, 31, 42, 0.12);
+  border-radius: 999px;
+  color: var(--ink);
+  transition: all 0.3s var(--ease);
+}
+
+.pb-arrows button:hover {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.pb-avatars {
+  display: flex;
+}
+
+.pb-avatars span {
+  display: grid;
+  height: 32px;
+  width: 32px;
+  place-items: center;
+  margin-left: -10px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: rgba(218, 227, 237, 0.8);
+  font-family: var(--font-alt);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--blue);
+  transition: transform 0.4s var(--ease);
+}
+
+.pb-avatars span:first-child {
+  margin-left: 0;
+}
+
+.pb-avatars span.is-active {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-3px);
+}
+    </style>
   </head>
   <body>
 <header class="site-header">
@@ -130,8 +1330,8 @@
 
         <div class="shell" style="position: relative">
           <div class="sec-head">
-            <div data-reveal><span class="eyebrow">OUR COMPANY</span></div>
-            <h2 data-reveal data-reveal-delay="0.06">Our Mission, Values and Vision</h2>
+            <div data-aos="fade-up"><span class="eyebrow">OUR COMPANY</span></div>
+            <h2 data-aos="fade-up" data-aos-delay="60">Our Mission, Values and Vision</h2>
 
           </div>
 
@@ -214,15 +1414,15 @@
 
         <div class="shell about-split">
           <div class="about-split-copy">
-            <div data-reveal><span class="eyebrow">OUR COMPANY</span></div>
-            <h2 class="sec-head-title" data-reveal data-reveal-delay="0.06" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
+            <div data-aos="fade-up"><span class="eyebrow">OUR COMPANY</span></div>
+            <h2 class="sec-head-title" data-aos="fade-up" data-aos-delay="60" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
               STARTRADER, A Global Force Shaped by Talent.
             </h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <p data-aos="fade-up" data-aos-delay="120">
               As a reputed forex and CFD broker with over 30 global awards, STARTRADER continues to
               grow through innovation, market expertise, and the people behind its progress.
             </p>
-            <p data-reveal data-reveal-delay="0.16">
+            <p data-aos="fade-up" data-aos-delay="160">
               Our global presence is reflected in major partnerships, including Official Partner of
               the NBA, Official Partner of the Porsche Carrera Cup Middle East, and Official Sponsor
               of the UAE National Cricket Team for the ICC Men’s T20 World Cup 2026.
@@ -243,7 +1443,7 @@
               </div>
             </div>
 
-            <div data-reveal data-reveal-delay="0.26">
+            <div data-aos="fade-up" data-aos-delay="260">
               <a class="btn btn-primary btn-hero" href="/starscout.html">
                 Apply Now!
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -253,14 +1453,9 @@
             </div>
           </div>
 
-          <div class="about-split-art">
-            <div class="mask-wipe">
-              <div class="mask-wipe-inner">
-                <div class="frame frame-parallax" data-parallax="28">
-                  <img src="/img/about/force.webp" alt="STARTRADER, a global force shaped by talent" loading="lazy" width="1364" height="1500" />
-                </div>
-              </div>
-              <span class="mask-wipe-panel"></span>
+          <div class="about-split-art" data-aos="fade-up">
+            <div class="frame frame-parallax" data-parallax="28">
+              <img src="/img/about/force.webp" alt="STARTRADER, a global force shaped by talent" loading="lazy" width="1364" height="1500" />
             </div>
           </div>
         </div>
@@ -275,14 +1470,14 @@
         <div class="shell" style="position: relative">
           <div class="awards-top">
             <div class="awards-lede">
-              <div data-reveal><span class="eyebrow">RECOGNITION</span></div>
-              <h2 data-reveal data-reveal-delay="0.06">Our Awards</h2>
-              <p data-reveal data-reveal-delay="0.12">
+              <div data-aos="fade-up"><span class="eyebrow">RECOGNITION</span></div>
+              <h2 data-aos="fade-up" data-aos-delay="60">Our Awards</h2>
+              <p data-aos="fade-up" data-aos-delay="120">
                 We’ve crossed many milestones. Each one made possible by the people who lead the
                 way.
               </p>
 
-              <div class="awards-figure-stat" data-reveal data-reveal-delay="0.18">
+              <div class="awards-figure-stat" data-aos="fade-up" data-aos-delay="180">
                 <span class="awards-bignum">
                   <span data-counter="30" data-duration="1.8">0</span><sup>+</sup>
                 </span>
@@ -292,13 +1487,10 @@
               </div>
             </div>
 
-            <div class="awards-shot mask-wipe" data-reveal data-reveal-delay="0.08">
-              <div class="mask-wipe-inner">
-                <div class="frame frame-parallax" data-parallax="24">
-                  <img src="/img/about/awards.webp" alt="STARTRADER award-winning team" loading="lazy" width="796" height="800" />
-                </div>
+            <div class="awards-shot" data-aos="fade-up" data-aos-delay="80">
+              <div class="frame frame-parallax" data-parallax="24">
+                <img src="/img/about/awards.webp" alt="STARTRADER award-winning team" loading="lazy" width="796" height="800" />
               </div>
-              <span class="mask-wipe-panel"></span>
             </div>
           </div>
 
@@ -324,21 +1516,21 @@
 
         <div class="shell presence" style="position: relative">
           <div class="presence-aside">
-            <div data-reveal><span class="eyebrow">GLOBAL PRESENCE</span></div>
-            <h2 data-reveal data-reveal-delay="0.06" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
+            <div data-aos="fade-up"><span class="eyebrow">GLOBAL PRESENCE</span></div>
+            <h2 data-aos="fade-up" data-aos-delay="60" style="margin-top: 22px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -1.2px">
               Global presence
             </h2>
-            <p data-reveal data-reveal-delay="0.12" style="margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 380px">
+            <p data-aos="fade-up" data-aos-delay="120" style="margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 380px">
               From our humble beginnings, we’ve expanded our reach across the globe. Our commitment
               to regulatory compliance and excellence has led us to secure multiple licenses:
             </p>
-            <div class="presence-count" data-reveal data-reveal-delay="0.18">
+            <div class="presence-count" data-aos="fade-up" data-aos-delay="180">
               <strong data-counter="5" data-duration="1.2">0</strong>
               <span>regulated jurisdictions</span>
             </div>
           </div>
 
-          <div data-reveal data-reveal-delay="0.1">
+          <div data-aos="fade-up" data-aos-delay="100">
             <div class="jurisdictions">
               <div class="jur is-active">
                 <button type="button" aria-expanded="true">
@@ -424,9 +1616,9 @@
 
         <div class="shell" style="position: relative">
           <div class="sec-head">
-            <div data-reveal><span class="eyebrow">OUR PRODUCTS</span></div>
-            <h2 data-reveal data-reveal-delay="0.06">Our Products</h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <div data-aos="fade-up"><span class="eyebrow">OUR PRODUCTS</span></div>
+            <h2 data-aos="fade-up" data-aos-delay="60">Our Products</h2>
+            <p data-aos="fade-up" data-aos-delay="120">
 You bring ambition, we’ll provide the stage for it to shine.
             </p>
           </div>
@@ -456,14 +1648,6 @@ You bring ambition, we’ll provide the stage for it to shine.
                     </span>
                   </div>
                 </div>
-                <a class="pb-cta" href="/starscout.html">
-                  See open roles
-                  <i>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </i>
-                </a>
               </div>
             </article>
 
@@ -627,7 +1811,7 @@ You bring ambition, we’ll provide the stage for it to shine.
       <!-- ───────── CLOSING CTA ───────── -->
       <section class="cta-section">
         <div class="shell">
-          <div class="cta-panel cta-panel-dark" data-reveal>
+          <div class="cta-panel cta-panel-dark" data-aos="fade-up">
             <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
@@ -644,7 +1828,7 @@ You bring ambition, we’ll provide the stage for it to shine.
     </main>
 
     <footer class="site-footer">
-      <div class="shell" data-reveal>
+      <div class="shell" data-aos="fade-up">
         <div class="footer-top">
           <a href="/" aria-label="STARTRADER Careers home">
             <span class="logo" role="img" aria-label="STARTRADER Careers">

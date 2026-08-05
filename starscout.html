@@ -13,7 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preload" as="image" href="/img/about/banner-poster.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="StarScout · STARTRADER Careers" />
@@ -28,7 +29,1089 @@
     <script>
       document.documentElement.className += " js";
     </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="/js/main.js" defer></script>
+  
+    <!-- Page-specific styles (kept with the page for easy detachment) -->
+    <style>
+/* ── page-specific styles (moved from css/style.css) ── */
+.scout-hero .atmos-orb-blue {
+  right: -12%;
+  top: -26%;
+  height: 620px;
+  width: 620px;
+}
+
+.scout-hero .atmos-orb-accent {
+  bottom: -40%;
+  left: -10%;
+  height: 460px;
+  width: 460px;
+}
+
+.scout-board .atmos-orb-blue {
+  left: -14%;
+  top: 6%;
+  height: 520px;
+  width: 520px;
+}
+
+.scout-board .atmos-orb-accent {
+  right: -12%;
+  bottom: 12%;
+  height: 480px;
+  width: 480px;
+}
+
+@keyframes count-bump {
+  50% {
+    transform: scale(1.3);
+    color: var(--blue);
+  }
+}
+
+.talent-card .btn {
+  position: relative;
+  margin-top: 20px;
+  height: 42px;
+  padding-inline: 24px;
+  font-size: 14px;
+}
+
+.active-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(0, 71, 187, 0.25);
+  border-radius: 999px;
+  background: rgba(0, 71, 187, 0.07);
+  padding: 6px 8px 6px 14px;
+  font-size: 13px;
+  color: var(--blue);
+  animation: chip-in 0.3s var(--ease);
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.94);
+  }
+}
+
+.active-chip button {
+  display: flex;
+  height: 18px;
+  width: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 71, 187, 0.15);
+  color: var(--blue);
+  transition: all 0.25s var(--ease);
+}
+
+.active-chip button:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+@keyframes save-pop {
+  40% {
+    transform: scale(0.78);
+  }
+  72% {
+    transform: scale(1.22);
+  }
+}
+
+@keyframes empty-float {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.section-title-sm {
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+/* ── hero ──────────────────────────────────────────────────────────────── */
+.scout-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--tint-20);
+  padding-top: 132px;
+  padding-bottom: 56px;
+}
+
+.scout-hero-inner {
+  position: relative;
+  margin-inline: auto;
+  max-width: 880px;
+  text-align: center;
+}
+
+.scout-hero h1 {
+  margin: 20px auto 0;
+  max-width: 780px;
+  font-size: clamp(34px, 4.8vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -1.4px;
+}
+
+/* keeps the accented phrase whole, so the line breaks before it, not inside it */
+.scout-hero h1 em {
+  font-style: normal;
+  white-space: nowrap;
+  color: var(--blue);
+}
+
+.scout-hero-sub {
+  margin: 16px auto 0;
+  max-width: 540px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* live figures — counters tick up when the hero lands */
+.scout-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 9px 18px;
+}
+
+.stat-pill strong {
+  font-family: var(--font-alt);
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--blue);
+}
+
+.stat-pill span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* one-tap shortcuts into the board */
+.quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.quick-chips-label {
+  font-size: 13px;
+  color: rgba(28, 31, 42, 0.5);
+  align-self: center;
+  margin-right: 2px;
+}
+
+.quick-chip {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 7px 15px;
+  font-size: 13px;
+  transition: all 0.3s var(--ease);
+}
+
+.quick-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 71, 187, 0.4);
+  color: var(--blue);
+  box-shadow: 0 10px 20px -12px rgba(0, 20, 137, 0.4);
+}
+
+.quick-chip.is-active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ── job board ─────────────────────────────────────────────────────────── */
+.scout-board {
+  position: relative;
+  overflow: hidden;
+  background: rgba(218, 227, 237, 0.34);
+  padding-block: 64px 96px;
+}
+
+.board-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .board-grid {
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .filter-rail {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+.filter-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-opt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-block: 9px;
+  cursor: pointer;
+}
+
+.filter-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.filter-opt-label {
+  font-size: 14px;
+  transition: transform 0.28s var(--ease), color 0.28s var(--ease);
+}
+
+.filter-opt:hover .filter-opt-label {
+  transform: translateX(2px);
+  color: var(--blue);
+}
+
+.filter-count {
+  margin-left: auto;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(28, 31, 42, 0.42);
+}
+
+.filter-count.is-bump {
+  animation: count-bump 0.4s var(--ease);
+}
+
+/* an option that would return nothing stays reachable, just de-emphasised */
+.filter-opt.is-empty .filter-opt-label,
+.filter-opt.is-empty .filter-count {
+  opacity: 0.4;
+}
+
+/* talent pool — the escape hatch when nothing fits */
+.talent-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(150deg, var(--blue), var(--navy));
+  padding: 26px;
+  color: #fff;
+}
+
+.talent-card-star {
+  position: absolute;
+  right: -26px;
+  top: -26px;
+  height: 130px;
+  width: auto;
+  opacity: 0.14;
+  filter: invert(1);
+  pointer-events: none;
+  transition: transform 0.7s var(--ease);
+}
+
+.talent-card:hover .talent-card-star {
+  transform: rotate(28deg) scale(1.1);
+}
+
+.talent-card h3 {
+  position: relative;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.talent-card p {
+  position: relative;
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ── results ───────────────────────────────────────────────────────────── */
+.results-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.results-count {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.results-count strong {
+  display: inline-block;
+  font-family: var(--font-alt);
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  transition: transform 0.28s var(--ease), opacity 0.28s var(--ease);
+}
+
+.results-count.is-updating strong {
+  transform: translateY(-5px);
+  opacity: 0.3;
+}
+
+.sort-toggle {
+  display: flex;
+  gap: 3px;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.sort-toggle button {
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  transition: all 0.28s var(--ease);
+}
+
+.sort-toggle button:hover {
+  color: var(--ink);
+}
+
+.sort-toggle button.is-active {
+  background: var(--blue);
+  font-weight: 500;
+  color: #fff;
+}
+
+/* what's currently narrowing the list, each individually dismissible */
+.active-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.active-chips:empty {
+  display: none;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.job-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+/* a light sweeps across the frost on hover */
+.job-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 32%, rgba(255, 255, 255, 0.5) 46%, transparent 62%);
+  transform: translateX(-130%);
+  pointer-events: none;
+  transition: transform 0.9s var(--ease);
+}
+
+.job-card:hover::before {
+  transform: translateX(130%);
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 71, 187, 0.32);
+  box-shadow: var(--sh-lift);
+}
+
+.job-card-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+}
+
+@media (min-width: 640px) {
+  .job-card-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+  }
+}
+
+.job-main {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: 15px;
+  text-align: left;
+}
+
+.job-star {
+  display: grid;
+  height: 42px;
+  width: 42px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.72);
+  transition: transform 0.5s var(--ease), background-color 0.35s var(--ease);
+}
+
+.job-star img {
+  height: 17px;
+  width: 15px;
+  transition: transform 0.5s var(--ease);
+}
+
+.job-card:hover .job-star {
+  background: rgba(0, 71, 187, 0.1);
+}
+
+.job-card:hover .job-star img {
+  transform: rotate(72deg) scale(1.12);
+}
+
+.job-title {
+  display: block;
+  font-size: 16.5px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.job-card:hover .job-title {
+  color: var(--blue);
+}
+
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.job-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 7px;
+  background: rgba(218, 227, 237, 0.55);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(28, 31, 42, 0.72);
+  transition: all 0.3s var(--ease);
+}
+
+.job-tag svg {
+  height: 12px;
+  width: 12px;
+  color: var(--blue);
+}
+
+.job-card:hover .job-tag {
+  background: rgba(0, 71, 187, 0.09);
+  color: var(--blue);
+}
+
+.job-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.job-apply {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: var(--blue);
+  padding-inline: 24px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #fff;
+  transition: all 0.3s var(--ease);
+}
+
+.job-apply svg {
+  transition: transform 0.3s var(--ease);
+}
+
+.job-apply:hover {
+  filter: brightness(1.1);
+  box-shadow: var(--sh-blue-btn);
+}
+
+.job-apply:hover svg {
+  transform: translateX(4px);
+}
+
+.job-icon-btn {
+  display: grid;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(28, 31, 42, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: rgba(28, 31, 42, 0.6);
+  transition: all 0.3s var(--ease);
+}
+
+.job-icon-btn:hover {
+  border-color: rgba(0, 71, 187, 0.35);
+  color: var(--blue);
+}
+
+.job-icon-btn svg {
+  transition: transform 0.35s var(--ease);
+}
+
+.job-save.is-saved {
+  border-color: var(--blue);
+  background: rgba(0, 71, 187, 0.1);
+  color: var(--blue);
+}
+
+.job-save.pop svg {
+  animation: save-pop 0.45s var(--ease);
+}
+
+/* empty state carries the way out, not just the bad news */
+.results-empty {
+  margin-top: 18px;
+  border-radius: 20px;
+  padding: 54px 24px;
+  text-align: center;
+}
+
+.results-empty-icon {
+  display: grid;
+  height: 62px;
+  width: 62px;
+  margin: 0 auto 18px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(0, 71, 187, 0.09);
+  color: var(--blue);
+  animation: empty-float 3s ease-in-out infinite;
+}
+
+.results-empty h3 {
+  font-size: 18px;
+}
+
+.results-empty p {
+  margin: 8px auto 20px;
+  max-width: 380px;
+  font-size: 14px;
+  line-height: 23px;
+  color: var(--muted);
+}
+
+/* Selecting a trait cross-fades the visual beside it, so the section reads
+   as one editorial spread rather than a list bolted to a photo. */
+.traits {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding-block: 96px;
+}
+
+@media (min-width: 1024px) {
+  .traits {
+    padding-block: 124px;
+  }
+}
+
+.traits-head {
+  position: relative;
+  max-width: 680px;
+}
+
+.traits-head h2 {
+  margin-top: 22px;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -1.3px;
+}
+
+.traits-head p {
+  margin-top: 18px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.traits-grid {
+  position: relative;
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .traits-grid {
+    margin-top: 72px;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+  }
+}
+
+/* ── the visual ── */
+.traits-visual {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .traits-visual {
+    position: sticky;
+    top: 112px;
+  }
+}
+
+.traits-stack {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 26px;
+  box-shadow: var(--sh-lift);
+}
+
+.traits-shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.8s var(--ease), transform 1.2s var(--ease);
+}
+
+.traits-shot.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.traits-shot img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* a soft floor so the caption never fights the photo */
+.traits-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(13, 13, 75, 0.72), rgba(13, 13, 75, 0.06) 52%, transparent);
+}
+
+.traits-caption {
+  position: absolute;
+  inset-inline: 22px;
+  bottom: 22px;
+  z-index: 2;
+}
+
+.traits-caption-index {
+  font-family: var(--font-alt);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.traits-caption p {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #fff;
+}
+
+/* progress ticks mirroring the active trait */
+.traits-ticks {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.traits-ticks span {
+  height: 3px;
+  flex: 1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+
+.traits-ticks span::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #fff;
+  transition: transform 0.5s var(--ease);
+}
+
+.traits-ticks span.is-active::after {
+  transform: none;
+}
+
+/* ── the list ── */
+.traits-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.trait {
+  border-top: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.trait:last-child {
+  border-bottom: 1px solid rgba(28, 31, 42, 0.1);
+}
+
+.trait button {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  padding: 26px 4px;
+  text-align: left;
+}
+
+/* the accent rail that grows down the active row */
+.trait::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--blue), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.trait {
+  position: relative;
+}
+
+.trait.is-active::before {
+  transform: none;
+}
+
+.trait-num {
+  font-family: var(--font-alt);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  line-height: 1.9;
+  color: rgba(28, 31, 42, 0.32);
+  transition: color 0.4s var(--ease);
+}
+
+.trait.is-active .trait-num {
+  color: var(--blue);
+}
+
+.trait-title {
+  display: block;
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1.35;
+  color: rgba(28, 31, 42, 0.45);
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.trait.is-active .trait-title,
+.trait:hover .trait-title {
+  color: var(--ink);
+}
+
+.trait:hover .trait-title {
+  transform: translateX(3px);
+}
+
+/* the body reveals from a measured height, so copy length is free.
+   display:block matters — height/overflow are ignored on an inline span. */
+.trait-reveal {
+  display: block;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.5s var(--ease);
+}
+
+.trait-text {
+  display: block;
+  padding-top: 12px;
+  max-width: 540px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.trait-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.trait-more svg {
+  transition: transform 0.35s var(--ease);
+}
+
+.trait:hover .trait-more svg {
+  transform: translateX(4px);
+}
+
+/* closing note under the list */
+.traits-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.traits-note-icon {
+  display: grid;
+  height: 38px;
+  width: 38px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--blue);
+  color: #fff;
+}
+
+.traits-note p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.traits-note a {
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── your journey (scroll-drawn timeline) ──────────────────────────────── */
+.journey {
+  position: relative;
+  overflow: hidden;
+  background: rgba(218, 227, 237, 0.28);
+  padding-block: 88px;
+}
+
+.journey-grid {
+  position: relative;
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 640px) {
+  .journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .journey-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* the connecting line only makes sense once the steps sit in a row */
+.journey-line {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 33px;
+  height: 2px;
+  background: rgba(28, 31, 42, 0.1);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+@media (min-width: 1024px) {
+  .journey-line {
+    display: block;
+  }
+}
+
+.journey-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  transform: scaleX(var(--progress, 0));
+  background: linear-gradient(90deg, var(--blue), var(--accent));
+}
+
+.journey-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.journey-icon {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  height: 66px;
+  width: 66px;
+  margin: 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 14px 32px -18px rgba(0, 20, 137, 0.5);
+  transition: all 0.5s var(--ease);
+}
+
+.journey-icon img {
+  height: 32px;
+  width: 32px;
+  transition: transform 0.5s var(--ease);
+}
+
+.journey-step.is-active .journey-icon {
+  border-color: rgba(0, 71, 187, 0.35);
+  box-shadow: 0 18px 40px -18px rgba(0, 71, 187, 0.65);
+  transform: translateY(-4px);
+}
+
+.journey-step:hover .journey-icon img {
+  transform: rotate(-8deg) scale(1.12);
+}
+
+.journey-num {
+  display: block;
+  margin-top: 20px;
+  font-family: var(--font-alt);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2em;
+  color: rgba(28, 31, 42, 0.35);
+  transition: color 0.4s var(--ease);
+}
+
+.journey-step.is-active .journey-num {
+  color: var(--blue);
+}
+
+.journey-card {
+  flex: 1;
+  margin-top: 12px;
+  padding: 22px 20px 24px;
+  border-radius: 18px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.journey-step:hover .journey-card {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-lift);
+}
+
+.journey-card h3 {
+  font-size: 16px;
+  letter-spacing: -0.3px;
+}
+
+.journey-card p {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-line::after {
+    transform: none;
+  }
+
+  .results-empty-icon,
+  .job-card::before {
+    animation: none;
+    transform: none;
+  }
+}
+    </style>
   </head>
   <body>
 <header class="site-header">
@@ -88,18 +1171,13 @@
         </div>
 
         <div class="shell scout-hero-inner">
-          <div data-reveal><span class="eyebrow">STARSCOUT · WE’RE HIRING</span></div>
+          <h1 data-aos="fade-up">Our job openings</h1>
 
-          <h1 data-reveal data-reveal-delay="0.06">
-            Find the role that <em>moves you</em>
-          </h1>
-
-          <p class="scout-hero-sub" data-reveal data-reveal-delay="0.12">
-            Every open seat at STARTRADER is a chance to build something that reaches traders in
-            over a hundred markets. Search, filter, and find yours.
+          <p class="scout-hero-sub" data-aos="fade-up" data-aos-delay="60">
+            Your next big career move starts here. Be part of something great!
           </p>
 
-          <div class="scout-stats" data-reveal data-reveal-delay="0.18">
+          <div class="scout-stats" data-aos="fade-up" data-aos-delay="180">
             <span class="stat-pill glass">
               <strong data-counter="5" data-duration="1.2">0</strong>
               <span>open roles</span>
@@ -114,7 +1192,7 @@
             </span>
           </div>
 
-          <div class="searchbar glass" data-reveal data-reveal-delay="0.24">
+          <div class="searchbar glass" data-aos="fade-up" data-aos-delay="240">
             <svg class="searchbar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
               <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -129,7 +1207,7 @@
             <button class="searchbar-go" type="button">Search</button>
           </div>
 
-          <div class="quick-chips" data-reveal data-reveal-delay="0.3">
+          <div class="quick-chips" data-aos="fade-up" data-aos-delay="300">
             <span class="quick-chips-label">Popular:</span>
             <button class="quick-chip" type="button" data-quick="Customer Support">Customer Support</button>
             <button class="quick-chip" type="button" data-quick="Marketing">Marketing</button>
@@ -148,7 +1226,7 @@
 
         <div class="shell board-grid">
           <!-- ── filter rail ── -->
-          <aside class="filter-rail" data-reveal>
+          <aside class="filter-rail" data-aos="fade-up">
             <div class="filter-panel glass">
               <div class="filter-panel-head">
                 <h2>
@@ -258,7 +1336,7 @@
 
             <div class="active-chips" data-active-chips></div>
 
-            <div class="job-list" data-stagger="0.09">
+            <div class="job-list">
               <article
                 class="job-card glass"
                 data-title="Customer Support Expert"
@@ -455,16 +1533,16 @@
 
         <div class="shell">
           <div class="traits-head">
-            <div data-reveal><span class="eyebrow">WHO WE LOOK FOR</span></div>
-            <h2 data-reveal data-reveal-delay="0.06">More than careers</h2>
-            <p data-reveal data-reveal-delay="0.12">
+            <div data-aos="fade-up"><span class="eyebrow">WHO WE LOOK FOR</span></div>
+            <h2 data-aos="fade-up" data-aos-delay="60">More than careers</h2>
+            <p data-aos="fade-up" data-aos-delay="120">
               Everyone who lands here brings something unique. We hire for trajectory and
               temperament — here’s what we look for in the people who choose to apply.
             </p>
           </div>
 
           <div class="traits-grid">
-            <div class="traits-visual" data-reveal>
+            <div class="traits-visual" data-aos="fade-up">
               <div class="traits-stack">
             <figure class="traits-shot is-active" data-shot="0">
               <img src="/img/scout/every-story.webp" alt="A STARTRADER team in conversation" loading="lazy" width="900" height="1124" />
@@ -487,7 +1565,7 @@
               </div>
             </div>
 
-            <div data-reveal data-reveal-delay="0.1">
+            <div data-aos="fade-up" data-aos-delay="100">
               <ul class="traits-list">
             <li class="trait is-active" data-trait="0">
               <button type="button" aria-expanded="true">
@@ -565,7 +1643,7 @@
         </div>
 
         <div class="shell" style="position: relative">
-          <div class="center-head" data-reveal>
+          <div class="center-head" data-aos="fade-up">
             <div class="eyebrow-wrap"><span class="eyebrow">OUR PROCESS</span></div>
             <h2 class="section-title-sm">Your journey to STARTRADER</h2>
             <p>Four steps from “that looks interesting” to “see you Monday”.</p>
@@ -616,7 +1694,7 @@
       <!-- ───────── CLOSING CTA ───────── -->
       <section class="cta-section">
         <div class="shell">
-          <div class="cta-panel cta-panel-dark" data-reveal>
+          <div class="cta-panel cta-panel-dark" data-aos="fade-up">
             <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
@@ -635,7 +1713,7 @@
     </main>
 
     <footer class="site-footer">
-      <div class="shell" data-reveal>
+      <div class="shell" data-aos="fade-up">
         <div class="footer-top">
           <a href="/" aria-label="STARTRADER Careers home">
             <span class="logo" role="img" aria-label="STARTRADER Careers">

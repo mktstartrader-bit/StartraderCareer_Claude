@@ -62,79 +62,30 @@
     });
   }
 
-  /* ── Scroll motion ──────────────────────────────────────────────────── */
-  // One observer drives every on-view effect: fades, staggers, line masks,
-  // panel wipes and the divider sweeps.
-  function initReveal() {
-    var targets = $$("[data-reveal], [data-stagger], .mask-line, .mask-wipe, .sweep");
-    if (!targets.length) return;
+  /* ── Scroll motion (AOS) ────────────────────────────────────────────── */
+  // Entrance reveals are driven by the AOS plugin. Markup carries
+  // data-aos/data-aos-delay; stagger containers ([data-stagger]) get
+  // incremental delays assigned to their children before AOS boots.
+  function initAOS() {
+    if (!window.AOS) return;
 
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      targets.forEach(function (el) {
-        el.classList.add("is-visible");
-      });
-      return;
-    }
-
-    // per-element delays declared in the markup
-    $$("[data-reveal]").forEach(function (el) {
-      var d = el.getAttribute("data-reveal-delay");
-      var y = el.getAttribute("data-reveal-y");
-      if (d) el.style.setProperty("--reveal-delay", d + "s");
-      if (y) el.style.setProperty("--reveal-y", y + "px");
-    });
-    $$(".mask-line, .mask-wipe, .sweep").forEach(function (el) {
-      var d = el.getAttribute("data-reveal-delay");
-      if (d) el.style.setProperty("--reveal-delay", d + "s");
-    });
-    // staggered children cascade off their index
     $$("[data-stagger]").forEach(function (el) {
-      var step = parseFloat(el.getAttribute("data-stagger")) || 0.09;
-      var base = parseFloat(el.getAttribute("data-stagger-delay")) || 0;
+      var step = (parseFloat(el.getAttribute("data-stagger")) || 0.09) * 1000;
+      var base = (parseFloat(el.getAttribute("data-stagger-delay")) || 0) * 1000;
       $$(":scope > *", el).forEach(function (child, i) {
-        child.style.transitionDelay = (base + i * step).toFixed(3) + "s";
+        if (!child.hasAttribute("data-aos")) child.setAttribute("data-aos", "fade-up");
+        if (!child.hasAttribute("data-aos-delay")) {
+          child.setAttribute("data-aos-delay", String(Math.round(base + i * step)));
+        }
       });
     });
 
-    // once a stagger group has fully entered, drop the inline delays so hover
-    // micro-interactions on the children respond immediately
-    var clearStaggerDelays = function (el) {
-      if (!el.hasAttribute("data-stagger")) return;
-      var step = parseFloat(el.getAttribute("data-stagger")) || 0.09;
-      var base = parseFloat(el.getAttribute("data-stagger-delay")) || 0;
-      var kids = $$(":scope > *", el);
-      setTimeout(function () {
-        kids.forEach(function (c) {
-          c.style.transitionDelay = "0s";
-        });
-      }, (base + kids.length * step) * 1000 + 700);
-    };
-
-    // threshold 0, not 0.2 — a section taller than the viewport can never show
-    // 20% of itself at once, so it would sit hidden until the page happened to
-    // scroll past it (or forever, if it was the last thing on the page)
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          clearStaggerDelays(entry.target);
-          io.unobserve(entry.target);
-        });
-      },
-      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
-    );
-
-    // anything already at or above the fold shows immediately; waiting for the
-    // observer's first callback leaves the opening screen half-empty
-    var vh = window.innerHeight;
-    targets.forEach(function (el) {
-      if (el.getBoundingClientRect().top < vh * 0.92) {
-        el.classList.add("is-visible");
-        clearStaggerDelays(el);
-        return;
-      }
-      io.observe(el);
+    window.AOS.init({
+      once: true,
+      duration: 600,
+      easing: "ease-out-cubic",
+      offset: 60,
+      disable: reduceMotion,
     });
   }
 
@@ -172,6 +123,25 @@
     update();
     window.addEventListener("scroll", request, { passive: true });
     window.addEventListener("resize", request);
+  }
+
+  /* ── Carousels (Swiper) ─────────────────────────────────────────────── */
+  // Continuous linear drift; pauses on hover, static under reduced motion.
+  function initSwipers() {
+    if (!window.Swiper) return;
+    $$("[data-csr-swiper]").forEach(function (el) {
+      new window.Swiper(el, {
+        slidesPerView: "auto",
+        spaceBetween: 18,
+        loop: true,
+        speed: 7000,
+        grabCursor: true,
+        allowTouchMove: true,
+        autoplay: reduceMotion
+          ? false
+          : { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true },
+      });
+    });
   }
 
   /* ── Cursor glow ────────────────────────────────────────────────────── */
@@ -1772,7 +1742,8 @@
   /* ── Boot ───────────────────────────────────────────────────────────── */
   function boot() {
     initNav();
-    initReveal();
+    initAOS();
+    initSwipers();
     initParallax();
     initGlow();
     initQuoteReveal();
