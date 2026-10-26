@@ -727,20 +727,23 @@
 
 .pb-icon {
   display: grid;
-  height: 44px;
-  width: 44px;
+  height: 64px;
+  width: 64px;
   flex-shrink: 0;
   place-items: center;
-  border-radius: 999px;
-  background: rgba(218, 227, 237, 0.55);
-  color: var(--blue);
-  transition: all 0.4s var(--ease);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(218, 227, 237, 0.7), rgba(218, 227, 237, 0.25));
+  transition: transform 0.4s var(--ease);
+}
+
+.pb-icon img {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
 }
 
 .pb-tile:hover .pb-icon {
-  background: var(--blue);
-  color: #fff;
-  transform: rotate(-8deg);
+  transform: translateY(-3px) rotate(-6deg);
 }
 
 .pb-product h3 {
@@ -1155,42 +1158,22 @@
 
           <div class="pbento pbento-products" data-stagger="0.08">
             <article class="pb-card pb-tile pb-product">
-              <span class="pb-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.8" />
-                      <path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                </svg>
-              </span>
+              <span class="pb-icon"><img src="/img/icons/ic3d-platforms.webp" alt="" loading="lazy" width="256" height="256" /></span>
               <h3>Platforms</h3>
               <p>Built to support fast, flexible access to global markets.</p>
             </article>
             <article class="pb-card pb-tile pb-product">
-              <span class="pb-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8" />
-                      <path d="M10.5 18h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                </svg>
-              </span>
+              <span class="pb-icon"><img src="/img/icons/ic3d-app.webp" alt="" loading="lazy" width="256" height="256" /></span>
               <h3>STARTRADER App</h3>
               <p>Designed to keep trading and account access within easy reach.</p>
             </article>
             <article class="pb-card pb-tile pb-product">
-              <span class="pb-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8" />
-                      <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                </svg>
-              </span>
+              <span class="pb-icon"><img src="/img/icons/ic3d-copy.webp" alt="" loading="lazy" width="256" height="256" /></span>
               <h3>STAR Copy</h3>
               <p>Created to make following and copying trading strategies more accessible.</p>
             </article>
             <article class="pb-card pb-tile pb-product">
-              <span class="pb-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M3 16l5-5 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M15 7h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
+              <span class="pb-icon"><img src="/img/icons/ic3d-research.webp" alt="" loading="lazy" width="256" height="256" /></span>
               <h3>Research &amp; Insights</h3>
               <p>Built to support market analysis and more informed trading decisions.</p>
             </article>

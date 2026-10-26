@@ -18,17 +18,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="canonical" href="/" />
-    <link rel="preload" as="image" href="/img/home/hero-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/home/hero-careers.webp" fetchpriority="high" />
     <meta property="og:site_name" content="STARTRADER Careers" />
     <meta property="og:title" content="STARTRADER Careers — Carve your path to success" />
     <meta property="og:description" content="Carve your path to success with STARTRADER. Explore careers, culture, and stories at a globally-leading broker." />
     <meta property="og:url" content="/" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/img/home/hero-poster.webp" />
+    <meta property="og:image" content="/img/home/hero-careers-og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="STARTRADER Careers — Carve your path to success" />
     <meta name="twitter:description" content="Carve your path to success with STARTRADER. Explore careers, culture, and stories at a globally-leading broker." />
-    <meta name="twitter:image" content="/img/home/hero-poster.webp" />
+    <meta name="twitter:image" content="/img/home/hero-careers-og.jpg" />
     <script>
       document.documentElement.className += " js";
     </script>
@@ -38,13 +38,14 @@
     <!-- Page-specific styles (kept with the page for easy detachment) -->
     <style>
 /* ── page-specific styles (moved from css/style.css) ── */
-.home-hero-poster,
-.home-hero .video-hero-media {
+.home-hero-poster {
   position: absolute;
   inset: 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
+  /* keep her head clear of the fixed nav however wide the crop gets */
+  object-position: 72% 30%;
 }
 
 .home-hero .shell {
@@ -150,6 +151,7 @@
   position: relative;
   display: flex;
   height: clamp(600px, 56vw, 800px);
+  padding-top: var(--nav-h);
   align-items: center;
   overflow: hidden;
 }
@@ -159,26 +161,61 @@
 .home-hero-scrim {
   position: absolute;
   inset: 0;
+  /* a soft navy wash behind the copy only; the photo stays clear on the right */
   background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.88) 26%,
-      rgba(0, 0, 0, 0.66) 50%,
-      rgba(0, 0, 0, 0.3) 76%,
-      rgba(0, 0, 0, 0.05) 100%
-    ),
-    linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 42%);
+    to right,
+    rgba(0, 12, 48, 0.72) 0%,
+    rgba(0, 12, 48, 0.5) 30%,
+    rgba(0, 12, 48, 0.12) 55%,
+    rgba(0, 12, 48, 0) 70%
+  );
 }
 
-@media (max-width: 700px) {
-  .home-hero-scrim {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 55%, rgba(0, 0, 0, 0.55) 100%),
-      linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 45%);
+/* phones and tablets: copy first on a navy floor, the photo underneath it */
+@media (max-width: 1023px) {
+  .home-hero {
+    height: auto;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: #000c30;
+  }
+
+  .home-hero .shell {
+    order: 0;
+    padding-top: 128px;
+    padding-bottom: 40px;
+  }
+
+  .home-hero-poster {
+    position: relative;
+    order: 1;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-position: 72% center;
+  }
+
+  .home-hero-scrim,
+  .hero-scroll-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero-poster {
+    aspect-ratio: 4 / 3;
   }
 }
 
 .home-hero-copy {
   max-width: 651px;
+}
+
+/* small laptops: keep the copy clear of the person on the right */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .home-hero-copy {
+    max-width: 44vw;
+  }
 }
 
 .hero-scroll-arrow {
@@ -759,18 +796,8 @@
 
     <main>
       <!-- ───────── HERO ───────── -->
-      <section class="home-hero" data-video-hero>
-        <img class="home-hero-poster" src="/img/home/hero-poster.webp" alt="" fetchpriority="high" width="1280" height="720" />
-        <video
-          class="video-hero-media"
-          data-src="/video/home-hero.mp4"
-          poster="/img/home/hero-poster.webp"
-          muted
-          loop
-          playsinline
-          preload="none"
-          aria-hidden="true"
-        ></video>
+      <section class="home-hero">
+        <img class="home-hero-poster" src="/img/home/hero-careers.webp" alt="A STARTRADER professional walking through the office with colleagues" fetchpriority="high" width="2400" height="1357" />
         <div class="home-hero-scrim"></div>
 
         <div class="shell">
@@ -923,7 +950,7 @@
           </div>
 
           <div class="team-banner" data-parallax="40" data-aos="fade-up">
-            <img src="/img/home/team.webp" alt="" loading="lazy" width="1200" height="800" />
+            <img src="/img/home/team-purpose.webp" alt="A STARTRADER team walking together through the office" loading="lazy" width="1800" height="771" />
           </div>
 
           <div class="team-beliefs" data-stagger="0.12">
