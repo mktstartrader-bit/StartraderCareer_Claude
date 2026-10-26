@@ -151,21 +151,13 @@
   background: rgba(218, 227, 237, 0.35);
 }
 
-.cta-watermark {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 118%;
-  width: auto;
-  max-width: none;
-  pointer-events: none;
+.cta-copy-center {
+  text-align: center;
 }
 
-@media (min-width: 640px) {
-  .cta-watermark {
-    right: 24px;
-  }
+.cta-copy-center h2 {
+  max-width: 640px;
+  margin-inline: auto;
 }
 
 /* ── 10. Home ──────────────────────────────────────────────────────────── */
@@ -915,7 +907,7 @@
                 <p class="ceo-name">Mr. Peter Karsten, CEO of STARTRADER</p>
                 <p class="ceo-quote">
                   <span class="quote-mark">“</span>Great platforms are built by great people — and at STARTRADER, we’re proud
-                  to build the kind of place where talent grows, leaders rise, and every contribution
+                  to build the kind of place where talents grow, leaders rise, and every contribution
                   counts.<span class="quote-mark">”</span>
                 </p>
               </div>
@@ -972,17 +964,11 @@
       <section class="cta-section" style="padding-block: 90px">
         <div class="shell">
           <div class="cta-panel cta-panel-band" data-aos="fade-up">
-            <div class="cta-grid">
-              <div class="cta-copy">
-                <h2 class="section-title" style="max-width: 560px">
-                  Your next big opportunity is closer than you think!
-                </h2>
-                <a class="btn btn-primary btn-tall" href="/starscout.html">Find It Now</a>
-              </div>
-              <div class="cta-media">
-                <img class="cta-watermark" src="/img/brand/footer-bg.svg" alt="" aria-hidden="true" />
-                <img class="cta-people" src="/img/home/cta-people.webp" alt="STARTRADER team members" loading="lazy" width="674" height="760" />
-              </div>
+            <div class="cta-copy cta-copy-center">
+              <h2 class="section-title">
+                Your next big opportunity is closer than you think
+              </h2>
+              <a class="btn btn-primary btn-tall" href="/starscout.html">Find It Now</a>
             </div>
           </div>
         </div>

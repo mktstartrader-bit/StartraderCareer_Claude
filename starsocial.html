@@ -231,25 +231,17 @@
   transform: scale(1.06);
 }
 
-/* the caption only surfaces on hover, so the strip stays photographic */
 .csr-shot figcaption {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
   z-index: 2;
   padding: 42px 20px 18px;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
   color: #fff;
-  background: linear-gradient(to top, rgba(4, 8, 28, 0.85), transparent);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.4s var(--ease);
-}
-
-.csr-shot:hover figcaption {
-  opacity: 1;
-  transform: none;
+  background: linear-gradient(to top, rgba(4, 8, 28, 0.8), transparent);
 }
 
 /* ── initiatives ───────────────────────────────────────────────────────── */
@@ -269,7 +261,7 @@
 @media (min-width: 1024px) {
   .initiatives {
     margin-top: 72px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -305,46 +297,24 @@
   box-shadow: var(--sh-lift);
 }
 
-.initiative-media {
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-}
-
-.initiative-media img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  transition: transform 0.9s var(--ease);
-}
-
-.initiative:hover .initiative-media img {
-  transform: scale(1.07);
-}
-
 .initiative-num {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  z-index: 2;
   display: grid;
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
   place-items: center;
   border-radius: 999px;
-  background: rgba(4, 8, 28, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 71, 187, 0.08);
   font-family: var(--font-alt);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: #fff;
+  color: var(--blue);
   transition: all 0.4s var(--ease);
 }
 
 .initiative:hover .initiative-num {
   background: var(--blue);
+  color: #fff;
   transform: scale(1.08);
 }
 
@@ -352,10 +322,11 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 22px;
+  padding: 26px 22px;
 }
 
 .initiative-body h3 {
+  margin-top: 22px;
   font-size: 17px;
   font-weight: 500;
   letter-spacing: -0.3px;
@@ -369,7 +340,7 @@
 
 .initiative-body p {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.7;
   color: var(--muted);
 }
@@ -464,7 +435,7 @@
                     <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </a>
-                <a class="btn btn-hero btn-ghost" href="/starlife.html">See life here</a>
+                <a class="btn btn-hero btn-ghost" href="/starlife.html">Explore STARLIFE</a>
               </div>
             </div>
           </div>
@@ -480,10 +451,11 @@
         <div class="shell" style="position: relative">
           <div class="sec-head">
             <div data-aos="fade-up"><span class="eyebrow">OUR IMPACT</span></div>
-            <h2 data-aos="fade-up" data-aos-delay="60">We grow in business and in spirit!</h2>
+            <h2 data-aos="fade-up" data-aos-delay="60">Growth Beyond Business</h2>
             <p data-aos="fade-up" data-aos-delay="120">
-              We believe that success goes beyond financial growth. As such, we aim to create a
-              meaningful difference in people’s lives.
+              STARTRADER supports communities through practical initiatives in education, wellbeing,
+              and the environment. Our social-impact work is an extension of how we operate as a
+              company: with responsibility, care, and a focus on long-term contribution.
             </p>
           </div>
 
@@ -496,12 +468,12 @@
 
             <div class="impact-copy" data-aos="fade-up" data-aos-delay="100">
               <p>
-                Our commitment to corporate social responsibility reflects our dedication to giving
-                back, fostering positive change in the society.
+                These initiatives turn our values into action and help us support the people and
+                communities around us.
               </p>
               <div class="impact-pull">
-                <p>The STARTRADERs believe success is in expanding business <em>and</em> giving back to the community.</p>
-                <span>What we mean by impact</span>
+                <p>Our goal is simple: create a positive impact beyond our business.</p>
+                <span>What impact means to us</span>
               </div>
             </div>
           </div>
@@ -525,40 +497,50 @@
         <div class="csr-strip swiper" data-aos="fade-up" data-csr-swiper>
           <div class="csr-track swiper-wrapper">
             <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr1.webp" alt="Volunteering hours given, not just donations sent" loading="lazy" width="1000" height="652" />
+              <img src="/img/social/csr-ramadan-box.webp" alt="Ramadan Meal Distribution" loading="lazy" width="1136" height="800" />
+              <figcaption>Ramadan Meal Distribution</figcaption>
             </figure>
             <figure class="csr-shot swiper-slide">
-              <img src="/img/social/swiper07.webp" alt="Supporting the causes our people care about" loading="lazy" width="1200" height="600" />
+              <img src="/img/social/csr-tree-planting.webp" alt="Tree Planting in Dubai" loading="lazy" width="1360" height="1600" />
+              <figcaption>Tree Planting in Dubai</figcaption>
             </figure>
             <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr3.webp" alt="Community work that outlasts a single campaign" loading="lazy" width="1000" height="668" />
+              <img src="/img/social/csr1.webp" alt="Supporting Animal &amp; Us Fujairah" loading="lazy" width="1000" height="652" />
+              <figcaption>Supporting Animal &amp; Us Fujairah</figcaption>
             </figure>
             <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr-ramadan-box.webp" alt="A STARTRADER volunteer holding a Ramadan Kareem giving box" loading="lazy" width="1136" height="800" />
+              <img src="/img/social/csr3.webp" alt="Supporting Slum Child Care in Thailand" loading="lazy" width="1000" height="668" />
+              <figcaption>Supporting Slum Child Care in Thailand</figcaption>
             </figure>
             <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr-tree-planting.webp" alt="The STARTRADER team planting trees together" loading="lazy" width="1360" height="1600" />
+              <img src="/img/social/swiper07.webp" alt="Supporting CCD’s Little Stars" loading="lazy" width="1200" height="600" />
+              <figcaption>Supporting CCD’s Little Stars</figcaption>
             </figure>
-            <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr1.webp" alt="" loading="lazy" width="1000" height="652" />
-            </figure>
-            <figure class="csr-shot swiper-slide">
-              <img src="/img/social/swiper07.webp" alt="" loading="lazy" width="1200" height="600" />
-            </figure>
-            <figure class="csr-shot swiper-slide">
-              <img src="/img/social/csr3.webp" alt="" loading="lazy" width="1000" height="668" />
-            </figure>
-            <figure class="csr-shot swiper-slide">
+            <figure class="csr-shot swiper-slide" aria-hidden="true">
               <img src="/img/social/csr-ramadan-box.webp" alt="" loading="lazy" width="1136" height="800" />
+              <figcaption>Ramadan Meal Distribution</figcaption>
             </figure>
-            <figure class="csr-shot swiper-slide">
+            <figure class="csr-shot swiper-slide" aria-hidden="true">
               <img src="/img/social/csr-tree-planting.webp" alt="" loading="lazy" width="1360" height="1600" />
+              <figcaption>Tree Planting in Dubai</figcaption>
+            </figure>
+            <figure class="csr-shot swiper-slide" aria-hidden="true">
+              <img src="/img/social/csr1.webp" alt="" loading="lazy" width="1000" height="652" />
+              <figcaption>Supporting Animal &amp; Us Fujairah</figcaption>
+            </figure>
+            <figure class="csr-shot swiper-slide" aria-hidden="true">
+              <img src="/img/social/csr3.webp" alt="" loading="lazy" width="1000" height="668" />
+              <figcaption>Supporting Slum Child Care in Thailand</figcaption>
+            </figure>
+            <figure class="csr-shot swiper-slide" aria-hidden="true">
+              <img src="/img/social/swiper07.webp" alt="" loading="lazy" width="1200" height="600" />
+              <figcaption>Supporting CCD’s Little Stars</figcaption>
             </figure>
           </div>
         </div>
       </section>
 
-      <!-- ───────── INITIATIVES ───────── -->
+      <!-- ───────── FOCUS AREAS ───────── -->
       <section class="about-section" style="background: var(--tint-20)">
         <div class="atmos">
           <span class="atmos-orb atmos-orb-accent" style="left: -12%; bottom: -16%; height: 520px; width: 520px"></span>
@@ -567,53 +549,49 @@
         <div class="shell" style="position: relative">
           <div class="sec-head is-centered">
             <div data-aos="fade-up" style="display: flex; justify-content: center">
-              <span class="eyebrow">OUR INITIATIVES</span>
+              <span class="eyebrow">THE FOCUS BEHIND OUR IMPACT</span>
             </div>
-            <h2 data-aos="fade-up" data-aos-delay="60">Making a difference, One Initiative at a time</h2>
+            <h2 data-aos="fade-up" data-aos-delay="60">Where Purpose Becomes Action</h2>
             <p data-aos="fade-up" data-aos-delay="120">
-Striving to create change in the world, we work on several initiatives:
+              STARCARES focuses its efforts across five key areas, each reflecting where we
+              contribute and how our initiatives take shape.
             </p>
           </div>
 
           <div class="initiatives" data-stagger="0.09">
             <article class="initiative glass">
-              <div class="initiative-media">
+              <div class="initiative-body">
                 <span class="initiative-num">01</span>
-                <img src="/img/social/csr2.webp" alt="" loading="lazy" width="1000" height="668" />
-              </div>
-              <div class="initiative-body">
-                <h3>Education &amp; child welfare</h3>
-                <p>Our work calls everyone to put on their binoculars of creativity and innovation to easily discover opportunities budding along the way. With STARTRADER, your abilities are challenged to improve and shine.</p>
+                <h3>Child Welfare</h3>
+                <p>Slum care, CCD programs, children’s celebrations</p>
               </div>
             </article>
             <article class="initiative glass">
-              <div class="initiative-media">
+              <div class="initiative-body">
                 <span class="initiative-num">02</span>
-                <img src="/img/social/csr3.webp" alt="" loading="lazy" width="1000" height="668" />
-              </div>
-              <div class="initiative-body">
-                <h3>Sustainability &amp; environmental care</h3>
-                <p>We invest in greener operations and community programmes that protect the environment and build a more sustainable future for the next generation.</p>
+                <h3>Sports Infrastructure</h3>
+                <p>Basketball courts, NBA programs, sports foundations</p>
               </div>
             </article>
             <article class="initiative glass">
-              <div class="initiative-media">
+              <div class="initiative-body">
                 <span class="initiative-num">03</span>
-                <img src="/img/social/csr1.webp" alt="" loading="lazy" width="1000" height="652" />
-              </div>
-              <div class="initiative-body">
-                <h3>Disaster relief &amp; humanitarian aid</h3>
-                <p>When crises strike, we move quickly — supporting relief efforts and standing with the communities that need help the most.</p>
+                <h3>Education and AI</h3>
+                <p>University keynotes, AI in finance, youth education</p>
               </div>
             </article>
             <article class="initiative glass">
-              <div class="initiative-media">
-                <span class="initiative-num">04</span>
-                <img src="/img/social/mark.webp" alt="" loading="lazy" width="417" height="496" />
-              </div>
               <div class="initiative-body">
-                <h3>Community empowerment</h3>
-                <p>From mentorship to local partnerships, we help people gain the skills, confidence, and resources to shape their own success.</p>
+                <span class="initiative-num">04</span>
+                <h3>Community Aid</h3>
+                <p>Iftar meals, disaster relief, animal welfare, shelter</p>
+              </div>
+            </article>
+            <article class="initiative glass">
+              <div class="initiative-body">
+                <span class="initiative-num">05</span>
+                <h3>Environment and Inclusion</h3>
+                <p>Tree planting, gender empowerment, people of determination</p>
               </div>
             </article>
           </div>
@@ -627,7 +605,7 @@ Striving to create change in the world, we work on several initiatives:
             <img class="cta-star" src="/img/brand/footer-star.svg" alt="" aria-hidden="true" />
             <div class="cta-grid">
               <div class="cta-copy">
-                <h2 class="section-title on-dark">Responsibility drives us, innovation defines us.</h2>
+                <h2 class="section-title on-dark">Join a team that believes meaningful work goes beyond the role.</h2>
                 <a class="btn btn-white btn-tall" href="/starscout.html">Experience STARTRADER</a>
               </div>
               <div class="cta-media">
